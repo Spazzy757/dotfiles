@@ -99,15 +99,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Kubernetes
-alias k="kubectl"
-
-# Git
-alias gits="git status"
-alias gitc="git commit -S -m"
-alias gitp="git push origin"
-
-
 
 
 PATH="/usr/local/opt/gnu-indent/libexec/gnubin:$PATH"
@@ -123,3 +114,5 @@ if [ -f '/Users/spazzy/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/spazzy/g
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/spazzy/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/spazzy/google-cloud-sdk/completion.zsh.inc'; fi
+
+source '/Users/spazzy/.zshrc_aliases'
