@@ -6,3 +6,5 @@ alias gits="git status"
 alias gitc="git commit -S -m"
 alias gitp="git push origin"
 
+# Terraform
+alias tf="terraform"
