@@ -116,3 +116,4 @@ if [ -f '/Users/spazzy/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/spazzy/g
 if [ -f '/Users/spazzy/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/spazzy/google-cloud-sdk/completion.zsh.inc'; fi
 
 source '/Users/spazzy/.zshrc_aliases'
+export PATH="/usr/local/opt/openssl/bin:$PATH"
