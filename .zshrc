@@ -1,14 +1,43 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export GOPATH=$HOME/go
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+export ZSH="/Users/spazzy/.oh-my-zsh"
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+PATH="/usr/local/opt/ed/libexec/gnubin:$PATH"
+export TERM="xterm-256color"
+
+# GIT
+alias gits="git status"
+alias gitc="git commit -S -m"
+#alias push-branch="git push origin $(git branch | grep \* | cut -d ' ' -f2)"
+alias gmaster="git checkout master"
+
+# Directories
+alias vuma="cd ~/Documents/vumatel"
+alias school="cd ~/Documents/school"
+alias personal="cd ~/Documents/spazzy"
+alias tangent="cd ~/Documents/tangent"
+alias appointmentguru="cd ~/Documents/appointmentguru"
+alias go-personal="cd  /Users/spazzy/go/src/github.com/Spazzy757"
+alias notebooks="cd ~/Documents/Notebooks"
+alias cs="cd ~/Documents/container-solutions"
+alias ling="cd ~/Documents/linguine"
+alias yara="cd ~/Documents/yara"
+
+# Exports
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
 export GO111MODULE=on
+export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
+PATH=~/anaconda3/bin:$PATH
+export PATH=$PATH:/usr/local/kubebuilder/bin
+
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster"
+ZSH_THEME="powerlevel9k/powerlevel9k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -68,8 +97,35 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git
- zsh-autosuggestions)
+ZSH_THEME="powerlevel9k/powerlevel9k"
+
+# POWERLEVEL SETTINGS
+POWERLEVEL9K_MODE="nerdfont-complete"
+POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+POWERLEVEL9K_VCS_GIT_ICON='\uf296'
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(custom_elementary_icon dir newline vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(kubecontext ram disk_usage command_execution_time)
+
+
+# User with skull
+user_with_skull() {
+    echo -n "\ufb8a $(whoami)"
+}
+
+POWERLEVEL9K_CUSTOM_ELEMENTARY_ICON="user_with_skull  `whoami` "
+
+POWERLEVEL9K_VCS_GIT_GITHUB_ICON=$'\uF408 '
+
+ZSH_DISABLE_COMPFIX=true
+plugins=(
+  git
+#  iterm2
+#  macports
+#  man
+#  osx
+  zsh-syntax-highlighting
+  zsh-autosuggestions
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -98,22 +154,15 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-
-
 PATH="/usr/local/opt/gnu-indent/libexec/gnubin:$PATH"
 PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
 PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
 PATH="/usr/local/opt/gnu-which/libexec/gnubin:$PATH"
 PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
 export PATH=$PATH:/usr/local/kubebuilder/bin
-export PATH=$GOPATH/bin:$PATH
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/spazzy/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/spazzy/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/spazzy/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/spazzy/google-cloud-sdk/completion.zsh.inc'; fi
-
-source '/Users/spazzy/.zshrc_aliases'
-export PATH="/usr/local/opt/openssl/bin:$PATH"
