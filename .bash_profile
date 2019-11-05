@@ -104,7 +104,7 @@ source /Users/spazzy/.minikube.completion.sh
 
 # Load Bash It
 source "$BASH_IT"/bash_it.sh
-source ~/.bash_aliases
+source /Users/spazzy/.bash_aliases
 export PATH="$HOME/.poetry/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/curl/bin:$PATH"
