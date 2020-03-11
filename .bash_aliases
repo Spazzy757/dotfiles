@@ -22,12 +22,16 @@ alias gitl="git log \
 alias tf="terraform"
 
 # Directories
-alias repos="cd ~/Documents"
+alias repos="cd ~/Documents/repos"
 
 
 # Misc
 alias ls='ls -GFhl'
 
+
+# VPNS
+alias vpn-adidas="sudo openconnect --user=kampbre  --servercert pin-sha256:zp/T5zxZmfVpQK4cCPqTs1mHHLbvIv8ylj81K8NVhGw= https://devpngate02.adidas-group.com/"
+alias vpn-gk="sudo openconnect --user=bkamp  https://webvpn.eurosoftware.cz"
 
 
 # GCloud

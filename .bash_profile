@@ -108,9 +108,12 @@ source /Users/spazzy/.bash_aliases
 export PATH="$HOME/.poetry/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/curl/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/spazzy/google-cloud-sdk/path.bash.inc' ]; then . '/Users/spazzy/google-cloud-sdk/path.bash.inc'; fi
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/spazzy/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/spazzy/google-cloud-sdk/completion.bash.inc'; fi
+
+export PATH="$HOME/.cargo/bin:$PATH"
