@@ -1,0 +1,5 @@
+# Apple Specific Things
+.DS_Store
+darwin_amd64
+# Emacs Temp 
+.#*
