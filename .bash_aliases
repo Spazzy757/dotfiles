@@ -1,10 +1,10 @@
 # Kubernetes
 alias k="kubectl"
 
-function kuswitchns {
+function kubens {
          kubectl config set-context $(kubectl config current-context) --namespace="$1";
 }
-export -f kuswitchns
+export -f kubens
 
 
 # Git
@@ -22,17 +22,21 @@ alias gitl="git log \
 alias tf="terraform"
 
 # Directories
-alias repos="cd ~/Documents/repos"
-
+function repos {
+      cd "$HOME/Documents/repos/$1/"
+}
+export -f repos
+function csrepos {
+      cd "$HOME/Documents/repos/container-solutions/$1/"
+}
+export -f csrepos
 
 # Misc
 alias ls='ls -GFhl'
 
-
-# VPNS
-alias vpn-adidas="sudo openconnect --user=kampbre  --servercert pin-sha256:zp/T5zxZmfVpQK4cCPqTs1mHHLbvIv8ylj81K8NVhGw= https://devpngate02.adidas-group.com/"
-alias vpn-gk="sudo openconnect --user=bkamp  https://webvpn.eurosoftware.cz"
-
-
-# GCloud
+# Load Aliases with secrets
+if [-f "$HOME/.bash_protected"];
+then
+  source "$HOME/.bash_protected"
+fi
 

@@ -1,0 +1,8 @@
+*
+!.spacemacs
+!.bash_profile
+!.bash_aliases
+!.gitignore
+!.git-crypt
+!.gitattributes
+!.bash_protected
