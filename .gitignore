@@ -3,7 +3,7 @@
 !.bash_profile
 !.bash_aliases
 !.gitignore
-!.git-crypt
+!.git-crypt/*
 !.gitattributes
 !.bash_protected
 !.todo.org
