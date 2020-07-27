@@ -47,7 +47,7 @@ values."
      lua
      javascript
      (json :variables
-          ;; json-fmt-tool web-beautify
+           ;;json-fmt-tool web-beautify
            json-fmt-on-save t)
      yaml
      helm
@@ -85,14 +85,12 @@ values."
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages
-   '(
-     all-the-icons
+   '(all-the-icons
      doom-themes
      spaceline-all-the-icons
      treemacs-evil
      exec-path-from-shell
-     org-agenda
-     )
+     org-agenda)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -297,7 +295,7 @@ values."
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers `relative
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil
@@ -337,8 +335,7 @@ It is called immediately after `dotspacemacs/init', before layer configuration
 executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
-`dotspacemacs/user-config' first."
-  )
+`dotspacemacs/user-config' first.")
 (setq dotspacemacs-mode-line-theme '(all-the-icons :separator slant))
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
@@ -352,21 +349,23 @@ you should place your code here."
           '((sequence "TODO(t)" "IN-PROGRESS(p)" "WAITING(w)" "DONE(d)")))
     (setq org-use-speed-commands t))
 
-
   (defun bb/setup-term-mode-search ()
     (evil-local-set-key 'insert (kbd "C-r") 'bb/send-C-r))
+
   (defun bb/setup-term-mode-cancel ()
     (evil-local-set-key 'insert (kbd "C-c") 'bb/send-C-c))
+
   (defun bb/setup-term-mode-kill ()
     (evil-local-set-key 'insert (kbd "C-c") 'bb/send-C-d))
-
 
   (defun bb/send-C-r ()
     (interactive)
     (term-send-raw-string "\C-r"))
+
   (defun bb/send-C-c ()
     (interactive)
     (term-send-raw-string "\C-c"))
+
   (defun bb/send-C-d ()
     (interactive)
     (term-send-raw-string "\C-d"))
@@ -374,17 +373,13 @@ you should place your code here."
   (add-hook 'term-mode-hook 'bb/setup-term-mode-search)
   (add-hook 'term-mode-hook 'bb/setup-term-mode-cancel)
   (add-hook 'term-mode-hook 'bb/setup-term-mode-kill)
-
   (add-hook 'rust-mode-hook #'racer-mode)
   (add-hook 'racer-mode-hook #'eldoc-mode)
+
   (require 'rust-mode)
   (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
-  (setq company-tooltip-align-annotations t)
-  )
+  (setq company-tooltip-align-annotations t))
 (setq neo-theme 'icons)
-;; Rust Settings
-;; Go Settings
-
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
 (custom-set-variables
