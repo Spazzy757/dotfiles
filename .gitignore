@@ -1,9 +1,11 @@
-*
+/*
+
 !.spacemacs
 !.bash_profile
 !.bash_aliases
 !.gitignore
-!.git-crypt/*
+!.git-crypt/
+!.git-crypt/keys/
 !.gitattributes
 !.bash_protected
 !.todo.org
