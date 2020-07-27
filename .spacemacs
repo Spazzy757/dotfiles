@@ -59,7 +59,7 @@ values."
      docker
      (org :variables
           org-enable-github-support t
-          org-projectile-file "/Users/spazzy/Documents/repos/container-solutions/todo.org")
+          org-projectile-file "/Users/spazzy/.todo.org")
      (treemacs :variables
                treemacs-use-git-mode 'deferred
                treemacs-use-follow-mode 'tag
