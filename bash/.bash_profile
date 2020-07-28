@@ -7,11 +7,6 @@ then
     . `brew --prefix`/etc/bash_completion.d/git-completion.bash
 fi
 
-# Load Aliases
-if [[ -f $HOME/.bash_aliases ]];
-then
-    source $HOME/.bash_aliases
-fi
 
 # Bash IT Setup
 if [[ -d $HOME/.bash-it ]];
@@ -102,4 +97,10 @@ fi
 if [ -f '$HOME/google-cloud-sdk/completion.bash.inc' ];
 then
     . '$HOME/google-cloud-sdk/completion.bash.inc';
+fi
+
+# Load Aliases
+if [[ -f $HOME/.bash_aliases ]];
+then
+    source $HOME/.bash_aliases
 fi

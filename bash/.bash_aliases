@@ -1,3 +1,6 @@
+# Misc
+alias ls='ls -alFG'
+
 # Kubernetes
 alias k="kubectl"
 ## Function to quickly change to a namespace
@@ -32,8 +35,6 @@ function csrepos {
 }
 export -f csrepos
 
-# Misc
-alias ls='ls -GFhl'
 
 # Load Aliases with secrets
 if [[ -f $HOME/.bash_protected ]];
