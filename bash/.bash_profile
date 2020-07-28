@@ -21,13 +21,13 @@ then
 fi
 
 # Load Aliases
-if [ -f "$HOME/.bash_aliases"];
+if [ -f '$HOME/.bash_aliases'];
 then
-    source $HOME/.bash_aliases
+    source "$HOME/.bash_aliases"
 fi
 
 # Bash IT Setup
-if [ -d "$HOME/.bash-it"];
+if [ -d '$HOME/.bash-it'];
 then
     # Path to the bash it configuration
     export BASH_IT="$HOME/.bash-it"
