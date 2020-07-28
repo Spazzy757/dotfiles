@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+# Misc
+alias ls='ls -alFG'
+alias grep='grep --color=auto'
+# Enable aliases to be sudo’ed
+alias sudo='sudo '
+# Lock the screen (when going AFK)
+alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+
+# Reload the shell (i.e. invoke as a login shell)
+alias reload="exec ${SHELL} -l"
+
+# Print each PATH entry on a separate line
+alias path='echo -e ${PATH//:/\\n}'
+
+# Kubernetes
+alias k="kubectl"
+## Function to quickly change to a namespace
+function kns {
+         kubectl config set-context $(kubectl config current-context) --namespace="$1";
+}
+export -f kns
+
+# Terraform
+alias tf="terraform"
+
+# Navigation
+# Easier navigation: .., ..., ...., ....., ~ and -
+
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ~="cd ~" # `cd` is probably faster to type though
+alias -- -="cd -"
+function repos {
+      cd "$HOME/Documents/repos/$1/"
+}
+export -f repos
+function csrepos {
+      cd "$HOME/Documents/repos/container-solutions/$1/"
+}
+export -f csrepos
+

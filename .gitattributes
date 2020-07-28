@@ -1,3 +1,2 @@
-.bash_protected filter=git-crypt diff=git-crypt
+.protected filter=git-crypt diff=git-crypt
 *.org filter=git-crypt diff=git-crypt
-.gitconfig filter=git-crypt diff=git-crypt

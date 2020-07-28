@@ -100,7 +100,12 @@ then
 fi
 
 # Load Aliases
-if [[ -f $HOME/.bash_aliases ]];
+if [[ -f $HOME/.aliases ]];
 then
-    source $HOME/.bash_aliases
+    source $HOME/.aliases
+fi
+# Load settings with secrets
+if [[ -f $HOME/.protected ]];
+then
+    source $HOME/.protected
 fi
