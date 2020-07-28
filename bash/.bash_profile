@@ -2,29 +2,23 @@
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
 # Bash git setup
-if [-f '$HOME/.git-prompt.sh'];
+if [ -f '$HOME/.git-prompt.sh' ];
 then
-    source "$HOME/.git-prompt.sh"
+    source "$HOME"/.git-prompt.sh
     export PS1="\\w\$(__git_ps1 '(%s)') \$ "
 fi
 if [ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash ]; then
     . `brew --prefix`/etc/bash_completion.d/git-completion.bash
 fi
 
-# Load .profile
-if [ -f '$HOME/.profile' ];
-then
-   source $HOME/.profile
-fi
-
 # Load Aliases
-if [ -f '$HOME/.bash_aliases'];
+if [ -f '$HOME/.bash_aliases' ];
 then
     source "$HOME/.bash_aliases"
 fi
 
 # Bash IT Setup
-if [ -d '$HOME/.bash-it'];
+if [ -d '$HOME/.bash-it' ];
 then
     # Path to the bash it configuration
     export BASH_IT="$HOME/.bash-it"
@@ -53,7 +47,7 @@ then
     # Set Xterm/screen/Tmux title with only a short hostname.
     # Uncomment this (or set SHORT_HOSTNAME to something else),
     # Will otherwise fall back on $HOSTNAME.
-    #export SHORT_HOSTNAME=$(hostname -s)
+    export SHORT_HOSTNAME=$(hostname -s)
 
     # Set Xterm/screen/Tmux title with only a short username.
     # Uncomment this (or set SHORT_USER to something else),
@@ -93,6 +87,11 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # Kubernetes
 source /Users/spazzy/.minikube.completion.sh
 export PATH=$PATH:$HOME/.linkerd2/bin
+source <(stern --completion=bash)
+
+# Golang
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
 
 # Java
 export ANDROID_HOME=/usr/local/share/android-sdk

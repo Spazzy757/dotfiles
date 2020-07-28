@@ -59,7 +59,7 @@ values."
      docker
      (org :variables
           org-enable-github-support t
-          org-projectile-file "/Users/spazzy/.todo.org")
+          org-projectile-file "~/.todo.org")
      (treemacs :variables
                treemacs-use-git-mode 'deferred
                treemacs-use-follow-mode 'tag
@@ -347,7 +347,8 @@ you should place your code here."
   (with-eval-after-load 'org
     (setq org-todo-keywords
           '((sequence "TODO(t)" "IN-PROGRESS(p)" "WAITING(w)" "DONE(d)")))
-    (setq org-use-speed-commands t))
+    (setq org-use-speed-commands t)
+    (setq org-agenda-files (list "~/.todo.org")))
 
   (defun bb/setup-term-mode-search ()
     (evil-local-set-key 'insert (kbd "C-r") 'bb/send-C-r))

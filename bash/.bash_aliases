@@ -1,11 +1,10 @@
 # Kubernetes
 alias k="kubectl"
-
-function kubens {
+## Function to quickly change to a namespace
+function kns {
          kubectl config set-context $(kubectl config current-context) --namespace="$1";
 }
-export -f kubens
-
+export -f kns
 
 # Git
 alias gits="git status"
@@ -15,7 +14,7 @@ alias gitl="git log \
 --graph \
 --abbrev-commit \
 --decorate \
---format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' \
+--format=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' \
 --all"
 
 # Terraform
@@ -35,7 +34,7 @@ export -f csrepos
 alias ls='ls -GFhl'
 
 # Load Aliases with secrets
-if [-f "$HOME/.bash_protected"];
+if [ -f "$HOME/.bash_protected" ];
 then
   source "$HOME/.bash_protected"
 fi
