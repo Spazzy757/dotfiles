@@ -9,13 +9,15 @@ export -f kns
 # Git
 alias gits="git status"
 alias gitc="git commit -S -m"
-alias gitp="git push origin $(git branch --show-current)"
-alias gitl="git log \
---graph \
---abbrev-commit \
---decorate \
---format=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' \
---all"
+function gitl {
+         git log \
+         --graph \
+         --abbrev-commit \
+         --decorate \
+         --format=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' \
+         --all
+}
+export -f gitl
 
 # Terraform
 alias tf="terraform"
@@ -34,8 +36,8 @@ export -f csrepos
 alias ls='ls -GFhl'
 
 # Load Aliases with secrets
-if [ -f "$HOME/.bash_protected" ];
+if [[ -f $HOME/.bash_protected ]];
 then
-  source "$HOME/.bash_protected"
+  source $HOME/.bash_protected
 fi
 

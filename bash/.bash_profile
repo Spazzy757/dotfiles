@@ -2,23 +2,23 @@
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
 # Bash git setup
-if [ -f '$HOME/.git-prompt.sh' ];
-then
-    source "$HOME"/.git-prompt.sh
-    export PS1="\\w\$(__git_ps1 '(%s)') \$ "
-fi
+#if [[ -f $HOME/.git-prompt.sh ]];
+#then
+#    source $HOME/.git-prompt.sh
+#    export PS1="\\w\$(__git_ps1 '(%s)') \$ "
+#fi
 if [ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash ]; then
     . `brew --prefix`/etc/bash_completion.d/git-completion.bash
 fi
 
 # Load Aliases
-if [ -f '$HOME/.bash_aliases' ];
+if [[ -f $HOME/.bash_aliases ]];
 then
-    source "$HOME/.bash_aliases"
+    source $HOME/.bash_aliases
 fi
 
 # Bash IT Setup
-if [ -d '$HOME/.bash-it' ];
+if [[ -d $HOME/.bash-it ]];
 then
     # Path to the bash it configuration
     export BASH_IT="$HOME/.bash-it"
@@ -26,7 +26,7 @@ then
     # Lock and Load a custom theme file.
     # Leave empty to disable theming.
     # location /.bash_it/themes/
-    export BASH_IT_THEME='bobby'
+    export BASH_IT_THEME='BarbUk'
 
     # (Advanced): Change this to the name of your remote repo if you
     # cloned bash-it with a remote other than origin such as `bash-it`.
