@@ -1,15 +1,12 @@
 # Silence Warning about ZSH
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
-# If not running interactively, don't do anything
-case $- in
-    *i*) ;;
-    *) return;;
-esac
-
 # Bash git setup
-source ~/.git-prompt.sh
-export PS1="\\w\$(__git_ps1 '(%s)') \$ "
+if [-f '$HOME/.git-prompt.sh'];
+then
+    source "$HOME/.git-prompt.sh"
+    export PS1="\\w\$(__git_ps1 '(%s)') \$ "
+fi
 if [ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash ]; then
     . `brew --prefix`/etc/bash_completion.d/git-completion.bash
 fi
