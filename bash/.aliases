@@ -7,6 +7,8 @@ alias grep='grep --color=auto'
 alias sudo='sudo '
 # Lock the screen (when going AFK)
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+# Copy public key to clipboard:
+alias pubkey="cat ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
 
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec ${SHELL} -l"
@@ -43,3 +45,5 @@ function csrepos {
 }
 export -f csrepos
 
+# Recursively remove .DS_Store files
+alias cleanupds="find . -type f -name '*.DS_Store' -ls -delete"

@@ -1,6 +1,12 @@
+[user]
+	name = Spazzy
+	email = brendankamp757@gmail.com
+	signingkey = 46BB4AF19947DB7A
 [alias]
 	# View abbreviated SHA, description, and history graph of the latest 20 commits.
 	l = log --pretty=oneline -n 20 --graph --abbrev-commit
+	# More Robust History
+	hist = log --pretty=format:\"%C(yellow)%h%C(reset) %C(green)%ad%C(reset) %C(red)|%C(reset) %s %C(bold blue)[%an]%C(reset)%C(yellow)%d%C(reset)\" --graph --date=short
 	# Signed Commit
 	c =  commit -S -m
 	# Status
@@ -13,10 +19,8 @@
 	aliases = config --get-regexp alias
 	# Amend the currently staged files to the latest commit.
 	amend = commit --amend --reuse-message=HEAD
-[user]
-	name = Spazzy
-	email = brendankamp757@gmail.com
-	signingkey = 46BB4AF19947DB7A
+[log]
+    decorate = full
 [core]
 	# global gitignore file
 	excludesfile = ~/.gitignore_global
