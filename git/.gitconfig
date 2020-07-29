@@ -11,6 +11,8 @@
 	c =  commit -S -m
   # Checkout branch
 	co = checkout
+	# Branch
+	br = branch
 
 	# View abbreviated SHA, description, and history graph of the latest 20 commits.
 	l = log --pretty=oneline -n 20 --graph --abbrev-commit
