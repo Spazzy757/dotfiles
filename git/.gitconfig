@@ -3,14 +3,19 @@
 	email = brendankamp757@gmail.com
 	signingkey = 46BB4AF19947DB7A
 [alias]
+	# short aliases
+
+	# Status
+	s = status
+	# Signed Commit
+	c =  commit -S -m
+  # Checkout branch
+	co = checkout
+
 	# View abbreviated SHA, description, and history graph of the latest 20 commits.
 	l = log --pretty=oneline -n 20 --graph --abbrev-commit
 	# More Robust History
 	hist = log --pretty=format:\"%C(yellow)%h%C(reset) %C(green)%ad%C(reset) %C(red)|%C(reset) %s %C(bold blue)[%an]%C(reset)%C(yellow)%d%C(reset)\" --graph --date=short
-	# Signed Commit
-	c =  commit -S -m
-	# Status
-	s = status 
   # Pull in remote changes for the current repository and all its submodules.
 	p = pull --recurse-submodules
 	# Switch to a branch, creating it if necessary.
@@ -19,13 +24,16 @@
 	aliases = config --get-regexp alias
 	# Amend the currently staged files to the latest commit.
 	amend = commit --amend --reuse-message=HEAD
+	# `git nuke my-old-branch`
+	# (Checks out master and does a non-forced delete on the branch entered)
+	nuke = !git co master && sh -c 'git br -d $1' -
 [log]
     decorate = full
 [core]
 	# global gitignore file
 	excludesfile = ~/.gitignore_global
 	# Editor
-	editor = emacsclient
+	editor = vim
 	# Speed up commands involving untracked files such as `git status`.
 	# https://git-scm.com/docs/git-update-index#_untracked_cache
 	untrackedCache = true
@@ -39,6 +47,8 @@
 	old = red # deletions
 	new = green # additions
 [commit]
+	# Sign commits with GPG
+	# https://git-scm.com/book/en/v2/Git-Tools-Signing-Your-Work
 	gpgsign = true
 [gpg]
 	program = gpg
