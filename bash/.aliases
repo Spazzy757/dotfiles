@@ -47,7 +47,9 @@ export -f csrepos
 
 # Recursively remove .DS_Store files
 alias cleanupds="find . -type f -name '*.DS_Store' -ls -delete"
+# recursively delete duplicated files that get created `xxx 2`
+alias lbaddir="find ./ -type f -name '* [0-9]'"
+alias cleandir="find ./ -type f -name '* [0-9]' -delete"
 
 # GPG
-
 alias gsign="gpg --encrypt --armor"

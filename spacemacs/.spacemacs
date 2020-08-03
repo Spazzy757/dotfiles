@@ -372,14 +372,15 @@ you should place your code here."
     (interactive)
     (term-send-raw-string "\C-d"))
 
+  (require 'rust-mode)
+  (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
+
   (add-hook 'term-mode-hook 'bb/setup-term-mode-search)
   (add-hook 'term-mode-hook 'bb/setup-term-mode-cancel)
   (add-hook 'term-mode-hook 'bb/setup-term-mode-kill)
   (add-hook 'rust-mode-hook #'racer-mode)
   (add-hook 'racer-mode-hook #'eldoc-mode)
 
-  (require 'rust-mode)
-  (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
   (setq company-tooltip-align-annotations t))
 (setq neo-theme 'icons)
 ;; Do not write anything past this comment. This is where Emacs will
