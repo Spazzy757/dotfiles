@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # Misc
+########################################################################
 alias ls='ls -alFG'
 alias grep='grep --color=auto'
 # Enable aliases to be sudo’ed
@@ -9,33 +10,48 @@ alias sudo='sudo '
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 # Copy public key to clipboard:
 alias pubkey="cat ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
-
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec ${SHELL} -l"
-
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
+# Recursively remove .DS_Store files
+alias cleanupds="find . -type f -name '*.DS_Store' -ls -delete"
+# recursively list duplicated files that get created randomly `xxx 2`
+alias lbaddir="find ./ -type f -name '* [0-9]'"
+# recursively delete duplicated files that get created randomly `xxx 2`
+alias cleandir="find ./ -type f -name '* [0-9]' -delete"
+# Always highlight grep search term
+alias grep='grep --color=auto'
+
+# Python
+########################################################################
+alias venv='. env/bin/activate'
+# Clean pyc
+alias cleanpyc='find . -name "*.pyc" -type f -delete' 
 
 # Kubernetes
+########################################################################
 alias k="kubectl"
-## Function to quickly change to a namespace
+# Function to quickly change to a namespace
 function kns {
          kubectl config set-context $(kubectl config current-context) --namespace="$1";
 }
+# Function to quickly change context
 function kctx {
     kubectl config use-context $1
 }
+# Alias to list contexts
 alias kctxl="kubectl config get-contexts"
 export -f kns
 export -f kctx
 
-
 # Terraform
+########################################################################
 alias tf="terraform"
 
 # Navigation
+########################################################################
 # Easier navigation: .., ..., ...., ....., ~ and -
-
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
@@ -51,11 +67,20 @@ function csrepos {
 }
 export -f csrepos
 
-# Recursively remove .DS_Store files
-alias cleanupds="find . -type f -name '*.DS_Store' -ls -delete"
-# recursively delete duplicated files that get created `xxx 2`
-alias lbaddir="find ./ -type f -name '* [0-9]'"
-alias cleandir="find ./ -type f -name '* [0-9]' -delete"
-
 # GPG
+########################################################################
 alias gsign="gpg --encrypt --armor"
+
+
+# System
+########################################################################
+# Find process matching input
+function psgrep {
+	  if [ ! -z $1 ] ; then
+	      echo "Grepping for processes matching $1..."
+	      ps aux | grep $1 --color=auto | grep -v grep --color=auto
+    else
+	      echo "!! Need name to grep for"
+	  fi
+}
+export -f psgrep
