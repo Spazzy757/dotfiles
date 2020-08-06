@@ -6,7 +6,7 @@
 	# short aliases
 
 	# Status
-	s = status
+	s = status -sb
 	# Signed Commit
 	c =  commit -S -m
   # Checkout branch
