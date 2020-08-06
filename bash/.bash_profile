@@ -76,7 +76,7 @@ export PATH="/usr/local/opt/curl/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 
 # Kubernetes
-source /Users/spazzy/.minikube.completion.sh
+source $HOME/.minikube.completion.sh
 export PATH=$PATH:$HOME/.linkerd2/bin
 source <(stern --completion=bash)
 

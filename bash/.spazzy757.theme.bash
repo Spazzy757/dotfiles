@@ -10,6 +10,7 @@ SCM_GIT_CHAR_ICON_BRANCH=${SPAZZY757_GIT_BRANCH_ICON:=''}
 SCM_HG_CHAR=${SPAZZY757_HG_CHAR:='☿ '}
 SCM_SVN_CHAR=${SPAZZY757_SVN_CHAR:='⑆ '}
 EXIT_CODE_ICON=${SPAZZY757_EXIT_CODE_ICON:=' '}
+KUBE_SYMBOL=${SPAZZY757_KUBE_SYMBOL:=$'\xE2\x8E\x88 '}
 
 # Ssh user and hostname display
 SSH_INFO=${SPAZZY757_SSH_INFO:=true}
@@ -33,7 +34,11 @@ GIT_THEME_PROMPT_SUFFIX="${cyan}"
 SCM_THEME_BRANCH_TRACK_PREFIX="${normal} ⤏  ${cyan}"
 SCM_THEME_CURRENT_USER_PREFFIX='  '
 SCM_GIT_SHOW_CURRENT_USER=false
-KUBE_CONTEXT=''
+
+
+KUBE_INFO=''
+KUBE_BINARY=${KUBE_BINARY_LOCATION:='/usr/local/bin/kubectl'}
+
 function _git-uptream-remote-logo {
     [[ "$(_git-upstream)" == "" ]] && SCM_GIT_CHAR="$SCM_GIT_CHAR_DEFAULT"
 
@@ -65,8 +70,17 @@ function _exit-code {
     fi
 }
 
+
+function _kube_binary_check {
+        command -v $1 >/dev/null
+}
+
 function kube_context {
-    KUBE_CONTEXT=$(kubectl config current-context)
+    kube_context=$(kubectl config current-context)
+    kube_namespace=$(kubectl config view --minify --output 'jsonpath={..namespace}')
+    if [ "${kube_context}" ]; then
+        KUBE_INFO="${blue}${KUBE_SYMBOL}${red}${kube_context}:${yellow}${kube_namespace}"
+    fi
 }
 
 function _prompt {
@@ -92,10 +106,12 @@ function _prompt {
         ssh_info="${bold_blue}\u${bold_orange}@${cyan}$host ${bold_orange}in"
     fi
 
-    # Get Kube Context
-    kube_context
+    # Check kubectl is working
+    if _kube_binary_check "${KUBE_BINARY}"; then
+        kube_context
+    fi
 
-    PS1="\\n${ssh_info} ${red}${KUBE_CONTEXT} ${purple}$(scm_char)${dir_color}\\w${normal}$(scm_prompt_info)${exit_code}"
+    PS1="\\n${ssh_info} ${KUBE_INFO} ${purple}$(scm_char)${dir_color}\\w${normal}$(scm_prompt_info)${exit_code}"
 
     [[ ${#PS1} -gt $((COLUMNS*3)) ]] && wrap_char="\\n"
     PS1="${PS1}${wrap_char}❯${normal} "
