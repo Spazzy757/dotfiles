@@ -27,8 +27,8 @@
 	# Amend the currently staged files to the latest commit.
 	amend = commit --amend --reuse-message=HEAD
 	# `git nuke my-old-branch`
-	# (Checks out master and does a non-forced delete on the branch entered)
-	nuke = !git co master && sh -c 'git br -d $1' -
+	# (Checks out master and does a forced delete on the branch entered)
+	nuke = !git co master && sh -c 'git br -D $1' -
 [log]
     decorate = full
 [core]
