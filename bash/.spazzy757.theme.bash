@@ -10,7 +10,6 @@ SCM_GIT_CHAR_ICON_BRANCH=${SPAZZY757_GIT_BRANCH_ICON:=''}
 SCM_HG_CHAR=${SPAZZY757_HG_CHAR:='☿ '}
 SCM_SVN_CHAR=${SPAZZY757_SVN_CHAR:='⑆ '}
 EXIT_CODE_ICON=${SPAZZY757_EXIT_CODE_ICON:=' '}
-KUBE_SYMBOL=${SPAZZY757_KUBE_SYMBOL:=$'\xE2\x8E\x88 '}
 
 # Ssh user and hostname display
 SSH_INFO=${SPAZZY757_SSH_INFO:=true}
@@ -29,15 +28,16 @@ SCM_GIT_UNSTAGED_CHAR="${bold_yellow}•${normal}"
 SCM_GIT_STAGED_CHAR="${bold_green}+${normal}"
 GIT_THEME_PROMPT_DIRTY=" ${bold_red}✗"
 GIT_THEME_PROMPT_CLEAN=" ${bold_green}✓"
-GIT_THEME_PROMPT_PREFIX="${cyan}"
+GIT_THEME_PROMPT_PREFIX="${cyan}"${yellow}
 GIT_THEME_PROMPT_SUFFIX="${cyan}"
 SCM_THEME_BRANCH_TRACK_PREFIX="${normal} ⤏  ${cyan}"
 SCM_THEME_CURRENT_USER_PREFFIX='  '
 SCM_GIT_SHOW_CURRENT_USER=false
 
-
+# Kubernetes
 KUBE_INFO=''
 KUBE_BINARY=${KUBE_BINARY_LOCATION:='/usr/local/bin/kubectl'}
+KUBE_SYMBOL=${SPAZZY757_KUBE_SYMBOL:=$'\xE2\x8E\x88 '}
 
 function _git-uptream-remote-logo {
     [[ "$(_git-upstream)" == "" ]] && SCM_GIT_CHAR="$SCM_GIT_CHAR_DEFAULT"
@@ -70,16 +70,18 @@ function _exit-code {
     fi
 }
 
-
+# Function to check if kubectl is installed
 function _kube_binary_check {
         command -v $1 >/dev/null
 }
 
 function kube_context {
+    # Get the Current Kubernetes Context
     kube_context=$(kubectl config current-context)
-    kube_namespace=$(kubectl config view --minify --output 'jsonpath={..namespace}')
+    # Get the current namespace if set
+    kube_namespace=":${yellow}$(kubectl config view --minify --output 'jsonpath={..namespace}')"
     if [ "${kube_context}" ]; then
-        KUBE_INFO="${blue}${KUBE_SYMBOL}${red}${kube_context}:${yellow}${kube_namespace}"
+        KUBE_INFO="${blue}${KUBE_SYMBOL}${red}${kube_context}${kube_namespace}"
     fi
 }
 
