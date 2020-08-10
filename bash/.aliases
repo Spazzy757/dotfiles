@@ -19,7 +19,7 @@ alias cleanupds="find . -type f -name '*.DS_Store' -ls -delete"
 # recursively list duplicated files that get created randomly `xxx 2`
 alias lbaddir="find ./ -type f -name '* [0-9]'"
 # recursively delete duplicated files that get created randomly `xxx 2`
-alias cleandir="find ./ -type f -name '* [0-9]' -delete"
+alias cleandir="find ./ -type f -name '* [0-9]'  -ls  -delete"
 # Always highlight grep search term
 alias grep='grep --color=auto'
 
@@ -27,7 +27,11 @@ alias grep='grep --color=auto'
 ########################################################################
 alias venv='. env/bin/activate'
 # Clean pyc
-alias cleanpyc='find . -name "*.pyc" -type f -delete' 
+alias cleanpyc='find . -name "*.pyc" -type f  -ls -delete'
+
+# Javascript
+########################################################################
+alias cleannode='find . -name "node_modules" -type d -ls -delete'
 
 # Kubernetes
 ########################################################################

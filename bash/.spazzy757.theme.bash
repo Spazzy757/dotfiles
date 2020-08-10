@@ -93,7 +93,12 @@ function kube_context {
 function get_disk_use_percent {
     # Might Only Work on MAC need to check
     disk=$(df -k | grep /dev/ | awk '{sub("%","", $5); sum +=$5;} END{print sum}')
-    DISK_USAGE='${disk}%'
+    if [ "$disk" -ge 70 ]; then
+        color=$yellow
+    elif [ "$number" -ge 85 ]; then
+       color=$red
+    fi
+    DISK_USAGE="${color}${disk}%"
 }
 
 function _prompt {
