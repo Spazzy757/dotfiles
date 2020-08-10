@@ -39,6 +39,10 @@ KUBE_INFO=''
 KUBE_BINARY=${KUBE_BINARY_LOCATION:='/usr/local/bin/kubectl'}
 KUBE_SYMBOL=${SPAZZY757_KUBE_SYMBOL:=$'\xE2\x8E\x88 '}
 
+
+# Memory
+DISK_USAGE=''
+
 function _git-uptream-remote-logo {
     [[ "$(_git-upstream)" == "" ]] && SCM_GIT_CHAR="$SCM_GIT_CHAR_DEFAULT"
 
@@ -85,6 +89,13 @@ function kube_context {
     fi
 }
 
+# get Current Disk Space
+function get_disk_use_percent {
+    # Might Only Work on MAC need to check
+    disk=$(df -k | grep /dev/ | awk '{sub("%","", $5); sum +=$5;} END{print sum}')
+    DISK_USAGE='${disk}%'
+}
+
 function _prompt {
     local exit_code="$?" wrap_char=' ' dir_color=$green ssh_info='' host
 
@@ -112,8 +123,9 @@ function _prompt {
     if _kube_binary_check "${KUBE_BINARY}"; then
         kube_context
     fi
+    get_disk_use_percent
 
-    PS1="\\n${ssh_info} ${KUBE_INFO} ${purple}$(scm_char)${dir_color}\\w${normal}$(scm_prompt_info)${exit_code}"
+    PS1="\\n${ssh_info} ${DISK_USAGE} ${KUBE_INFO} ${purple}$(scm_char)${dir_color}\\w${normal}$(scm_prompt_info)${exit_code}"
 
     [[ ${#PS1} -gt $((COLUMNS*3)) ]] && wrap_char="\\n"
     PS1="${PS1}${wrap_char}❯${normal} "

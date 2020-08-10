@@ -36,14 +36,14 @@ alias k="kubectl"
 function kns {
          kubectl config set-context $(kubectl config current-context) --namespace="$1";
 }
+export -f kns
 # Function to quickly change context
 function kctx {
     kubectl config use-context $1
 }
+export -f kctx
 # Alias to list contexts
 alias kctxl="kubectl config get-contexts"
-export -f kns
-export -f kctx
 
 # Terraform
 ########################################################################
