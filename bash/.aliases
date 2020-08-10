@@ -15,9 +15,7 @@ alias reload="exec ${SHELL} -l"
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
 # Recursively remove .DS_Store files
-alias cleanupds="find . -type f -name '*.DS_Store' -ls -delete"
-# recursively list duplicated files that get created randomly `xxx 2`
-alias lbaddir="find ./ -type f -name '* [0-9]'"
+alias cleands="find . -type f -name '*.DS_Store' -ls -delete"
 # recursively delete duplicated files that get created randomly `xxx 2`
 alias cleandir="find ./ -type f -name '* [0-9]'  -ls  -delete"
 # Always highlight grep search term
@@ -31,7 +29,7 @@ alias cleanpyc='find . -name "*.pyc" -type f  -ls -delete'
 
 # Javascript
 ########################################################################
-alias cleannode='find . -name "node_modules" -type d -ls -delete'
+alias cleannode="find . -name 'node_modules' -type d -ls -prune -exec rm -rf '{}' +"
 
 # Kubernetes
 ########################################################################
