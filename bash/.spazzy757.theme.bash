@@ -35,13 +35,8 @@ SCM_THEME_CURRENT_USER_PREFFIX='  '
 SCM_GIT_SHOW_CURRENT_USER=false
 
 # Kubernetes
-KUBE_INFO=''
 KUBE_BINARY=${KUBE_BINARY_LOCATION:='/usr/local/bin/kubectl'}
 KUBE_SYMBOL=${SPAZZY757_KUBE_SYMBOL:=$'\xE2\x8E\x88 '}
-
-
-# Memory
-DISK_USAGE=''
 
 function _git-uptream-remote-logo {
     [[ "$(_git-upstream)" == "" ]] && SCM_GIT_CHAR="$SCM_GIT_CHAR_DEFAULT"
@@ -93,12 +88,42 @@ function kube_context {
 function get_disk_use_percent {
     # Might Only Work on MAC need to check
     disk=$(df -k | grep /dev/ | awk '{sub("%","", $5); sum +=$5;} END{print sum}')
-    if [ "$disk" -ge 70 ]; then
-        color=$yellow
-    elif [ "$number" -ge 85 ]; then
-       color=$red
+
+    if [ "$disk" -le 76 ]; then
+        disk_color=$green
+    elif [ "$disk" -ge 75 ]; then
+        disk_color=$bold_yellow
+    elif [ "$disk" -ge 85 ]; then
+        disk_color=$bold_red
     fi
-    DISK_USAGE="${color}${disk}%"
+    DISK_USAGE="${disk_color}D:${disk}%"
+}
+
+
+# Get current memory in percent
+function get_mem_use_percent {
+    mem=$(ps -A -o %mem | awk '{ mem += $1} END {print  mem}')
+    if [ "$disk" -le 76 ]; then
+        mem_color=$green
+    elif [ "$disk" -ge 75 ]; then
+        mem_color=$bold_yellow
+    elif [ "$disk" -ge 85 ]; then
+        mem_color=$bold_red
+    fi
+    MEM_USAGE="${mem_color}M:${mem}%"
+}
+
+# Get current cpu in percent
+function get_cpu_use_percent {
+    cpu=$(ps -A -o %cpu | awk '{ cpu += $1} END {print  cpu}')
+    if [ "$disk" -le 76 ]; then
+        cpu_color=$green
+    elif [ "$disk" -ge 75 ]; then
+        cpu_color=$bold_yellow
+    elif [ "$disk" -ge 85 ]; then
+        cpu_color=$bold_red
+    fi
+    CPU_USAGE="${cpu_color}C:${cpu}%"
 }
 
 function _prompt {
@@ -129,8 +154,10 @@ function _prompt {
         kube_context
     fi
     get_disk_use_percent
+    get_mem_use_percent
+    get_cpu_use_percent
 
-    PS1="\\n${ssh_info} ${DISK_USAGE} ${KUBE_INFO} ${purple}$(scm_char)${dir_color}\\w${normal}$(scm_prompt_info)${exit_code}"
+    PS1="\\n${ssh_info} ${DISK_USAGE} ${MEM_USAGE} ${CPU_USAGE} ${KUBE_INFO} ${purple}$(scm_char)${dir_color}\\w${normal}$(scm_prompt_info)${exit_code}"
 
     [[ ${#PS1} -gt $((COLUMNS*3)) ]] && wrap_char="\\n"
     PS1="${PS1}${wrap_char}❯${normal} "
