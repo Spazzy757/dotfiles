@@ -76,9 +76,11 @@ function _kube_binary_check {
 
 function kube_context {
     # Get the Current Kubernetes Context
-    kube_context=$(kubectl config current-context)
+    # supress error if no current context
+    kube_context=$(kubectl config current-context 2> /dev/null)
     # Get the current namespace if set
-    kube_namespace=":${yellow}$(kubectl config view --minify --output 'jsonpath={..namespace}')"
+    # supress error if no current namespace
+    kube_namespace=":${yellow}$(kubectl config view --minify --output 'jsonpath={..namespace}' 2> /dev/null)"
     if [ "${kube_context}" ]; then
         KUBE_INFO="${blue}${KUBE_SYMBOL}${red}${kube_context}${kube_namespace}"
     fi
