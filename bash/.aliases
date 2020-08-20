@@ -23,6 +23,7 @@ alias grep='grep --color=auto'
 
 # Python
 ########################################################################
+# Shortcut for virtual env's
 alias venv='. env/bin/activate'
 # Clean pyc
 alias cleanpyc='find . -name "*.pyc" -type f  -ls -delete'
@@ -72,7 +73,7 @@ export -f csrepos
 # GPG
 ########################################################################
 alias gsign="gpg --encrypt --armor"
-
+alias gpub="gpg --export -a brendankamp757@gmail.com |  pbcopy | echo '=> GPG Public key copied to pasteboard.'"
 
 # System
 ########################################################################
