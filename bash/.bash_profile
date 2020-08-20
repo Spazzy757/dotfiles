@@ -65,6 +65,10 @@ fi
 
 # Python
 export PATH="$HOME/.poetry/bin:$PATH"
+# Make sure to use pyenv when in terminal
+if command -v pyenv 1>/dev/null 2>&1; then
+    eval "$(pyenv init -)"
+fi
 
 # Added Super Bin to Path
 export PATH="/usr/local/sbin:$PATH"
@@ -89,14 +93,14 @@ export ANDROID_HOME=/usr/local/share/android-sdk
 export JAVA_HOME=/Library/Java/Home
 
 # Google Cloud SDK settings
-if [ -f '$HOME/google-cloud-sdk/path.bash.inc' ];
+if [ -f $HOME/google-cloud-sdk/path.bash.inc ];
 then
-    . '$HOME/google-cloud-sdk/path.bash.inc';
+    . $HOME/google-cloud-sdk/path.bash.inc;
 fi
 
-if [ -f '$HOME/google-cloud-sdk/completion.bash.inc' ];
+if [ -f $HOME/google-cloud-sdk/completion.bash.inc ];
 then
-    . '$HOME/google-cloud-sdk/completion.bash.inc';
+    . $HOME/google-cloud-sdk/completion.bash.inc;
 fi
 
 # Load Aliases
@@ -109,3 +113,4 @@ if [[ -f $HOME/.protected ]];
 then
     source $HOME/.protected
 fi
+
