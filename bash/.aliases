@@ -20,6 +20,29 @@ alias cleands="find . -type f -name '*.DS_Store' -ls -delete"
 alias cleandir="find ./ -type f -name '* [0-9]'  -ls  -delete"
 # Always highlight grep search term
 alias grep='grep --color=auto'
+# Anonymize and Zip a repo
+function anon-repo {
+    export FILTER_BRANCH_SQUELCH_WARNING=1
+    user=$1
+    dir=$(echo $1 | sed 's/\//-/g')
+    keyfile=${CS_REVIEWER_KEY:=cs-reviewer}
+
+    ssh-agent bash -c "ssh-add $HOME/.ssh/$keyfile; git clone git@gitlab.com:$user.git $dir"
+
+    command cp -r $dir anon-repo
+
+    command cd anon-repo
+        # We may be doing multiple rewrites, so we must force subsequent ones.
+        # We're throwing away the backups anyway.
+    command git filter-branch -f --env-filter \
+        'export GIT_AUTHOR_NAME="Anonymous Candidate" && export GIT_AUTHOR_EMAIL="anon@repo.com"' \
+        --tag-name-filter cat -- --branches --tags
+    for r in `git remote`; do git remote rm $r; done
+    command cd ../
+    command zip -r anon-repo.zip anon-repo
+    command rm -rf anon-repo/
+}
+export -f anon-repo
 
 # Python
 ########################################################################
