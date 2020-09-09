@@ -12,7 +12,7 @@ fi
 if [[ -d $HOME/.bash-it ]];
 then
     # Path to the bash it configuration
-    export BASH_IT="$HOME/.bash-it"
+    export BASH_IT=$HOME/.bash-it
 
     # Lock and Load a custom theme file.
     # Leave empty to disable theming.
@@ -60,24 +60,24 @@ then
     # export BASH_IT_RELOAD_LEGACY=1
 
     # Load Bash It
-    source "$BASH_IT"/bash_it.sh
+    source $BASH_IT/bash_it.sh
 fi
 
 # Python
-export PATH="$HOME/.poetry/bin:$PATH"
+export PATH=$HOME/.poetry/bin:$PATH
 # Make sure to use pyenv when in terminal
 if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init -)"
 fi
 
 # Added Super Bin to Path
-export PATH="/usr/local/sbin:$PATH"
+export PATH=/usr/local/sbin:$PATH
 
 # Curl
-export PATH="/usr/local/opt/curl/bin:$PATH"
+export PATH=/usr/local/opt/curl/bin:$PATH
 
 # Rust
-export PATH="$HOME/.cargo/bin:$PATH"
+export PATH=$HOME/.cargo/bin:$PATH
 
 # Kubernetes
 source $HOME/.minikube.completion.sh
@@ -91,6 +91,10 @@ export PATH=$PATH:$GOPATH/bin
 # Java
 export ANDROID_HOME=/usr/local/share/android-sdk
 export JAVA_HOME=/Library/Java/Home
+
+# Ruby
+export PATH=$HOME/.gem/ruby/X.X.0/bin:$PATH
+
 
 # Google Cloud SDK settings
 if [ -f $HOME/google-cloud-sdk/path.bash.inc ];
