@@ -1,13 +1,6 @@
 # Silence Warning about ZSH
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
-# Bash git setup
-if [ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash ];
-then
-    . `brew --prefix`/etc/bash_completion.d/git-completion.bash
-fi
-
-
 # Bash IT Setup
 if [[ -d $HOME/.bash-it ]];
 then
@@ -68,6 +61,15 @@ export PATH=$HOME/.poetry/bin:$PATH
 # Make sure to use pyenv when in terminal
 if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init -)"
+fi
+
+# Bash git setup
+# Silence the gettext.sh warning
+# from using .pyenv
+export GIT_INTERNAL_GETTEXT_TEST_FALLBACKS=1
+if [ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash ];
+then
+    . `brew --prefix`/etc/bash_completion.d/git-completion.bash
 fi
 
 # Added Super Bin to Path
