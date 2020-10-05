@@ -84,6 +84,7 @@ export PATH=$HOME/.cargo/bin:$PATH
 # Kubernetes
 source $HOME/.minikube.completion.sh
 export PATH=$PATH:$HOME/.linkerd2/bin
+export PATH="$HOME/.krew/bin:$PATH"
 source <(stern --completion=bash)
 
 # Golang
