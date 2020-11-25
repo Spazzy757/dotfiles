@@ -13,10 +13,14 @@
 	co = checkout
 	# Branch
 	br = branch
-
-	# View abbreviated SHA, description, and history graph of the latest 20 commits.
+	# Interactive rebase
+  r = rebase -i --autosquash
+	# simple commit log
 	l = log --pretty=oneline -n 20 --graph --abbrev-commit
-	# More Robust History
+
+	# long aliases
+
+  # More Robust History
 	hist = log --pretty=format:\"%C(yellow)%h%C(reset) %C(green)%ad%C(reset) %C(red)|%C(reset) %s %C(bold blue)[%an]%C(reset)%C(yellow)%d%C(reset)\" --graph --date=short
   # Pull in remote changes for the current repository and all its submodules.
 	p = pull --recurse-submodules
@@ -29,6 +33,9 @@
 	# `git nuke my-old-branch`
 	# (Checks out master and does a forced delete on the branch entered)
 	nuke = !git co main && sh -c 'git br -D $1' -
+
+	# Fixup a commit
+	fix = commit --fixup
 [log]
   decorate = full
 [core]
