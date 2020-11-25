@@ -2,11 +2,11 @@
 set -e
 
 SystemType="$(uname -s)"
-
+SkipSystemSetup=${SKIP_SYSTEM:=true}
 echo "Setup for system type: $SystemType"
 
 # Setup for Mac
-if [[ "$SystemType" == "Darwin" ]]; then
+if [[ "$SystemType" == "Darwin" && "$SkipSystemSetup" != "true" ]]; then
     curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh >> tmp.sh
     chmod +x tmp.sh
     ./tmp.sh
@@ -15,12 +15,16 @@ if [[ "$SystemType" == "Darwin" ]]; then
 fi
 
 echo "Setting Up Dotfiles"
-configs=(bash git kube spacemacs)
+configs=(bash git spacemacs)
 
 for config in "${configs[@]}"
 do
     stow -v -R -t ~ $config/
 done
+
+echo "Setting Up Kube Config"
+mkdir -p $HOME/.kube
+ stow -v -R -t ~/.kube/ kube
 
 echo "Installing Bash It"
 if [[ -d $HOME/.bash_it ]]; then

@@ -128,11 +128,11 @@ alias .....="cd ../../../.."
 alias ~="cd ~" # `cd` is probably faster to type though
 alias -- -="cd -"
 function repos {
-      cd "$HOME/Documents/repos/$1/"
+      cd "$HOME/repos/$1/"
 }
 export -f repos
 function csrepos {
-      cd "$HOME/Documents/repos/container-solutions/$1/"
+      cd "$HOME/repos/container-solutions/$1/"
 }
 export -f csrepos
 
