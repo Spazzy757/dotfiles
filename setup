@@ -1,0 +1,22 @@
+# /usr/local/bin/bash
+set -e
+
+SystemType="$(uname -s)"
+
+echo "Setup for system type: $SystemType"
+
+# Setup for Mac
+if [[ "$SystemType" == "Darwin" ]]; then
+    curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh >> tmp.sh
+    chmod +x tmp.sh
+    ./tmp.sh
+    rm -rf tmp.sh
+    brew bundle
+fi
+
+configs=(bash git kube spacemacs)
+
+for config in "${configs[@]}"
+do
+    stow -v -R -t ~ $config/
+done

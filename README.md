@@ -13,7 +13,5 @@ git-crypt unlock
 ### Setup 
 
 ```bash
-APP={bash|git|spacemacs}
-
-stow -v -R -t ~ ${APP}/
+./setup
 ```
