@@ -18,5 +18,5 @@ brew "emacs"
 brew "vim"
 brew "ipython"
 brew "lua"
-brew "siege"
+brew "siege
 

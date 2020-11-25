@@ -34,6 +34,8 @@ SCM_THEME_BRANCH_TRACK_PREFIX="${normal} ⤏  ${cyan}"
 SCM_THEME_CURRENT_USER_PREFFIX='  '
 SCM_GIT_SHOW_CURRENT_USER=false
 
+WORK_DIR="\\w"
+
 # Kubernetes
 KUBE_BINARY=${KUBE_BINARY_LOCATION:='/usr/local/bin/kubectl'}
 KUBE_SYMBOL=${SPAZZY757_KUBE_SYMBOL:=$'\xE2\x8E\x88 '}
@@ -128,6 +130,14 @@ function get_cpu_use_percent {
     CPU_USAGE="${cpu_color}C:${cpu}%"
 }
 
+function __check_path_length {
+    length=${PWD//[!\/]}
+
+    if [ ${#length} -ge 7 ]; then
+        WORK_DIR="\\W"
+    fi
+}
+
 function _prompt {
     local exit_code="$?" wrap_char=' ' dir_color=$green ssh_info='' host
 
@@ -159,7 +169,8 @@ function _prompt {
     get_mem_use_percent
     get_cpu_use_percent
 
-    PS1="\\n${ssh_info} ${DISK_USAGE} ${MEM_USAGE} ${CPU_USAGE} ${KUBE_INFO} ${purple}$(scm_char)${dir_color}\\w${normal}$(scm_prompt_info)${exit_code}"
+    __check_path_length
+    PS1="\\n${ssh_info} ${DISK_USAGE} ${MEM_USAGE} ${CPU_USAGE} ${KUBE_INFO} ${purple}$(scm_char)${dir_color}${WORK_DIR}${normal}$(scm_prompt_info)${exit_code}"
 
     [[ ${#PS1} -gt $((COLUMNS*3)) ]] && wrap_char="\\n"
     PS1="${PS1}${wrap_char}❯${normal} "

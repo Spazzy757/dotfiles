@@ -28,7 +28,7 @@
 	amend = commit --amend --reuse-message=HEAD
 	# `git nuke my-old-branch`
 	# (Checks out master and does a forced delete on the branch entered)
-	nuke = !git co master && sh -c 'git br -D $1' -
+	nuke = !git co main && sh -c 'git br -D $1' -
 [log]
   decorate = full
 [core]

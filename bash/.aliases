@@ -17,7 +17,7 @@ alias path='echo -e ${PATH//:/\\n}'
 # Recursively remove .DS_Store files
 alias cleands="find . -type f -name '*.DS_Store' -ls -delete"
 # recursively delete duplicated files that get created randomly `xxx 2`
-alias cleandir="find ./ -type f -name '* [0-9]'  -ls  -delete"
+alias cleandir="find ./ -type f -name '* [0-9]*'  -ls  -delete"
 # Always highlight grep search term
 alias grep='grep --color=auto'
 # Anonymize and Zip a repo
@@ -62,6 +62,22 @@ function anon-repo {
     command rm -rf anon-repo/
 }
 export -f anon-repo
+# Setup a kind cluster with an Inlet Loadbalancer
+function kind-up {
+    kind create cluster --name spazzy-cluster
+
+    kubectl create secret generic inlets-access-key \
+            --from-literal inlets-access-key=$DO_TOKEN
+
+    base_url=https://raw.githubusercontent.com/inlets/inlets-operator/0.9.0/artifacts
+
+    kubectl apply -f $base_url/crds/inlets.inlets.dev_tunnels.yaml
+
+    kubectl apply -f $base_url/operator-rbac.yaml
+
+    kubectl apply -f $base_url/operator.yaml
+
+}
 
 # Python
 ########################################################################
@@ -89,6 +105,14 @@ function kctx {
 export -f kctx
 # Alias to list contexts
 alias kctxl="kubectl config get-contexts"
+
+
+# Java
+alias java8='export JAVA_HOME=$JAVA_8_HOME'
+alias java11='export JAVA_HOME=$JAVA_11_HOME'
+# default to Java 11
+java11
+
 
 # Terraform
 ########################################################################
