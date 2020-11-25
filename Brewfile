@@ -1,6 +1,7 @@
 tap "d12frosted/emacs-plus"
 tap "dunn/emacs"
 tap "getsentry/tools"
+tap "homebrew/cask-versions"
 
 brew "kubernetes-cli"
 brew "luarocks"
@@ -18,5 +19,6 @@ brew "emacs"
 brew "vim"
 brew "ipython"
 brew "lua"
-brew "siege
-
+brew "siege"
+brew "gradle"
+brew "maven"
