@@ -14,9 +14,25 @@ if [[ "$SystemType" == "Darwin" ]]; then
     brew bundle
 fi
 
+echo "Setting Up Dotfiles"
 configs=(bash git kube spacemacs)
 
 for config in "${configs[@]}"
 do
     stow -v -R -t ~ $config/
 done
+
+echo "Installing Bash It"
+if [[ -d $HOME/.bash_it ]]; then
+   rm -rf $HOME/.bash_it
+fi
+git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
+$HOME/.bash_it/install.sh --no-modify-config
+
+echo "Installing Spacemacs"
+
+if [[ -d $HOME/.emacs.d ]]; then
+   rm -rf $HOME/.emacs.d
+fi
+git clone -b develop https://github.com/syl20bnr/spacemacs ~/.emacs.d
+

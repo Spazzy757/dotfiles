@@ -6,11 +6,12 @@ A collection of my local configs
 ## To Setup
 
 ### Unlock Secrets
+
 ```bash
 git-crypt unlock
 ```
 
-### Setup 
+### Run Setup 
 
 ```bash
 ./setup
