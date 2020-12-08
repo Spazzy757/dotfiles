@@ -101,7 +101,6 @@ export DOCKER_BUILDKIT=1
 # Ruby
 export PATH=$HOME/.gem/ruby/X.X.0/bin:$PATH
 
-
 # Google Cloud SDK settings
 if [ -f $HOME/google-cloud-sdk/path.bash.inc ];
 then
