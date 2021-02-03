@@ -15,7 +15,7 @@ if [[ "$SystemType" == "Darwin" && "$SkipSystemSetup" != "true" ]]; then
 fi
 
 echo "Setting Up Dotfiles"
-configs=(bash git spacemacs)
+configs=(bash git)
 
 for config in "${configs[@]}"
 do
@@ -23,11 +23,12 @@ do
 done
 
 echo "Setting up Doom"
+mkdir -p $HOME/.doom.d
 stow -v -R -t ~/.doom.d/ doom
 
 echo "Setting Up Kube Config"
 mkdir -p $HOME/.kube
- stow -v -R -t ~/.kube/ kube
+stow -v -R -t ~/.kube/ kube
 
 echo "Installing Bash It"
 if [[ -d $HOME/.bash_it ]]; then
