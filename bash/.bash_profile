@@ -98,6 +98,9 @@ export JAVA_11_HOME=$(/usr/libexec/java_home -v11)
 # Docker
 export DOCKER_BUILDKIT=1
 
+# Emacs
+export PATH=$PATH:$HOME/.emacs.d/bin/
+
 # Ruby
 export PATH=$HOME/.gem/ruby/X.X.0/bin:$PATH
 

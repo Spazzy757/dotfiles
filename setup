@@ -22,6 +22,9 @@ do
     stow -v -R -t ~ $config/
 done
 
+echo "Setting up Doom"
+stow -v -R -t ~/.doom.d/ doom
+
 echo "Setting Up Kube Config"
 mkdir -p $HOME/.kube
  stow -v -R -t ~/.kube/ kube
