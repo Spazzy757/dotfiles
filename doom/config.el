@@ -29,13 +29,24 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/.todo.org")
+(setq org-directory "~/repos/spazzy/dotfiles/org-files/")
+(after! org
+  (setq org-agenda-files
+        '("~/repos/spazzy/dotfiles/org-files/")))
+(defun zz/add-file-keybinding (key file &optional desc)
+  (let ((key key)
+        (file file)
+        (desc desc))
+    (map! :desc (or desc file)
+          key
+          (lambda () (interactive) (find-file file)))))
+(zz/add-file-keybinding "C-c z a" "~/repos/spazzy/dotfiles/org-files/todo.org" "todo.org")
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type `relative)
 
-
+;; -- Neotree --
 (use-package neotree :ensure t
   :init
   (setq neo-window-fixed-size nil
@@ -44,7 +55,7 @@
 	neo-modern-sidebar t
 	neo-auto-indent-point t
 	neo-cwd-line-style 'button)
-    :config
+  :config
   (add-to-list
    'window-size-change-functions
    (lambda (frame)
