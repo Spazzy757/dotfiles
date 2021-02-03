@@ -75,7 +75,7 @@ or the current buffer directory."
               (neotree-find file-name))))))
 
   :bind
-  (("M-t" . neotree-project-dir-toggle)))
+  (("C-x t" . neotree-project-dir-toggle)))
 
 ;; -- Magit --
 (use-package magit :ensure t
@@ -92,9 +92,10 @@ or the current buffer directory."
   (("C-x g" . magit-status)))
 
 ;; -- Projectile --
-(use-package projectile :ensure t
+(use-package projectile
+  :ensure t
   :bind
-  ("M-a" . projectile-run-eshell)
+  ("C-x a" . projectile-run-eshell)
 
   :config
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
@@ -103,12 +104,19 @@ or the current buffer directory."
   (projectile-global-mode))
 
 ;; -- Python --
-(setq doom-modeline-python-executable "python3")
-(setq python-shell-interpreter "python3")
-(setq python-shell-interpreter-args "-m IPython --simple-prompt -i")
-(setq flycheck-python-pycompile-executable "python3"
-      flycheck-python-pylint-executable "python3"
-      flycheck-python-flake8-executable "python3")
+(use-package python
+  :ensure t
+  :config
+  (setq doom-modeline-python-executable "python3")
+  (setq python-shell-interpreter "python3")
+  (setq python-shell-interpreter-args "-m IPython --simple-prompt -i")
+  (setq flycheck-python-pycompile-executable "python3"
+        flycheck-python-pylint-executable "python3"
+        flycheck-python-flake8-executable "python3"))
+
+;; -- Golang --
+(use-package go
+  :ensure t)
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
@@ -127,4 +135,3 @@ or the current buffer directory."
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-;; -- Neotree --
