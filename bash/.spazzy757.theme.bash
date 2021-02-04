@@ -165,14 +165,11 @@ function _prompt {
     if _kube_binary_check "${KUBE_BINARY}"; then
         kube_context
     fi
-    get_disk_use_percent
-    get_mem_use_percent
-    get_cpu_use_percent
 
     __check_path_length
-    PS1="\\n${ssh_info} ${DISK_USAGE} ${MEM_USAGE} ${CPU_USAGE} ${KUBE_INFO} ${purple}$(scm_char)${dir_color}${WORK_DIR}${normal}$(scm_prompt_info)${exit_code}"
+    PS1="\n${ssh_info} ${KUBE_INFO} ${purple}$(scm_char)${dir_color}${WORK_DIR}${normal}$(scm_prompt_info)${exit_code}"
 
-    [[ ${#PS1} -gt $((COLUMNS*3)) ]] && wrap_char="\\n"
+    [[ ${#PS1} -gt $((COLUMNS*3)) ]] && wrap_char="\n"
     PS1="${PS1}${wrap_char}❯${normal} "
 }
 
