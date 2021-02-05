@@ -38,7 +38,7 @@ WORK_DIR="\\w"
 
 # Kubernetes
 KUBE_BINARY=${KUBE_BINARY_LOCATION:='/usr/local/bin/kubectl'}
-KUBE_SYMBOL=${SPAZZY757_KUBE_SYMBOL:=$'\xE2\x8E\x88 '}
+KUBE_SYMBOL="" 
 
 function _git-uptream-remote-logo {
     [[ "$(_git-upstream)" == "" ]] && SCM_GIT_CHAR="$SCM_GIT_CHAR_DEFAULT"
@@ -71,20 +71,26 @@ function _exit-code {
     fi
 }
 
-# Function to check if kubectl is installed
-function _kube_binary_check {
+# Function to check if binary is installed
+function _binary_check {
         command -v $1 >/dev/null
 }
 
-function kube_context {
-    # Get the Current Kubernetes Context
-    # supress error if no current context
-    kube_context=$(kubectl config current-context 2> /dev/null)
-    # Get the current namespace if set
-    # supress error if no current namespace
-    kube_namespace=":${yellow}$(kubectl config view --minify --output 'jsonpath={..namespace}' 2> /dev/null)"
-    if [ "${kube_context}" ]; then
-        KUBE_INFO="${blue}${KUBE_SYMBOL}${red}${kube_context}${kube_namespace}"
+function _kube_info {
+    # Check kubectl is working
+    if _binary_check "${KUBE_BINARY}"; then
+        # Get the Current Kubernetes Context
+        # supress error if no current context
+        kube_context=$(kubectl config current-context 2> /dev/null)
+        if [ "${kube_context}" ]; then
+            kube_info="${KUBE_SYMBOL}${red}${kube_context}"
+        fi
+        # Get the current namespace if set
+        # supress error if no current namespace
+        kube_namespace="$(kubectl config view --minify --output 'jsonpath={..namespace}' 2> /dev/null)"
+        if [ "${kube_namespace}" ]; then
+            kube_info="${kube_info}:${yellow}${kube_namespace}${purple}"
+        fi
     fi
 }
 
@@ -142,6 +148,7 @@ function _prompt {
     local exit_code="$?" wrap_char=' ' dir_color=$green ssh_info='' host
 
     _exit-code exit_code
+    _kube_info kube_info
     _git-uptream-remote-logo
 
     history -a
@@ -161,13 +168,9 @@ function _prompt {
         ssh_info="${bold_blue}\u${bold_orange}@${cyan}$host ${bold_orange}in"
     fi
 
-    # Check kubectl is working
-    if _kube_binary_check "${KUBE_BINARY}"; then
-        kube_context
-    fi
 
     __check_path_length
-    PS1="\n${ssh_info} ${KUBE_INFO} ${purple}$(scm_char)${dir_color}${WORK_DIR}${normal}$(scm_prompt_info)${exit_code}"
+    PS1="\n${ssh_info} ${kube_info} ${purple}$(scm_char)${dir_color}${WORK_DIR}${normal}$(scm_prompt_info)${exit_code}"
 
     [[ ${#PS1} -gt $((COLUMNS*3)) ]] && wrap_char="\n"
     PS1="${PS1}${wrap_char}❯${normal} "
