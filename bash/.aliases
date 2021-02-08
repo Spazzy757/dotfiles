@@ -93,19 +93,6 @@ alias cleannode="find . -name 'node_modules' -type d -ls -prune -exec rm -rf '{}
 # Kubernetes
 ########################################################################
 alias k="kubectl"
-# Function to quickly change to a namespace
-function kns {
-         kubectl config set-context $(kubectl config current-context) --namespace="$1";
-}
-export -f kns
-# Function to quickly change context
-function kctx {
-    kubectl config use-context $1
-}
-export -f kctx
-# Alias to list contexts
-alias kctxl="kubectl config get-contexts"
-
 
 # Java
 alias java8='export JAVA_HOME=$JAVA_8_HOME'
