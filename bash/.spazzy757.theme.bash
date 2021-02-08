@@ -34,13 +34,13 @@ SCM_THEME_BRANCH_TRACK_PREFIX="${normal} ⤏  ${cyan}"
 SCM_THEME_CURRENT_USER_PREFFIX='  '
 SCM_GIT_SHOW_CURRENT_USER=false
 
-WORK_DIR="\\w"
+
 
 # Kubernetes
 KUBE_BINARY=${KUBE_BINARY_LOCATION:='/usr/local/bin/kubectl'}
 KUBE_SYMBOL="" 
 
-function _git-uptream-remote-logo {
+function _git_upstream_remote_logo {
     [[ "$(_git-upstream)" == "" ]] && SCM_GIT_CHAR="$SCM_GIT_CHAR_DEFAULT"
 
     local remote remote_domain
@@ -106,12 +106,12 @@ function get_disk_use_percent {
     elif [ "$disk" -ge 85 ]; then
         disk_color=$bold_red
     fi
-    DISK_USAGE="${disk_color}D:${disk}%"
+    disk_usage="${disk_color}D:${disk}%"
 }
 
 
 # Get current memory in percent
-function get_mem_use_percent {
+function _get_mem_use_percent {
     mem=$(ps -A -o %mem | awk '{ mem += $1} END {print  mem}')
     if [ "$disk" -le 76 ]; then
         mem_color=$green
@@ -120,7 +120,7 @@ function get_mem_use_percent {
     elif [ "$disk" -ge 85 ]; then
         mem_color=$bold_red
     fi
-    MEM_USAGE="${mem_color}M:${mem}%"
+    mem_usage="${mem_color}M:${mem}%"
 }
 
 # Get current cpu in percent
@@ -133,14 +133,17 @@ function get_cpu_use_percent {
     elif [ "$disk" -ge 85 ]; then
         cpu_color=$bold_red
     fi
-    CPU_USAGE="${cpu_color}C:${cpu}%"
+    cpu_usage="${cpu_color}C:${cpu}%"
 }
 
+# For really long directories, shorten them
 function __check_path_length {
     length=${PWD//[!\/]}
-
     if [ ${#length} -ge 7 ]; then
-        WORK_DIR="\\W"
+        work_dir="\\W"
+    fi
+    if [ ${#length} -le 6 ]; then
+        work_dir="\\w"
     fi
 }
 
@@ -149,7 +152,8 @@ function _prompt {
 
     _exit-code exit_code
     _kube_info kube_info
-    _git-uptream-remote-logo
+    _git_upstream_remote_logo
+    __check_path_length work_dir
 
     history -a
 
@@ -168,9 +172,7 @@ function _prompt {
         ssh_info="${bold_blue}\u${bold_orange}@${cyan}$host ${bold_orange}in"
     fi
 
-
-    __check_path_length
-    PS1="\n${ssh_info} ${kube_info} ${purple}$(scm_char)${dir_color}${WORK_DIR}${normal}$(scm_prompt_info)${exit_code}"
+    PS1="\n${ssh_info} ${kube_info} ${purple}$(scm_char)${dir_color}${work_dir}${normal}$(scm_prompt_info)${exit_code}"
 
     [[ ${#PS1} -gt $((COLUMNS*3)) ]] && wrap_char="\n"
     PS1="${PS1}${wrap_char}❯${normal} "
