@@ -9,20 +9,20 @@
 	s = status -sb
 	# Signed Commit
 	c =  commit -S -m
-  # Checkout branch
+    # Checkout branch
 	co = checkout
 	# Branch
 	br = branch
 	# Interactive rebase
-  r = rebase -i --autosquash
+    r = rebase -i --autosquash
 	# simple commit log
 	l = log --pretty=oneline -n 20 --graph --abbrev-commit
 
 	# long aliases
 
-  # More Robust History
+    # More Robust History
 	hist = log --pretty=format:\"%C(yellow)%h%C(reset) %C(green)%ad%C(reset) %C(red)|%C(reset) %s %C(bold blue)[%an]%C(reset)%C(yellow)%d%C(reset)\" --graph --date=short
-  # Pull in remote changes for the current repository and all its submodules.
+    # Pull in remote changes for the current repository and all its submodules.
 	p = pull --recurse-submodules
 	# Switch to a branch, creating it if necessary.
 	go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
