@@ -62,6 +62,15 @@ function anon-repo {
     command rm -rf anon-repo/
 }
 export -f anon-repo
+#base64
+function b64 {
+    echo -n "$1" | base64;
+}
+export -f b64
+function b64d {
+    echo -n "$1" | base64 -D;
+}
+export -f b64d
 # Setup a kind cluster with an Inlet Loadbalancer
 function kind-up {
     kind create cluster --name spazzy-cluster
