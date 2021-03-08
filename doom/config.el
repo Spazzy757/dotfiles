@@ -44,20 +44,6 @@
 
 
 
-;; -- Windo Navigation --
-(map! :map evil-window-map
-      "SPC" #'rotate-layout
-      ;; Navigation
-      "<left>"     #'evil-window-left
-      "<down>"     #'evil-window-down
-      "<up>"       #'evil-window-up
-      "<right>"    #'evil-window-right
-      ;; Swapping windows
-      "M-<left>"       #'+evil/window-move-left
-      "M-<down>"       #'+evil/window-move-down
-      "M-<up>"         #'+evil/window-move-up
-      "M-<right>"      #'+evil/window-move-right)
-
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type `relative)
