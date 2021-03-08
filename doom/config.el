@@ -42,6 +42,22 @@
           (lambda () (interactive) (find-file file)))))
 (zz/add-file-keybinding "C-c z a" "~/repos/spazzy/dotfiles/org-files/todo.org" "todo.org")
 
+
+
+;; -- Windo Navigation --
+(map! :map evil-window-map
+      "SPC" #'rotate-layout
+      ;; Navigation
+      "<left>"     #'evil-window-left
+      "<down>"     #'evil-window-down
+      "<up>"       #'evil-window-up
+      "<right>"    #'evil-window-right
+      ;; Swapping windows
+      "M-<left>"       #'+evil/window-move-left
+      "M-<down>"       #'+evil/window-move-down
+      "M-<up>"         #'+evil/window-move-up
+      "M-<right>"      #'+evil/window-move-right)
+
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type `relative)
@@ -128,6 +144,12 @@ or the current buffer directory."
 ;; -- Golang --
 (use-package go
   :ensure t)
+
+;; -- Shell --
+(use-package flymake-shellcheck
+  :commands flymake-shellcheck-load
+  :init
+  (add-hook 'sh-mode-hook 'flymake-shellcheck-load))
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
