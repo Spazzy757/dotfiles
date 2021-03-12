@@ -1,3 +1,4 @@
 .protected filter=git-crypt diff=git-crypt
 *.org filter=git-crypt diff=git-crypt
 kube/config filter=git-crypt diff=git-crypt
+.gitconfig_inditex filter=git-crypt diff=git-crypt
