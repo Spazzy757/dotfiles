@@ -43,7 +43,6 @@
 (zz/add-file-keybinding "C-c z a" "~/repos/spazzy/dotfiles/org-files/todo.org" "todo.org")
 
 
-
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type `relative)
