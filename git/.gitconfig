@@ -1,7 +1,7 @@
 [includeIf "gitdir:~/repos/"]
    	path = .gitconfig_personal
 [includeIf "gitdir:~/repos/container-solutions/inditex/"]
-  	path = .gitconfig_inditex
+  	path = .gitconfig_client_one
 [alias]
 	# short aliases
 
