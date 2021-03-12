@@ -1,7 +1,7 @@
-[user]
-	name = Spazzy
-	email = brendankamp757@gmail.com
-	signingkey = 46BB4AF19947DB7A
+[includeIf "gitdir:~/repos/"]
+   	path = .gitconfig_personal
+[includeIf "gitdir:~/repos/container-solutions/inditex/"]
+  	path = .gitconfig_inditex
 [alias]
 	# short aliases
 
