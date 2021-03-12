@@ -1,6 +1,0 @@
-[user]
-    name = BRENDANK
-    email = brendank@ext.inditex.com
-    signingkey = 46BB4AF19947DB7A
-[http]
-    sslVerify = false
