@@ -91,9 +91,10 @@ source <(stern --completion=bash)
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
+
 # Java
-export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
-export JAVA_11_HOME=$(/usr/libexec/java_home -v11)
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
 
 # Docker
 export DOCKER_BUILDKIT=1

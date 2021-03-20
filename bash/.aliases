@@ -103,13 +103,6 @@ alias cleannode="find . -name 'node_modules' -type d -ls -prune -exec rm -rf '{}
 ########################################################################
 alias k="kubectl"
 
-# Java
-alias java8='export JAVA_HOME=$JAVA_8_HOME'
-alias java11='export JAVA_HOME=$JAVA_11_HOME'
-# default to Java 11
-java11
-
-
 # Terraform
 ########################################################################
 alias tf="terraform"
@@ -127,10 +120,14 @@ function repos {
       cd "$HOME/repos/$1/"
 }
 export -f repos
-function csrepos {
+function spazzy {
+     cd "$HOME/repos/spazzy/$1/"
+}
+export -f spazzy
+function cs {
       cd "$HOME/repos/container-solutions/$1/"
 }
-export -f csrepos
+export -f cs
 
 # GPG
 ########################################################################
