@@ -1,4 +1,4 @@
-;ln -s /usr/local/opt/emacs-plus/Emacs.app /Applications/Emacs.appln -s /usr/local/opt/emacs-plus/Emacs.app /Applications/Emacs.app;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
+;;; config.el -*- lexical-binding: t; -*-
 
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
@@ -45,25 +45,16 @@
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
+(defvar display-line-numbers-type)
 (setq display-line-numbers-type `relative)
 
 ;; -- Neotree --
-(use-package neotree :ensure t
+(use-package! neotree
   :init
-  (setq neo-window-fixed-size nil
-	neo-theme (if (display-graphic-p) 'icons 'arrow)
-	neo-show-updir-line nil
-	neo-modern-sidebar t
-	neo-auto-indent-point t
+  (setq
+	neo-theme 'icons
 	neo-cwd-line-style 'button)
   :config
-  (add-to-list
-   'window-size-change-functions
-   (lambda (frame)
-     (let ((neo-window (neo-global--get-window)))
-       (unless (null neo-window)
-         (setq neo-window-width (window-width neo-window))))))
-
   (defun neotree-project-dir-toggle ()
     "Open NeoTree using the project root, using find-file-in-project,
 or the current buffer directory."
@@ -90,7 +81,7 @@ or the current buffer directory."
   (("C-x t" . neotree-project-dir-toggle)))
 
 ;; -- Magit --
-(use-package magit :ensure t
+(use-package! magit
   :init
   (setq
    magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1
@@ -104,10 +95,9 @@ or the current buffer directory."
   (("C-x g" . magit-status)))
 
 ;; -- Projectile --
-(use-package projectile
-  :ensure t
+(use-package! projectile
   :bind
-  ("C-x a" . projectile-run-eshell)
+  (("C-x a" . projectile-run-eshell))
 
   :config
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
@@ -116,8 +106,7 @@ or the current buffer directory."
   (projectile-global-mode))
 
 ;; -- Python --
-(use-package python
-  :ensure t
+(use-package! python
   :config
   (setq doom-modeline-python-executable "python3")
   (setq python-shell-interpreter "python3")
@@ -127,23 +116,15 @@ or the current buffer directory."
         flycheck-python-flake8-executable "python3"))
 
 ;; -- Golang --
-(use-package go
-  :ensure t)
+(use-package! go)
 
 ;; -- Shell --
-(use-package flymake-shellcheck
+(use-package! flymake-shellcheck
   :commands flymake-shellcheck-load
   :init
   (add-hook 'sh-mode-hook 'flymake-shellcheck-load))
 
 ;; -- Vue --
-(require 'eglot)
-(require 'web-mode)
-(define-derived-mode genehack-vue-mode web-mode "ghVue"
-  "A major mode derived from web-mode, for editing .vue files with LSP support.")
-(add-to-list 'auto-mode-alist '("\\.vue\\'" . genehack-vue-mode))
-(add-hook 'genehack-vue-mode-hook #'eglot-ensure)
-(add-to-list 'eglot-server-programs '(genehack-vue-mode "vls"))
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;

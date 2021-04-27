@@ -3,8 +3,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(xref-js2 eglot web-mode markdown-toc flymake-shellcheck toml-mode flymake-yaml golint kubernetes docker-compose-mode docker go-autocomplete go-imports go-projectile go flycheck-yamllint yaml-imenu yaml-mode yasnippet-snippets neotree)))
+ '(package-selected-packages '(neotree go-mode web-mode go)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
