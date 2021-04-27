@@ -125,6 +125,13 @@ or the current buffer directory."
   (add-hook 'sh-mode-hook 'flymake-shellcheck-load))
 
 ;; -- Vue --
+(use-package! eglot)
+(use-package! web-mode)
+(define-derived-mode genehack-vue-mode web-mode "ghVue"
+  "A major mode derived from web-mode, for editing .vue files with LSP support.")
+(add-to-list 'auto-mode-alist '("\\.vue\\'" . genehack-vue-mode))
+(add-hook 'genehack-vue-mode-hook #'eglot-ensure)
+(add-to-list 'eglot-server-programs '(genehack-vue-mode "vls"))
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
@@ -142,4 +149,3 @@ or the current buffer directory."
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
-

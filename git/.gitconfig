@@ -8,7 +8,7 @@
 	# Status
 	s = status -sb
 	# Signed Commit
-	c =  commit -S -m
+	c =  commit -S -s -m
     # Checkout branch
 	co = checkout
 	# Branch
@@ -72,3 +72,8 @@
 	tag = bold red
 [pull]
 	rebase = false
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
