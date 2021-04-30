@@ -30,9 +30,9 @@
 	aliases = config --get-regexp alias
 	# Amend the currently staged files to the latest commit.
 	amend = commit --amend --reuse-message=HEAD
-	# `git nuke my-old-branch`
-	# (Checks out master and does a forced delete on the branch entered)
-	nuke = !git co main && sh -c 'git br -D $1' -
+	# `git nuke`
+	# (Checks out main and deletes all other branches)
+	nuke = "!git co main && for branch in $(git br --no-color | grep -v main | grep -v master); do echo $branch; git br -D $branch; done"
 
 	# Fixup a commit
 	fix = commit --fixup
