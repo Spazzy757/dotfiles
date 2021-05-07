@@ -16,7 +16,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 
-" Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
+" Golang
 Plug 'fatih/vim-go', { 'tag': '*',  'do': ':GoUpdateBinaries' }
 
 " Control Space for finding files
@@ -31,6 +31,10 @@ Plug 'tmhedberg/SimpylFold'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'nvie/vim-flake8'
 
+" Markdown
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+
 " Autocomplete
 Plug 'Valloric/YouCompleteMe'
 
@@ -39,6 +43,9 @@ Plug 'vim-syntastic/syntastic'
 
 " Themes
 Plug 'altercation/vim-colors-solarized'
+
+" Wiki
+Plug 'vimwiki/vimwiki'
 
 " Initialize plugin system
 call plug#end()

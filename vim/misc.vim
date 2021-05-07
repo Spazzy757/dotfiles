@@ -6,8 +6,9 @@ syntax on
 " For plugins to load correctly
 filetype plugin indent on
 
-" TODO: Pick a leader key
-let mapleader = "space"
+"leader key
+nnoremap <SPACE> <Nop>
+let mapleader="\<Space>" 
 
 let g:ycm_autoclose_preview_window_after_completion=1
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
@@ -17,6 +18,7 @@ set modelines=0
 
 " Show line numbers
 set number
+set relativenumber
 
 " Show file stats
 set ruler
@@ -65,8 +67,10 @@ set ttyfast
 
 " Enable folding
 set foldmethod=indent
-set foldlevel=99" Enable folding with the spacebar
-nnoremap za
+set foldlevel=99
+" Saves what a buffer looks like on exit
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview
 
 "Mode Settings
 "Cursor settings:
@@ -80,7 +84,6 @@ nnoremap za
 let &t_SI.="\e[5 q" "SI = INSERT mode
 let &t_SR.="\e[4 q" "SR = REPLACE mode
 let &t_EI.="\e[1 q" "EI = NORMAL mode (ELSE)
-
 
 " Status bar
 set laststatus=2
@@ -104,8 +107,6 @@ inoremap <F1> <ESC>:set invfullscreen<CR>a
 nnoremap <F1> :set invfullscreen<CR>
 vnoremap <F1> :set invfullscreen<CR>
 
-" Textmate holdouts
-
 " Formatting
 map <leader>q gqip
 
@@ -116,3 +117,5 @@ set listchars=tab:▸\ ,eol:¬
 " Or use your leader key + l to toggle on/off
 map <leader>l :set list!<CR> " Toggle tabs and EOL
 
+let g:vimwiki_list = [{'path': '~/repos/spazzy/dotfiles/wikis'}]
+let g:vimwiki_global_ext = 0
