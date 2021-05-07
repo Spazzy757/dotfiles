@@ -77,3 +77,7 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[user]
+	name = Brendan Kamp
+	email = brendank@ext.inditex.com
+	signingkey = 192E9A95484630FA3FAECA10D1BE852FB190E283
