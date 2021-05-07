@@ -1,6 +1,5 @@
 # /usr/local/bin/bash
 set -e
-
 SystemType="$(uname -s)"
 SkipSystemSetup=${SKIP_SYSTEM:=true}
 echo "Setup for system type: $SystemType"

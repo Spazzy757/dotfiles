@@ -19,6 +19,9 @@ Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 " Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
 Plug 'fatih/vim-go', { 'tag': '*',  'do': ':GoUpdateBinaries' }
 
+" Control Space for finding files
+Plug 'vim-ctrlspace/vim-ctrlspace'
+
 " Initialize plugin system
 call plug#end()
 

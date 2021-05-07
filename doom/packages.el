@@ -5,6 +5,7 @@
 ;; on the command line, then restart Emacs for the changes to take effect -- or
 ;; use 'M-x doom/reload'.
 
+(setq straight-disable-byte-compilation t)
 
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;(package! some-package)
@@ -18,7 +19,6 @@
 (package! eglot)
 (package! web-mode)
 (package! yasnippet-snippets)
-
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:
 ;; https://github.com/raxod502/straight.el#the-recipe-format

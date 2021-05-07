@@ -1,10 +1,11 @@
 " Don't try to be vi compatible
 set nocompatible
+set hidden
 
 " Helps force plugins to load correctly when it is turned back on below
 filetype off
 
-" TODO: Load plugins here (pathogen or vundle)
+" Load plugins here (pathogen or vundle)
 source ~/.vim/plugs.vim
 
 
@@ -55,6 +56,8 @@ runtime! macros/matchit.vim
 nnoremap j gj
 nnoremap k gk
 
+" Split buffers below
+set splitbelow
 
 " Allow hidden buffers
 set hidden

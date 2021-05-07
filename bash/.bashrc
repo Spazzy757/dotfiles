@@ -4,3 +4,5 @@ then
     source $HOME/.bash_profile
 fi
 
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
