@@ -22,6 +22,24 @@ Plug 'fatih/vim-go', { 'tag': '*',  'do': ':GoUpdateBinaries' }
 " Control Space for finding files
 Plug 'vim-ctrlspace/vim-ctrlspace'
 
+Plug 'kien/ctrlp.vim'
+
+" For Code folding
+Plug 'tmhedberg/SimpylFold'
+
+" Python
+Plug 'vim-scripts/indentpython.vim'
+Plug 'nvie/vim-flake8'
+
+" Autocomplete
+Plug 'Valloric/YouCompleteMe'
+
+" Syntax Highlighting
+Plug 'vim-syntastic/syntastic'
+
+" Themes
+Plug 'altercation/vim-colors-solarized'
+
 " Initialize plugin system
 call plug#end()
 
