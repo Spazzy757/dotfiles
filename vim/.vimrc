@@ -10,7 +10,7 @@ set nocompatible
 set hidden
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Helps force plugins to load correctly when it is turned back on below
+" Helps force plugins to load correctly (gets turned back on)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 filetype off
 

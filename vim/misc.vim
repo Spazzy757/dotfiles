@@ -140,7 +140,7 @@ set showmatch
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set listchars=tab:▸\ ,eol:¬
 " To enable by default
-set list 
+set list
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Wiki Settings
