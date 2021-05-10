@@ -147,3 +147,4 @@ set list
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:vimwiki_list = [{'path': '~/repos/spazzy/dotfiles/wikis'}]
 let g:vimwiki_global_ext = 0
+
