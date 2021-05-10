@@ -1,48 +1,58 @@
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Entry point config
+"leader key
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <SPACE> <Nop>
+let mapleader="\<Space>" 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Don't try to be vi compatible
+" Move up/down editor lines
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible
-set hidden
+nnoremap j gj
+nnoremap k gk
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Helps force plugins to load correctly when it is turned back on below
+"split navigations
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-filetype off
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-plug
+" Searching
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-source ~/.vim/plugs.vim
+nnoremap / /\v
+vnoremap / /\v
+map <leader><space> :let @/=''<cr> " clear search
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Load Themes
+" Remap help key.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-source ~/.vim/theme.vim
+inoremap <F1> <ESC>:set invfullscreen<CR>a
+nnoremap <F1> :set invfullscreen<CR>
+vnoremap <F1> :set invfullscreen<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" NerdTree Settings load
+" Formatting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-source ~/.vim/nerdtree.vim
+map <leader>q gqip
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Languages
+" Visualize tabs and newlines
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-source ~/.vim/go.vim
-source ~/.vim/python.vim
-source ~/.vim/web.vim
+" leader key + l to toggle on/off
+map <leader>l :set list!<CR> " Toggle tabs and EOL
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Key Bindings
+" Auto Complete YouCompleteMe keybindings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-source ~/.vim/keybindings.vim
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Miscellanious Configuration
+" NERDTree
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-source ~/.vim/misc.vim
-
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
