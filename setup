@@ -21,9 +21,9 @@ do
     stow -v -R -t ~ $config/
 done
 
-echo "Setting up Doom"
-mkdir -p $HOME/.doom.d
-stow -v -R -t ~/.doom.d/ doom
+echo "Setting up VIM"
+mkdir -p $HOME/.vim
+stow -v -R -t ~/.vim vim
 
 echo "Setting Up Kube Config"
 mkdir -p $HOME/.kube

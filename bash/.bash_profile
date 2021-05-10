@@ -126,6 +126,11 @@ if [[ -f $HOME/.protected ]];
 then
     source $HOME/.protected
 fi
+# Load vimrc from a directroy
+if [[ -f $HOME/.protected ]];
+then
+    export VIMINIT="source $HOME/.vim/.vimrc"
+fi
 
 # bash completion
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
