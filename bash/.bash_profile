@@ -1,5 +1,14 @@
+# Use Tmux on startup
+if [ "$TMUX" = "" ]; 
+then 
+  tmux attach -t spazzy || tmux new -s spazzy
+fi
+
 # Silence Warning about ZSH
 export BASH_SILENCE_DEPRECATION_WARNING=1
+
+# Set term
+export TERM="screen-256color-bce"
 
 # Bash IT Setup
 if [[ -d $HOME/.bash-it ]];
@@ -134,3 +143,5 @@ fi
 
 # bash completion
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+
+

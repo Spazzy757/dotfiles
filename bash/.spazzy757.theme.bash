@@ -34,8 +34,6 @@ SCM_THEME_BRANCH_TRACK_PREFIX="${normal} ⤏  ${cyan}"
 SCM_THEME_CURRENT_USER_PREFFIX='  '
 SCM_GIT_SHOW_CURRENT_USER=false
 
-
-
 # Kubernetes
 KUBE_BINARY=${KUBE_BINARY_LOCATION:='/usr/local/bin/kubectl'}
 KUBE_SYMBOL="" 
@@ -108,7 +106,6 @@ function get_disk_use_percent {
     fi
     disk_usage="${disk_color}D:${disk}%"
 }
-
 
 # Get current memory in percent
 function _get_mem_use_percent {

@@ -15,7 +15,7 @@ fi
 
 echo "Setting Up Dotfiles"
 # Links files directly to the home directory
-home_configs=(bash git)
+home_configs=(bash git tmux)
 
 for config in "${home_configs[@]}"
 do
