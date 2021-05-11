@@ -10,24 +10,25 @@ if [[ "$SystemType" == "Darwin" && "$SkipSystemSetup" != "true" ]]; then
     chmod +x tmp.sh
     ./tmp.sh
     rm -rf tmp.sh
-    brew bundle
+    brew bundle -f brew/Brewfile
 fi
 
 echo "Setting Up Dotfiles"
-configs=(bash git)
+# Links files directly to the home directory
+home_configs=(bash git)
 
-for config in "${configs[@]}"
+for config in "${home_configs[@]}"
 do
     stow -v -R -t ~ $config/
 done
 
-echo "Setting up VIM"
-mkdir -p $HOME/.vim
-stow -v -R -t ~/.vim vim
-
-echo "Setting Up Kube Config"
-mkdir -p $HOME/.kube
-stow -v -R -t ~/.kube/ kube
+directory_configs=(kube vim)
+# Links files into subdirectories
+for config in "${directory_configs[@]}"
+do
+    mkdir -p $HOME/.$config
+    stow -v -R -t ~/.$config $config/
+done
 
 echo "Installing Bash It"
 if [[ -d $HOME/.bash_it ]]; then
@@ -35,11 +36,4 @@ if [[ -d $HOME/.bash_it ]]; then
 fi
 git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
 $HOME/.bash_it/install.sh --no-modify-config
-
-echo "Installing Spacemacs"
-
-if [[ -d $HOME/.emacs.d ]]; then
-   rm -rf $HOME/.emacs.d
-fi
-git clone -b develop https://github.com/syl20bnr/spacemacs ~/.emacs.d
 
