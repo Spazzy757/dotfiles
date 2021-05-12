@@ -76,10 +76,8 @@ fi
 # Silence the gettext.sh warning
 # from using .pyenv
 export GIT_INTERNAL_GETTEXT_TEST_FALLBACKS=1
-if [ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash ];
-then
-    . `brew --prefix`/etc/bash_completion.d/git-completion.bash
-fi
+[ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash ] && 
+  . `brew --prefix`/etc/bash_completion.d/git-completion.bash
 
 # Added Super Bin to Path
 export PATH=/usr/local/sbin:$PATH
@@ -100,7 +98,6 @@ source <(stern --completion=bash)
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
-
 # Java
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
@@ -108,40 +105,29 @@ eval "$(jenv init -)"
 # Docker
 export DOCKER_BUILDKIT=1
 
-# Emacs
-export PATH=$PATH:$HOME/.emacs.d/bin/
-
 # Ruby
 export PATH=$HOME/.gem/ruby/X.X.0/bin:$PATH
 
 # Google Cloud SDK settings
-if [ -f $HOME/google-cloud-sdk/path.bash.inc ];
-then
-    . $HOME/google-cloud-sdk/path.bash.inc;
-fi
-
-if [ -f $HOME/google-cloud-sdk/completion.bash.inc ];
-then
-    . $HOME/google-cloud-sdk/completion.bash.inc;
-fi
+[ -f $HOME/google-cloud-sdk/path.bash.inc ] && 
+  . $HOME/google-cloud-sdk/path.bash.inc
+[ -f $HOME/google-cloud-sdk/completion.bash.inc ] && 
+  . $HOME/google-cloud-sdk/completion.bash.inc
 
 # Load Aliases
-if [[ -f $HOME/.aliases ]];
-then
-    source $HOME/.aliases
-fi
+[ -f $HOME/.aliases ] && source $HOME/.aliases
+
 # Load settings with secrets
-if [[ -f $HOME/.protected ]];
-then
-    source $HOME/.protected
-fi
+[ -f $HOME/.protected ] && source $HOME/.protected
+
 # Load vimrc from a directroy
-if [[ -f $HOME/.protected ]];
-then
-    export VIMINIT="source $HOME/.vim/.vimrc"
-fi
+[ -f $HOME/.vim/.vimrc ] && export VIMINIT="source $HOME/.vim/.vimrc"
+
+# Options to fzf command
+export FZF_COMPLETION_OPTS='--border --info=inline'
+[ -f $HOME/.fzf.bash ] && source $HOME/.fzf.bash
 
 # bash completion
-[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
-
+[ -f /usr/local/etc/bash_completion ] && 
+  . /usr/local/etc/bash_completion
 
