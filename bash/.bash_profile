@@ -1,7 +1,8 @@
 # Use Tmux on startup
-if [ "$TMUX" = "" ]; 
-then 
-  tmux attach -t spazzy || tmux new -s spazzy
+if [ "$TMUX" = "" ]; then 
+  if [ ! -n "$SSH_CLIENT" ] || [ ! -n "$SSH_TTY" ]; then
+    tmux attach -t spazzy || tmux new -s spazzy
+  fi
 fi
 
 # Silence Warning about ZSH
@@ -76,8 +77,10 @@ fi
 # Silence the gettext.sh warning
 # from using .pyenv
 export GIT_INTERNAL_GETTEXT_TEST_FALLBACKS=1
-[ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash ] && 
-  . `brew --prefix`/etc/bash_completion.d/git-completion.bash
+if command -v brew 1>/dev/null 2>&1; then
+  [ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash ] && 
+    . `brew --prefix`/etc/bash_completion.d/git-completion.bash
+fi
 
 # Added Super Bin to Path
 export PATH=/usr/local/sbin:$PATH
@@ -89,19 +92,22 @@ export PATH=/usr/local/opt/curl/bin:$PATH
 export PATH=$HOME/.cargo/bin:$PATH
 
 # Kubernetes
-source $HOME/.minikube.completion.sh
+[ -f $HOME/.minikube.completion.sh ] && source $HOME/.minikube.completion.sh
 export PATH=$PATH:$HOME/.linkerd2/bin
 export PATH="$HOME/.krew/bin:$PATH"
-source <(stern --completion=bash)
+if command -v stern 1>/dev/null 2>&1; then
+  source <(stern --completion=bash)
+fi
 
 # Golang
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
 # Java
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
-
+if command -v jenv 1>/dev/null 2>&1; then
+  export PATH="$HOME/.jenv/bin:$PATH"
+  eval "$(jenv init -)"
+fi
 # Docker
 export DOCKER_BUILDKIT=1
 
