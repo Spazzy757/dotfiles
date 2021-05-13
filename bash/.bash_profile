@@ -12,10 +12,10 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 export TERM="screen-256color-bce"
 
 # Bash IT Setup
-if [[ -d $HOME/.bash-it ]];
+if [[ -d $HOME/.bash_it ]];
 then
     # Path to the bash it configuration
-    export BASH_IT=$HOME/.bash-it
+    export BASH_IT=$HOME/.bash_it
 
     # Lock and Load a custom theme file.
     # Leave empty to disable theming.
