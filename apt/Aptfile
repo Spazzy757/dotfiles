@@ -1,3 +1,7 @@
 stow
 tmux
-stern
+cmake
+libssl-dev
+node
+npm
+fzf
