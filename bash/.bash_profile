@@ -132,6 +132,8 @@ export PATH=$HOME/.gem/ruby/X.X.0/bin:$PATH
 # Options to fzf command
 export FZF_COMPLETION_OPTS='--border --info=inline'
 [ -f $HOME/.fzf.bash ] && source $HOME/.fzf.bash
+[ -f /usr/share/doc/fzf/examples/key-bindings.bash ] && 
+  source /usr/share/doc/fzf/examples/key-bindings.bash
 
 # bash completion
 [ -f /usr/local/etc/bash_completion ] && 
