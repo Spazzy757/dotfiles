@@ -4,7 +4,6 @@ set -e
 
 curl -fsSL https://get.comtrya.dev | sh
 
-comtrya comtrya/ -m brew
 comtrya comtrya/ -m macos
 comtrya comtrya/ -m bash-it
 
