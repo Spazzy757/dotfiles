@@ -1,0 +1,51 @@
+actions:
+# Symlink for bash config
+- action: command.run
+  command: stow
+  dir: .
+  args:
+  - -v
+  - -R
+  - -t
+  - {{ user.home_dir }}
+  - bash/
+# Symlink for git config
+- action: command.run
+  command: stow
+  dir: .
+  args:
+  - -v
+  - -R
+  - -t
+  - {{ user.home_dir }}
+  - git/
+# Symlink for tmux config
+- action: command.run
+  command: stow
+  dir: .
+  args:
+  - -v
+  - -R
+  - -t
+  - {{ user.home_dir }}
+  - tmux/
+# Symlink for kube config
+- action: command.run
+  command: stow
+  dir: .
+  args:
+  - -v
+  - -R
+  - -t
+  - {{ user.home_dir }}/.kube
+  - kube/
+# Symlink for vim config
+- action: command.run
+  command: stow
+  dir: .
+  args:
+  - -v
+  - -R
+  - -t
+  - {{ user.home_dir }}/.vim
+  - vim/

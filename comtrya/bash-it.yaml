@@ -1,0 +1,23 @@
+actions:
+# Remove Current Bash IT
+- action: command.run
+  command: rm
+  dir: .
+  args:
+  - -rf
+  - {{ user.home_dir }}/.bash_it 
+# Clone Bash it
+- action: command.run
+  command: git
+  dir: .
+  args:
+  - clone
+  - --depth=1 
+  - https://github.com/Bash-it/bash-it.git 
+  - {{ user.home_dir }}/.bash_it 
+# Run install script
+- action: command.run
+  command: {{ user.home_dir }}/.bash_it/install.sh
+  dir: .
+  args:
+  - --no-modify-config
