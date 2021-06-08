@@ -1,8 +1,9 @@
-[includeIf "gitdir:~/repos/"]
-   	path = .gitconfig_personal
-[includeIf "gitdir:~/repos/container-solutions/inditex/"]
-  	path = .gitconfig_client_one
+[user]
+  name = Spazzy
+  email = brendankamp757@gmail.com
+  signingkey = 46BB4AF19947DB7A
 [alias]
+
 	# short aliases
 
 	# Status
@@ -77,3 +78,5 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[init]
+	defaultBranch = main

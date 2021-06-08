@@ -8,6 +8,11 @@
 let NERDTreeShowHidden=1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Hide certain files
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let NERDTreeIgnore=['\.swp']
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Start NERDTree and leave the cursor in it.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 autocmd VimEnter * NERDTree | wincmd p

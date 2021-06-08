@@ -153,7 +153,7 @@ let g:vimwiki_global_ext = 0
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! Comment()
 	let ft = &filetype
-	if ft == 'perl' || ft == 'ruby' || ft == 'sh' || ft == 'make' || ft == 'python' || ft == 'yaml'
+	if ft == 'perl' || ft == 'ruby' || ft == 'sh' || ft == 'make' || ft == 'python' || ft == 'yaml' || ft == 'terraform'
 		silent s/^/\#/
 	elseif ft == 'javascript' || ft == 'c' || ft == 'cpp' || ft == 'java' || ft == 'objc' || ft == 'scala' || ft == 'go'
 		silent s:^:\/\/:g
@@ -166,7 +166,7 @@ endfunction
 
 function! Uncomment()
 	let ft = &filetype
-	if ft == 'perl' || ft == 'ruby' || ft == 'sh' || ft == 'make' || ft == 'python' || ft == 'yaml'
+	if ft == 'perl' || ft == 'ruby' || ft == 'sh' || ft == 'make' || ft == 'python' || ft == 'yaml' || ft == 'terraform'
 		silent s/^\#//
 	elseif ft == 'javascript' || ft == 'c' || ft == 'cpp' || ft == 'java' || ft == 'objc' || ft == 'scala' || ft == 'go'
 		silent s:^\/\/::g

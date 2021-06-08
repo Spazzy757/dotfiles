@@ -36,6 +36,7 @@ source ~/.vim/go.vim
 source ~/.vim/python.vim
 source ~/.vim/web.vim
 source ~/.vim/terraform.vim
+source ~/.vim/rust.vim
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Key Bindings
