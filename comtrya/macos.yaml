@@ -88,3 +88,8 @@ actions:
   provider: homebrew
   repository: homebrew/cask
   name: kubectx
+# steampipe
+- action: package.install
+  provider: homebrew
+  repository: turbot/tap
+  name: steampipe
