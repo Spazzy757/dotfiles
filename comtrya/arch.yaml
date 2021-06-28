@@ -1,0 +1,12 @@
+- action: packae.install
+  provider: yay/pacman
+  list:
+  - vim
+  - fzf
+  - curl
+  - go
+  - kubectl
+  - bash-completion
+  - sslscan
+  - kind 
+  - kubectx
