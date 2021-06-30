@@ -1,5 +1,6 @@
-- action: packae.install
-  provider: yay/pacman
+actions:
+- action: package.install
+  provider: Yay
   list:
   - vim
   - fzf
