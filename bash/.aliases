@@ -124,10 +124,10 @@ function spazzy {
      cd "$HOME/repos/spazzy/$1/"
 }
 export -f spazzy
-function cs {
-      cd "$HOME/repos/container-solutions/$1/"
+function spazzy {
+     cd "$HOME/repos/pento/$1/"
 }
-export -f cs
+export -f pento
 
 # GPG
 ########################################################################
