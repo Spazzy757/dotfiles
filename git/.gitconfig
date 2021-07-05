@@ -2,6 +2,8 @@
   name = Spazzy
   email = brendankamp757@gmail.com
   signingkey = 46BB4AF19947DB7A
+[includeIf "gitdir:~/repos/pento"]
+    path = ~/.gitconfig_pento
 [alias]
 
 	# short aliases

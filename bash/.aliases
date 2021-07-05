@@ -20,6 +20,10 @@ alias cleands="find . -type f -name '*.DS_Store' -ls -delete"
 alias cleandir="find ./ -type f -name '* [0-9]*'  -ls  -delete"
 # Always highlight grep search term
 alias grep='grep --color=auto'
+
+#TODO make this look for linux before aliasings
+alias pbcopy='xsel --clipboard --input'
+alias pbpaste='xsel --clipboard --output'
 # Anonymize and Zip a repo
 function anon-repo {
     export FILTER_BRANCH_SQUELCH_WARNING=1
@@ -124,7 +128,7 @@ function spazzy {
      cd "$HOME/repos/spazzy/$1/"
 }
 export -f spazzy
-function spazzy {
+function pento {
      cd "$HOME/repos/pento/$1/"
 }
 export -f pento
