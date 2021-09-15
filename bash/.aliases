@@ -72,7 +72,7 @@ function b64 {
 }
 export -f b64
 function b64d {
-    echo -n "$1" | base64 -D;
+    echo -n "$1" | base64 -d;
 }
 export -f b64d
 # Setup a kind cluster with an Inlet Loadbalancer

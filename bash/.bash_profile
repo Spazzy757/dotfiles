@@ -11,6 +11,12 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 # Set term
 export TERM="screen-256color-bce"
 
+# Setup hostroy to be longer
+export HISTSIZE=10000
+export HISTFILESIZE=20000
+shopt -s histappend
+export PROMPT_COMMAND='history -a'
+
 # Bash IT Setup
 if [[ -d $HOME/.bash_it ]];
 then
