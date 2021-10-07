@@ -11,3 +11,5 @@ actions:
   - sslscan
   - kind 
   - kubectx
+  - stern
+  - github-cli
