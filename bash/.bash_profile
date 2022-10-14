@@ -1,10 +1,3 @@
-# Use Tmux on startup
-if [ "$TMUX" = "" ]; then 
-  if [ ! -n "$SSH_CLIENT" ] || [ ! -n "$SSH_TTY" ]; then
-    tmux attach -t spazzy || tmux new -s spazzy
-  fi
-fi
-
 # Silence Warning about ZSH
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
@@ -128,6 +121,9 @@ export PATH=$HOME/.gem/ruby/X.X.0/bin:$PATH
 
 # Load Aliases
 [ -f $HOME/.aliases ] && source $HOME/.aliases
+
+# Load Git Completion
+[ -f $HOME/.git-completion.bash ] && source $HOME/.git-completion.bash
 
 # Load settings with secrets
 [ -f $HOME/.protected ] && source $HOME/.protected
