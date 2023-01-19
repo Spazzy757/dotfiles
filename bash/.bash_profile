@@ -67,6 +67,8 @@ fi
 
 # Python
 export PATH=$HOME/.poetry/bin:$PATH
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
 # Make sure to use pyenv when in terminal
 if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init -)"
@@ -89,6 +91,7 @@ export PATH=/usr/local/opt/curl/bin:$PATH
 
 # Rust
 export PATH=$HOME/.cargo/bin:$PATH
+. "$HOME/.cargo/env"
 
 # Kubernetes
 [ -f $HOME/.minikube.completion.sh ] && source $HOME/.minikube.completion.sh
@@ -97,10 +100,16 @@ export PATH="$HOME/.krew/bin:$PATH"
 if command -v stern 1>/dev/null 2>&1; then
   source <(stern --completion=bash)
 fi
+export PATH=~/.kubectx:$PATH
 
 # Golang
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
+
+# JavaScript
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Java
 if command -v jenv 1>/dev/null 2>&1; then
@@ -118,6 +127,7 @@ export PATH=$HOME/.gem/ruby/X.X.0/bin:$PATH
   . $HOME/google-cloud-sdk/path.bash.inc
 [ -f $HOME/google-cloud-sdk/completion.bash.inc ] && 
   . $HOME/google-cloud-sdk/completion.bash.inc
+export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
 # Load Aliases
 [ -f $HOME/.aliases ] && source $HOME/.aliases

@@ -73,12 +73,6 @@ Plug 'godlygeek/tabular'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Plug 'plasticboy/vim-markdown'
 
-" Autocomplete
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" https://github.com/ycm-core/YouCompleteMe
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Plug 'Valloric/YouCompleteMe'
-
 " Syntax Highlighting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " https://github.com/vim-syntastic/syntastic
@@ -123,6 +117,14 @@ Plug 'mattn/webapi-vim'
 " https://github.com/mattn/webapi-vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Plug 'ekalinin/Dockerfile.vim'
+
+
+" Code completion
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" https://github.com/neoclide/coc.nvim/
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Use release branch (recommend)
+Plug 'neoclide/coc.nvim'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Initialize plugin system
