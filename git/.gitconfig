@@ -1,9 +1,9 @@
 [user]
     name = Spazzy
-[includeIf "gitdir:/home/spazzy/repos/spazzy/"]
+[includeIf "gitdir:/home/spazzy/repos/"]
     path = ~/.gitconfig_personal
-[includeIf "gitdir:/home/spazzy/repos/pento/"]
-    path = ~/.gitconfig_pento
+[includeIf "gitdir:/home/spazzy/repos/vlab"]
+    path = ~/.gitconfig_vlab
 [alias]
 
 	# short aliases
@@ -35,7 +35,7 @@
 	amend = commit --amend --reuse-message=HEAD
 	# `git nuke`
 	# (Checks out main and deletes all other branches)
-	nuke = "!git co master && for branch in $(git br --no-color | grep -v main | grep -v master); do echo $branch; git br -D $branch; done"
+	nuke = "!git co main && for branch in $(git br --no-color | grep -v main | grep -v master); do echo $branch; git br -D $branch; done"
 
 	# Fixup a commit
 	fix = commit --fixup

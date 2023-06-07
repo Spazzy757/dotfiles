@@ -35,7 +35,7 @@ SCM_THEME_CURRENT_USER_PREFFIX='  '
 SCM_GIT_SHOW_CURRENT_USER=false
 
 # Kubernetes
-KUBE_BINARY=${KUBE_BINARY_LOCATION:='/bin/kubectl'}
+KUBE_BINARY=${KUBE_BINARY_LOCATION:='/usr/local/bin/kubectl'}
 KUBE_SYMBOL="" 
 
 function _git_upstream_remote_logo {

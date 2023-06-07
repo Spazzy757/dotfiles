@@ -104,6 +104,7 @@ set foldlevel=99
 " Saves what a buffer looks like on exit
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 autocmd BufWinLeave *.* mkview
+""TODO: this ssems to be broken with neovim
 autocmd BufWinEnter *.* silent loadview
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
