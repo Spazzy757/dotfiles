@@ -140,7 +140,7 @@ export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 [ -f $HOME/.protected ] && source $HOME/.protected
 
 # Load vimrc from a directroy
-[ -f $HOME/.vim/.vimrc ] && export VIMINIT="source $HOME/.vim/.vimrc"
+export VIMINIT="source $HOME/.config/nvim/init.lua"
 
 # Options to fzf command
 export FZF_COMPLETION_OPTS='--border --info=inline'
@@ -152,3 +152,5 @@ export FZF_COMPLETION_OPTS='--border --info=inline'
 [ -f /usr/local/etc/bash_completion ] && 
   . /usr/local/etc/bash_completion
 
+export VISUAL=nvim
+export EDITOR="$VISUAL"

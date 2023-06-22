@@ -1,9 +1,7 @@
 [user]
-    name = Spazzy
-[includeIf "gitdir:/home/spazzy/repos/"]
-    path = ~/.gitconfig_personal
-[includeIf "gitdir:/home/spazzy/repos/vlab"]
-    path = ~/.gitconfig_vlab
+  name = Spazzy
+	email = brendankamp757@gmail.com
+	signingkey = 46BB4AF19947DB7A
 [alias]
 
 	# short aliases
