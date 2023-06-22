@@ -18,6 +18,7 @@ require("nvim-tree").setup({
 
 vim.opt.mouse="a"
 vim.opt.filetype="on"
+vim.opt.clipboard="unnamedplus"
 
 -- Security
 vim.opt.modelines=0
