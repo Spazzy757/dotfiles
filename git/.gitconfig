@@ -1,87 +1,83 @@
 [user]
   name = Spazzy
-	email = brendankamp757@gmail.com
-	signingkey = 82244B5B6E60989E
+  email = brendankamp757@gmail.com
+  signingkey = 82244B5B6E60989E
 
 [alias]
-
-	# short aliases
-
-	# Status
-	s = status -sb
-	# Signed Commit
-	c =  commit -S -s -m
+  # short aliases
+  # Status
+  s = status -sb
+  # Signed Commit
+  c =  commit -S -s -m
     # Checkout branch
-	co = checkout
-	# Branch
-	br = branch
-	# Interactive rebase
-    r = rebase -i --autosquash
-	# simple commit log
-	l = log --pretty=oneline -n 20 --graph --abbrev-commit
+  co = checkout
+  # Branch
+  br = branch
+  # Interactive rebase
+  r = rebase -i --autosquash
+  # simple commit log
+  l = log --pretty=oneline -n 20 --graph --abbrev-commit
+  # long aliases
+  # More Robust History
+  hist = log --pretty=format:\"%C(yellow)%h%C(reset) %C(green)%ad%C(reset) %C(red)|%C(reset) %s %C(bold blue)[%an]%C(reset)%C(yellow)%d%C(reset)\" --graph --date=short
+  # Pull in remote changes for the current repository and all its submodules.
+  p = pull --recurse-submodules
+  # Switch to a branch, creating it if necessary.
+  go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
+  # List aliases.
+  aliases = config --get-regexp alias
+  # Amend the currently staged files to the latest commit.
+  amend = commit --amend --reuse-message=HEAD
+  # `git nuke`
+  # (Checks out main and deletes all other branches)
+  nuke = "!git co main && for branch in $(git br --no-color | grep -v main | grep -v master); do echo $branch; git br -D $branch; done"
 
-	# long aliases
-
-    # More Robust History
-	hist = log --pretty=format:\"%C(yellow)%h%C(reset) %C(green)%ad%C(reset) %C(red)|%C(reset) %s %C(bold blue)[%an]%C(reset)%C(yellow)%d%C(reset)\" --graph --date=short
-    # Pull in remote changes for the current repository and all its submodules.
-	p = pull --recurse-submodules
-	# Switch to a branch, creating it if necessary.
-	go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
-	# List aliases.
-	aliases = config --get-regexp alias
-	# Amend the currently staged files to the latest commit.
-	amend = commit --amend --reuse-message=HEAD
-	# `git nuke`
-	# (Checks out main and deletes all other branches)
-	nuke = "!git co main && for branch in $(git br --no-color | grep -v main | grep -v master); do echo $branch; git br -D $branch; done"
-
-	# Fixup a commit
-	fix = commit --fixup
+  # Fixup a commit
+  fix = commit --fixup
 [log]
   decorate = full
 [core]
-	# global gitignore file
-	excludesfile = ~/.gitignore_global
-	# Editor
-	editor = vim
-	# Speed up commands involving untracked files such as `git status`.
-	# https://git-scm.com/docs/git-update-index#_untracked_cache
-	untrackedCache = true
+  # global gitignore file
+  excludesfile = ~/.gitignore_global
+  # Editor
+  editor = vim
+  # Speed up commands involving untracked files such as `git status`.
+  # https://git-scm.com/docs/git-update-index#_untracked_cache
+  untrackedCache = true
 [color "branch"]
-	current = yellow reverse
-	local = yellow
-	remote = green
+  current = yellow reverse
+  local = yellow
+  remote = green
 [color "diff"]
-	meta = yellow bold
-	frag = magenta bold # line info
-	old = red # deletions
-	new = green # additions
+  meta = yellow bold
+  frag = magenta bold # line info
+  old = red # deletions
+  new = green # additions
 [commit]
-	# Sign commits with GPG
-	# https://git-scm.com/book/en/v2/Git-Tools-Signing-Your-Work
-	gpgsign = true
-[gpg]
-	program = gpg
+  # Sign commits with GPG
+  # https://git-scm.com/book/en/v2/Git-Tools-Signing-Your-Work
+  gpgsign = true
+[gpg]	
+  program = gpg
 [merge]
-	tool = opendiff
+  tool = opendiff
 [credential]
-	helper = store
+  helper = store
 [color "decorate"]
-	head = bold white
-	branch = bold magenta
-	remotebranch = blue
-	tag = bold red
+  head = bold white
+  branch = bold magenta
+  remotebranch = blue
+  tag = bold red
 [pull]
-	rebase = false
+  rebase = true
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
 [init]
-	defaultBranch = main
+  defaultBranch = main
 [url "git@gitlab.com:"]
-	insteadOf = https://gitlab.com/
+  insteadOf = https://gitlab.com/
 [url "git@github.com:"]
-	insteadOf = https://github.com/
+  insteadOf = https://github.com/
