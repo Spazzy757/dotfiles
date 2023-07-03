@@ -2,6 +2,7 @@
   name = Spazzy
 	email = brendankamp757@gmail.com
 	signingkey = 46BB4AF19947DB7A
+
 [alias]
 
 	# short aliases
@@ -84,5 +85,3 @@
 	insteadOf = https://gitlab.com/
 [url "git@github.com:"]
 	insteadOf = https://github.com/
-[url "ssh://git@github.com:PentoHQ"]
-	insteadOf = https://github.com/PentoHQ

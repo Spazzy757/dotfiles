@@ -1,7 +1,15 @@
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 require('lspserver')
 require('comments')
+require('markdown')
 require('plugins')
 require('golang')
+
+
+
+vim.opt.termguicolors = true
 require("nvim-tree").setup({
   sort_by = "case_sensitive",
   view = {
@@ -10,8 +18,10 @@ require("nvim-tree").setup({
   renderer = {
     group_empty = true,
   },
-  filters = {
-    dotfiles = true,
+  git = {
+    enable = true,
+    ignore = false,
+    timeout = 500,
   },
 })
 
@@ -43,10 +53,6 @@ vim.opt.backspace="indent,eol,start"
 -- Enable Folding
 vim.opt.foldmethod="indent"
 vim.opt.foldlevel=99
-
-vim.opt.undodir="~/.config/nvim/temp_dirs/undodir"
-vim.opt.undofile=true
-
 
 vim.keymap.set('n', '<space>n', ':NvimTreeFocus<CR>', { silent = true })
 vim.keymap.set('n', '<space>c', ':source $MYVIMRC<CR>', { silent = true })

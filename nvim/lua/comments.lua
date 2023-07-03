@@ -48,3 +48,15 @@ end
 -- Comment Keybinding
 vim.keymap.set('v', '<space>b', comment, { expr = true, silent=true })
 vim.keymap.set('v', '<space>?', uncomment, { expr = true, silent=true })
+
+
+local function toggleLiveDown()
+  local ft = vim.bo.filetype
+  if ft == 'markdown' then
+    return ':LivedownToggle<CR>'
+  else
+    print('Not A Markdown File')
+  end
+end
+
+vim.keymap.set('n', '<space>m', toggleLiveDown, { expr = true, silent=true })

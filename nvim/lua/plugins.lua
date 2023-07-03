@@ -24,6 +24,8 @@ require('packer').startup(function(use)
   use 'ray-x/guihua.lua'
   use 'neovim/nvim-lspconfig'
   use 'nvim-treesitter/nvim-treesitter'
+  use 'tpope/vim-fugitive'
+  use 'shime/vim-livedown'
   if packer_bootstrap then
     require('packer').sync()
   end
