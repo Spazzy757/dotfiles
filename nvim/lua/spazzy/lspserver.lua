@@ -69,3 +69,7 @@ require('lspconfig')['rust_analyzer'].setup {
 require('lspconfig')['lua_ls'].setup {
   capabilities = capabilities
 }
+
+require('lspconfig')['yamlls'].setup {
+  capabilities = capabilities
+}
