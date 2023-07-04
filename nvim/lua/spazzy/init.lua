@@ -1,0 +1,6 @@
+require('spazzy.set')
+require('spazzy.lspserver')
+require('spazzy.comments')
+require('spazzy.markdown')
+require('spazzy.plugins')
+require('spazzy.golang')

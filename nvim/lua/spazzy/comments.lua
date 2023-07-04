@@ -46,8 +46,8 @@ local function uncomment()
 end
 
 -- Comment Keybinding
-vim.keymap.set('v', '<space>b', comment, { expr = true, silent=true })
-vim.keymap.set('v', '<space>?', uncomment, { expr = true, silent=true })
+vim.keymap.set('v', '<leader>b', comment, { expr = true, silent=true })
+vim.keymap.set('v', '<leader>?', uncomment, { expr = true, silent=true })
 
 
 local function toggleLiveDown()
@@ -59,4 +59,4 @@ local function toggleLiveDown()
   end
 end
 
-vim.keymap.set('n', '<space>m', toggleLiveDown, { expr = true, silent=true })
+vim.keymap.set('n', '<leader>m', toggleLiveDown, { expr = true, silent=true })

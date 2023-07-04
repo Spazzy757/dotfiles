@@ -12,6 +12,7 @@ end
 local packer_bootstrap = ensure_packer()
 
 require('packer').startup(function(use)
+
   use 'wbthomason/packer.nvim'
   use 'nvim-tree/nvim-tree.lua'
   use 'junegunn/vim-easy-align'
@@ -22,10 +23,19 @@ require('packer').startup(function(use)
   use 'ekalinin/Dockerfile.vim'
   use 'ray-x/go.nvim'
   use 'ray-x/guihua.lua'
+  use 'williamboman/nvim-lsp-installer'
   use 'neovim/nvim-lspconfig'
+  use 'hrsh7th/nvim-cmp'
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-vsnip'
+  use 'hrsh7th/vim-vsnip'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-cmdline'
   use 'nvim-treesitter/nvim-treesitter'
   use 'tpope/vim-fugitive'
   use 'shime/vim-livedown'
+
   if packer_bootstrap then
     require('packer').sync()
   end
