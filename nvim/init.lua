@@ -25,7 +25,8 @@ require("nvim-tree").setup({
   },
 })
 
-
+--Misc
+vim.g.mapleader = '<space>' 
 vim.opt.mouse="a"
 vim.opt.filetype="on"
 vim.opt.clipboard="unnamedplus"

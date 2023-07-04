@@ -3,7 +3,6 @@
 # Misc
 ########################################################################
 alias ls='ls -alFG'
-alias grep='grep --color=auto'
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
 # Lock the screen (when going AFK)
