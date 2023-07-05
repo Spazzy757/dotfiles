@@ -9,16 +9,14 @@ cmp.setup({
       vim.fn["vsnip#anonymous"](args.body)
     end,
   },
-  window = {
-    -- completion = cmp.config.window.bordered(),
-    -- documentation = cmp.config.window.bordered(),
-  },
   mapping = cmp.mapping.preset.insert({
     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.abort(),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    -- Accept currently selected item. Set `select` to `false` 
+    -- to only confirm explicitly selected items.
+    ['<CR>'] = cmp.mapping.confirm({ select = true }), 
   }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
@@ -50,26 +48,47 @@ cmp.setup.cmdline(':', {
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- Python
+-- pip install pyright
 require('lspconfig')['pyright'].setup {
   capabilities = capabilities
 }
 -- TypeScript
+-- npm i -g typescript typescript-language-server
 require('lspconfig')['tsserver'].setup {
   capabilities = capabilities
 }
 -- Golang
+-- go install golang.org/x/tools/gopls@latest
 require('lspconfig')['gopls'].setup {
   capabilities = capabilities
 }
 -- Rust
+-- Follow Instructions https://rust-analyzer.github.io/manual.html#rust-analyzer-language-server-binary
 require('lspconfig')['rust_analyzer'].setup {
   capabilities = capabilities
 }
 -- Lua
+-- Download Binary fro https://github.com/LuaLS/lua-language-server/releases
 require('lspconfig')['lua_ls'].setup {
   capabilities = capabilities
 }
-
+-- Yaml
+-- npm i -g yaml-language-server
 require('lspconfig')['yamlls'].setup {
+  capabilities = capabilities
+}
+-- SQL
+-- npm i -g sql-language-server
+require('lspconfig')['sqlls'].setup {
+  capabilities = capabilities
+}
+-- JSON
+-- npm i -g vscode-langservers-extracted
+require('lspconfig')['jsonls'].setup {
+  capabilities = capabilities
+}
+-- Terraform
+-- Download Binary from https://github.com/hashicorp/terraform-ls/releases
+require('lspconfig')['terraformls'].setup {
   capabilities = capabilities
 }

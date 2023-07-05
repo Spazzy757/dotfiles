@@ -35,7 +35,10 @@ require('packer').startup(function(use)
   use 'nvim-treesitter/nvim-treesitter'
   use 'tpope/vim-fugitive'
   use 'shime/vim-livedown'
-
+  use {
+    'nvim-telescope/telescope.nvim', tag = '0.1.2',
+    requires = { {'nvim-lua/plenary.nvim'} }
+  }
   if packer_bootstrap then
     require('packer').sync()
   end

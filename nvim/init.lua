@@ -19,5 +19,3 @@ require("nvim-tree").setup({
 })
 
 require('spazzy')
-
-
