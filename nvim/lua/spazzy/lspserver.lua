@@ -92,3 +92,13 @@ require('lspconfig')['jsonls'].setup {
 require('lspconfig')['terraformls'].setup {
   capabilities = capabilities
 }
+-- Docker Compose
+-- npm i -g @microsoft/compose-language-service
+require('lspconfig')['docker_compose_language_service'].setup {
+  capabilities = capabilities
+}
+-- Docker
+-- npm i -g dockerfile-language-server-nodejs
+require('lspconfig')['dockerls'].setup {
+  capabilities = capabilities
+}
