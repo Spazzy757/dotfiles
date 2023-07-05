@@ -1,5 +1,4 @@
 -- General Configuration
-require('spazzy.plugins')
 require('spazzy.lspserver')
 require('spazzy.set')
 require('spazzy.telescope')

@@ -1,6 +1,5 @@
 --Misc
 vim.opt.termguicolors = true
-vim.g.mapleader = " "
 vim.opt.mouse="a"
 vim.opt.filetype="on"
 vim.opt.clipboard="unnamedplus"
