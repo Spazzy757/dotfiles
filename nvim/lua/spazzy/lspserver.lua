@@ -102,3 +102,8 @@ require('lspconfig')['docker_compose_language_service'].setup {
 require('lspconfig')['dockerls'].setup {
   capabilities = capabilities
 }
+-- Bash
+-- npm i -g bash-language-server
+require('lspconfig')['bashls'].setup {
+  capabilities = capabilities
+}
