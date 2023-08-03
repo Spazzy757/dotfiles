@@ -20,10 +20,10 @@ alias cleandir="find ./ -type f -name '* [0-9]*'  -ls  -delete"
 # Always highlight grep search term
 alias grep='grep --color=auto'
 
-if [ "$(uname -s)"="Linux" ]; then
-  alias pbcopy='xsel --clipboard --input'
-  alias pbpaste='xsel --clipboard --output'
-fi
+#if [ "$(uname -s)"="Linux" ]; then
+#  alias pbcopy='xsel --clipboard --input'
+#  alias pbpaste='xsel --clipboard --output'
+#fi
 
 # use nvim instead of vim
 alias vim='nvim'

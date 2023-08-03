@@ -152,5 +152,9 @@ export FZF_COMPLETION_OPTS='--border --info=inline'
 [ -f /usr/local/etc/bash_completion ] && 
   . /usr/local/etc/bash_completion
 
+# Homebrew on mac
+[ -f /opt/homebrew/bin/brew ] &&
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+
 export VISUAL=nvim
 export EDITOR="$VISUAL"
