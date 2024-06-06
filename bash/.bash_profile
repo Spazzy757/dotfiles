@@ -4,7 +4,7 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 # Set term
 export TERM="screen-256color-bce"
 
-# Setup hostroy to be longer
+# Setup history to be longer
 export HISTSIZE=10000
 export HISTFILESIZE=20000
 shopt -s histappend
@@ -17,13 +17,7 @@ then
     export BASH_IT=$HOME/.bash_it
 
     # Lock and Load a custom theme file.
-    # Leave empty to disable theming.
-    # location /.bash_it/themes/
     export BASH_IT_THEME=$HOME/.spazzy757.theme.bash
-
-    # (Advanced): Change this to the name of your remote repo if you
-    # cloned bash-it with a remote other than origin such as `bash-it`.
-    # export BASH_IT_REMOTE='bash-it'
 
     # Don't check mail when opening terminal.
     unset MAILCHECK
@@ -50,16 +44,6 @@ then
     # Set Xterm/screen/Tmux title with shortened command and directory.
     # Uncomment this to set.
     #export SHORT_TERM_LINE=true
-
-    # Set vcprompt executable path for scm advance info in prompt (demula theme)
-    # https://github.com/djl/vcprompt
-    #export VCPROMPT_EXECUTABLE=~/.vcprompt/bin/vcprompt
-
-    # (Advanced): Uncomment this to make Bash-it reload itself automatically
-    # after enabling or disabling aliases, plugins, and completions.
-    # export BASH_IT_AUTOMATIC_RELOAD_AFTER_CONFIG_CHANGE=1
-    # Uncomment this to make Bash-it create alias reload.
-    # export BASH_IT_RELOAD_LEGACY=1
 
     # Load Bash It
     source $BASH_IT/bash_it.sh
@@ -113,8 +97,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Java
+export PATH="$HOME/.jenv/bin:$PATH"
 if command -v jenv 1>/dev/null 2>&1; then
-  export PATH="$HOME/.jenv/bin:$PATH"
   eval "$(jenv init -)"
 fi
 # Docker
@@ -132,6 +116,8 @@ export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
 # Load Aliases
 [ -f $HOME/.aliases ] && source $HOME/.aliases
+
+source <(kubectl completion bash)
 
 # Load Git Completion
 [ -f $HOME/.git-completion.bash ] && source $HOME/.git-completion.bash
@@ -154,3 +140,4 @@ export FZF_COMPLETION_OPTS='--border --info=inline'
 
 export VISUAL=nvim
 export EDITOR="$VISUAL"
+

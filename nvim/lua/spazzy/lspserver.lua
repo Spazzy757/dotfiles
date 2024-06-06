@@ -42,6 +42,9 @@ cmp.setup.cmdline(':', {
   })
 })
 
+require('mason').setup()
+require('mason-lspconfig').setup()
+
 -- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
@@ -70,9 +73,20 @@ require('lspconfig')['rust_analyzer'].setup {
 require('lspconfig')['lua_ls'].setup {
   capabilities = capabilities
 }
+
 -- Yaml
 -- npm i -g yaml-language-server
-require('lspconfig')['yamlls'].setup {
+require('lspconfig').helm_ls.setup {
+  settings = {
+    ['helm-ls'] = {
+      yamlls = {
+        path = "yaml-language-server",
+      }
+    }
+  }
+}
+
+require('lspconfig').yamlls.setup {
   capabilities = capabilities
 }
 -- SQL
@@ -103,5 +117,9 @@ require('lspconfig')['dockerls'].setup {
 -- Bash
 -- npm i -g bash-language-server
 require('lspconfig')['bashls'].setup {
+  capabilities = capabilities
+}
+-- C Programming
+require('lspconfig')['clangd'].setup {
   capabilities = capabilities
 }

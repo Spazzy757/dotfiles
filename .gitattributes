@@ -1,1 +1,2 @@
 git/.git-credentials filter=git-crypt diff=git-crypt
+git/.gitemail filter=git-crypt diff=git-crypt

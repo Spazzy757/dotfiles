@@ -5,8 +5,6 @@
 alias ls='ls -alFG'
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
-# Lock the screen (when going AFK)
-alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 # Copy public key to clipboard:
 alias pubkey="cat ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
 # Reload the shell (i.e. invoke as a login shell)
@@ -78,3 +76,19 @@ function psgrep {
 	  fi
 }
 export -f psgrep
+
+
+function file_hash {
+  cat "$1" | git hash-object --stdin
+}
+
+function is_secret {
+  local hash
+  hash=$(file_hash $1)
+
+  if [ "$(git hash-object $1)" == "$hash" ]; then
+    echo "The file is not encrypted"
+  else
+    echo "The file is encrypted"
+  fi
+}

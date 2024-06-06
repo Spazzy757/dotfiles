@@ -3,6 +3,7 @@ vim.opt.termguicolors = true
 vim.opt.mouse="a"
 vim.opt.filetype="on"
 vim.opt.clipboard="unnamedplus"
+vim.cmd('colorscheme vim')
 
 -- Security
 vim.opt.modelines=0
@@ -30,3 +31,4 @@ vim.opt.foldlevel=99
 
 vim.keymap.set('n', '<leader>n', ':NvimTreeFocus<CR>', { silent = true })
 vim.keymap.set('n', '<leader>c', ':source $MYVIMRC<CR>', { silent = true })
+vim.keymap.set('n', '<leader>e', ':lua vim.diagnostic.open_float(0, {scope="line"})<CR>', { silent=true })
