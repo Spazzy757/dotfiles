@@ -1,4 +1,4 @@
-require('go').setup()
+require('go').setup({})
 
 -- Runs GoImport on Save
 local format_sync_grp = vim.api.nvim_create_augroup("GoImport", {})

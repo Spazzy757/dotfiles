@@ -50,13 +50,3 @@ vim.keymap.set('v', '<leader>b', comment, { expr = true, silent=true })
 vim.keymap.set('v', '<leader>?', uncomment, { expr = true, silent=true })
 
 
-local function toggleLiveDown()
-  local ft = vim.bo.filetype
-  if ft == 'markdown' then
-    return ':LivedownToggle<CR>'
-  else
-    print('Not A Markdown File')
-  end
-end
-
-vim.keymap.set('n', '<leader>m', toggleLiveDown, { expr = true, silent=true })

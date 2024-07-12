@@ -86,6 +86,9 @@ if command -v stern 1>/dev/null 2>&1; then
 fi
 export PATH=~/.kubectx:$PATH
 
+# terraform
+complete -C /usr/bin/terraform terraform
+
 # Golang
 export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/go
