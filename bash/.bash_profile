@@ -104,6 +104,13 @@ export PATH="$HOME/.jenv/bin:$PATH"
 if command -v jenv 1>/dev/null 2>&1; then
   eval "$(jenv init -)"
 fi
+
+# Scaleway
+if command -v scw 1>/dev/null 2>&1; then
+  eval "$(scw autocomplete script shell=bash)"
+fi
+
+
 # Docker
 export DOCKER_BUILDKIT=1
 

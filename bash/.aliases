@@ -18,6 +18,8 @@ alias cleandir="find ./ -type f -name '* [0-9]*'  -ls  -delete"
 # Always highlight grep search term
 alias grep='grep --color=auto'
 
+alias toolbox='docker exec -it localconfig-toolbox-1 /bin/bash'
+
 if [ "$(uname -s)"="Linux" ]; then
   alias pbcopy='xsel --clipboard --input'
   alias pbpaste='xsel --clipboard --output'

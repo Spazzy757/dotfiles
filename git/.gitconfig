@@ -3,6 +3,9 @@
   email = brendankamp757@gmail.com
   signingkey = 82244B5B6E60989E
 
+[includeif "gitdir:~/repos/vandebron/"]
+  path = ~/.gitconfig.work
+
 [alias]
   # short aliases
   # Status

@@ -22,7 +22,7 @@ capabilities.textDocument.foldingRange = {
 -- NOTE: Use MASON to download language servers
 --
 -- Python
-require('lspconfig')['pyright'].setup {
+require('lspconfig')['pylsp'].setup {
   capabilities = capabilities
 }
 -- TypeScript
