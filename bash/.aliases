@@ -41,7 +41,10 @@ alias cleannode="find . -name 'node_modules' -type d -ls -prune -exec rm -rf '{}
 
 # Kubernetes
 ########################################################################
-alias k="kubectl"
+k() {
+  kubectl $@
+}
+export -f k
 
 # Terraform
 ########################################################################

@@ -12,8 +12,9 @@
   s = status -sb
   # Signed Commit
   c =  commit -S -s
-    # Checkout branch
+  # Checkout branch
   co = checkout
+  cob = !git co $(git branch | fzf)
   # Branch
   br = branch
   # Interactive rebase

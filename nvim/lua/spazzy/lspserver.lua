@@ -25,10 +25,6 @@ capabilities.textDocument.foldingRange = {
 require('lspconfig')['pylsp'].setup {
   capabilities = capabilities
 }
--- TypeScript
-require('lspconfig')['tsserver'].setup {
-  capabilities = capabilities
-}
 -- Golang
 require('lspconfig')['gopls'].setup {
   capabilities = capabilities

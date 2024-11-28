@@ -24,10 +24,11 @@ ft("terraform"):fmt({
   args = {'fmt', '-'},
 })
 
-require("guard").setup({
+vim.g.guard_config ={
  fmt_on_save = true,
  lsp_as_default_formatter = false,
-})
+  save_on_fmt = true,
+}
 
 require('mason').setup()
 require('mason-lspconfig').setup()
