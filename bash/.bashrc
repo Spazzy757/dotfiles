@@ -5,3 +5,6 @@ then
 fi
 
 
+
+# Scaleway CLI autocomplete initialization.
+eval "$(scw autocomplete script shell=bash)"

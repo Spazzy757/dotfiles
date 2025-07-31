@@ -1,4 +1,3 @@
-vim.loader.enable()
 
 -- set leader key
 vim.g.mapleader = " "
@@ -20,11 +19,17 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+vim.loader.disable()
 require("lazy").setup({
   spec = {
     { import = "plugins" },
   },
   checker = { enabled = true },
+  performance = {
+    cache = {
+      enabled = false,
+    },
+  },
 })
 
 -- load custom config

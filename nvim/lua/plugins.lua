@@ -30,12 +30,6 @@ return {
     }
   },
   {
-    'nvimdev/guard-collection',
-    dependencies = {
-      'nvimdev/guard.nvim',
-    },
-  },
-  {
     'kevinhwang91/nvim-ufo',
     dependencies = {
       'kevinhwang91/promise-async',
@@ -61,5 +55,12 @@ return {
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
     opts = {},
+ },
+ {
+   "CopilotC-Nvim/CopilotChat.nvim",
+   dependencies = {
+     { "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
+     { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+   }
  }
 }
