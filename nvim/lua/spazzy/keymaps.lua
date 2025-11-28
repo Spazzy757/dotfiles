@@ -39,4 +39,4 @@ vim.keymap.set('n', '<leader>n', ':NvimTreeFocus<CR>', { silent = true })
 vim.keymap.set('n', '<leader>c', ':source $HOME/.config/nvim/init.lua<CR>', { silent = true })
 vim.keymap.set('n', '<leader>e', ':lua vim.diagnostic.open_float(0, {scope="line"})<CR>', { silent=true })
 vim.keymap.set('n', 'gd', '<c-]>', { remap = true })
-
+vim.opt.spell=true

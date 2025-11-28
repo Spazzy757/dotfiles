@@ -5,7 +5,21 @@ return {
   'nvim-tree/nvim-web-devicons',
   'nvim-treesitter/nvim-treesitter',
   'nvim-lua/plenary.nvim',
-  'nvim-telescope/telescope.nvim',
+  {
+  "nvim-telescope/telescope.nvim",
+  -- etc.
+    keys = {
+      { "zf", "<Cmd>Telescope spell_suggest<CR>", desc = "Telescope: Find spell word suggestion" },
+    -- etc.
+      },
+  },
+  {
+    'brianhuster/live-preview.nvim',
+    dependencies = {
+        -- You can choose one of the following pickers
+        'nvim-telescope/telescope.nvim',
+    },
+  },
   'folke/which-key.nvim',
   'ibhagwan/fzf-lua',
   'williamboman/mason.nvim',
@@ -50,17 +64,22 @@ return {
     },
   },
   {
-    'MeanderingProgrammer/render-markdown.nvim',
-    dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
-    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
-    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
-    opts = {},
- },
- {
-   "CopilotC-Nvim/CopilotChat.nvim",
-   dependencies = {
-     { "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
-     { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
-   }
- }
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    build = "cd app && yarn install",
+    init = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
+    ft = { "markdown" },
+  },
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    dependencies = {
+      { "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
+      { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+    }
+  },
+  {
+    "iamkarasik/sonarqube.nvim",
+  },
 }

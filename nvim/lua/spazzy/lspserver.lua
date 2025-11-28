@@ -10,7 +10,7 @@ require'nvim-treesitter.configs'.setup({
   },
 })
 
--- Set code completion capabailities.
+-- Set code completion capabilities.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- Add folding capabilities
@@ -22,19 +22,24 @@ capabilities.textDocument.foldingRange = {
 -- NOTE: Use MASON to download language servers
 --
 -- Python
-require('lspconfig')['pylsp'].setup {
+vim.lsp.config('pylsp', {
   capabilities = capabilities
-}
+})
+
+vim.lsp.config('kotlin_language_server', {
+  capabilities = capabilities
+})
 -- Golang
-require('lspconfig')['gopls'].setup {
+vim.lsp.config('gopls', {
   capabilities = capabilities
-}
+})
+
 -- Rust
-require('lspconfig')['rust_analyzer'].setup {
+vim.lsp.config('rust_analyzer', {
   capabilities = capabilities
-}
+})
 -- Lua
-require('lspconfig')['lua_ls'].setup {
+vim.lsp.config('lua_ls', {
   capabilities = capabilities,
   settings = {
     Lua = {
@@ -50,9 +55,9 @@ require('lspconfig')['lua_ls'].setup {
       }
     }
   }
-}
+})
 -- Yaml
-require('lspconfig')['helm_ls'].setup {
+vim.lsp.config('helm_ls', {
   capabilities = capabilities,
   settings = {
     ['helm-ls'] = {
@@ -61,40 +66,40 @@ require('lspconfig')['helm_ls'].setup {
       }
     }
   }
-}
-require('lspconfig')['yamlls'].setup {
+})
+vim.lsp.config('yamlls', {
   capabilities = capabilities
-}
+})
 -- SQL
-require('lspconfig')['sqlls'].setup {
+vim.lsp.config('sqlls', {
   capabilities = capabilities
-}
+})
 -- JSON
-require('lspconfig')['jsonls'].setup {
+vim.lsp.config('jsonls', {
   capabilities = capabilities
-}
+})
 -- Terraform
 -- Download Binary from https://github.com/hashicorp/terraform-ls/releases
-require('lspconfig')['terraformls'].setup {
+vim.lsp.config('terraformls', {
   capabilities = capabilities
-}
+})
 -- Docker Compose
 -- npm i -g @microsoft/compose-language-service
-require('lspconfig')['docker_compose_language_service'].setup {
+vim.lsp.config('docker_compose_language_service', {
   capabilities = capabilities
-}
+})
 -- Docker
-require('lspconfig')['dockerls'].setup {
+vim.lsp.config('dockerls', {
   capabilities = capabilities
-}
+})
 -- Bash
-require('lspconfig')['bashls'].setup {
+vim.lsp.config('bashls', {
   capabilities = capabilities
-}
+})
 -- C Programming
-require('lspconfig')['clangd'].setup {
+vim.lsp.config('clangd', {
   capabilities = capabilities
-}
+})
 
 require('ufo').setup()
 
