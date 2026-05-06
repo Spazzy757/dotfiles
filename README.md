@@ -16,6 +16,11 @@ My primary IDE is [NeoVim][2] and all my config can be found in the
 I use [Bash][3] for my shell alongside [Bash-IT][4] for customization
 all config can be found in [bash](./bash) folder
 
+## Claude Code
+
+My [Claude Code][6] configuration including my global `CLAUDE.md` preferences can
+be found in the [claude](./claude) folder
+
 
 ## To Setup
 
@@ -44,6 +49,12 @@ stow -v -R -t ~/ bash
 stow -v -R -t ~/.config/nvim/ nvim/
 ```
 
+### Claude Code
+
+```bash
+stow -v -R -t ~/.claude/ claude/
+```
+
 ### Unlock Secrets
 This will only work if your GPG key is part of the keychain
 ```bash
@@ -55,3 +66,4 @@ git-crypt unlock
 [3]: https://www.gnu.org/software/bash/
 [4]: https://github.com/Bash-it/bash-it
 [5]: https://www.gnu.org/software/stow/manual/stow.html
+[6]: https://claude.ai/code
