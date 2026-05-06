@@ -18,9 +18,7 @@ alias cleandir="find ./ -type f -name '* [0-9]*'  -ls  -delete"
 # Always highlight grep search term
 alias grep='grep --color=auto'
 
-alias toolbox='docker exec -it localconfig-toolbox-1 /bin/bash'
-
-if [ "$(uname -s)"="Linux" ]; then
+if [ "$(uname -s)" = "Linux" ]; then
   alias pbcopy='xsel --clipboard --input'
   alias pbpaste='xsel --clipboard --output'
 fi
@@ -42,16 +40,21 @@ alias cleannode="find . -name 'node_modules' -type d -ls -prune -exec rm -rf '{}
 # Kubernetes
 ########################################################################
 k() {
-  kubectl $@
+  kubectl "$@"
 }
 export -f k
 
+github-actions-update() {
+    escaped="${1//\//\\/}"
+    fd . .github/workflows --type f --exec sed -r -i "s/(uses: Vandebron\/github-actions\/.+)@(.+)/\1@$escaped/g" {}
+}
+export -f github-actions-update
 # docker
 ########################################################################
 dc() {
-  docker compose $@
+  docker compose "$@"
 }
-export -f dc 
+export -f dc
 
 # Terraform
 ########################################################################
@@ -70,6 +73,8 @@ function repos {
       cd "$HOME/repos/$1/"
 }
 export -f repos
+
+
 
 # GPG
 ########################################################################

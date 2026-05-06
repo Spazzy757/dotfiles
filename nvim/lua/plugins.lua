@@ -15,18 +15,16 @@ return {
   },
   {
     'brianhuster/live-preview.nvim',
-    dependencies = {
-        -- You can choose one of the following pickers
-        'nvim-telescope/telescope.nvim',
-    },
+    cmd = { 'LivePreview', 'LivePreviewOpen', 'LivePreviewClose' },
+    dependencies = { 'nvim-telescope/telescope.nvim' },
   },
   'folke/which-key.nvim',
   'ibhagwan/fzf-lua',
   'williamboman/mason.nvim',
   'williamboman/mason-lspconfig.nvim',
-  -- language specific
-  'hashivim/vim-terraform',
-  'rust-lang/rust.vim',
+  -- language specific (lazy loaded by filetype)
+  { 'hashivim/vim-terraform', ft = { 'terraform', 'hcl' } },
+  { 'rust-lang/rust.vim', ft = { 'rust' } },
   -- theme
   'EdenEast/nightfox.nvim',
   {
@@ -40,7 +38,6 @@ return {
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-cmdline',
       'towolf/vim-helm',
-      'github/copilot.vim',
     }
   },
   {
@@ -59,9 +56,17 @@ return {
   },
   {
     'ray-x/go.nvim',
-    dependencies = {
-      'ray-x/guihua.lua',
-    },
+    ft = { 'go', 'gomod', 'gosum' },
+    dependencies = { 'ray-x/guihua.lua' },
+    config = function()
+      require('go').setup({})
+      local grp = vim.api.nvim_create_augroup("GoImport", {})
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        pattern = "*.go",
+        callback = function() require('go.format').goimport() end,
+        group = grp,
+      })
+    end,
   },
   {
     "iamcco/markdown-preview.nvim",
@@ -73,13 +78,16 @@ return {
     ft = { "markdown" },
   },
   {
-    "CopilotC-Nvim/CopilotChat.nvim",
-    dependencies = {
-      { "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
-      { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
-    }
+  "coder/claudecode.nvim",
+    dependencies = { 
+      "folke/snacks.nvim"
+    },
+    opts = {
+	terminal_cmd = "~/.local/bin/claude", -- Point to local installation
+    },
   },
   {
     "iamkarasik/sonarqube.nvim",
+    opts = {},
   },
 }

@@ -1,0 +1,10 @@
+-- Claude Code keymaps
+vim.keymap.set('n', '<leader>wc',  '<cmd>ClaudeCode<cr>',            { desc = 'Toggle Claude' })
+vim.keymap.set('n', '<leader>wf',  '<cmd>ClaudeCodeFocus<cr>',       { desc = 'Focus Claude' })
+vim.keymap.set('n', '<leader>wr',  '<cmd>ClaudeCode --resume<cr>',   { desc = 'Resume Claude' })
+vim.keymap.set('n', '<leader>wo',  '<cmd>ClaudeCode --continue<cr>', { desc = 'Continue Claude' })
+vim.keymap.set('n', '<leader>wm',  '<cmd>ClaudeCodeSelectModel<cr>', { desc = 'Select Claude model' })
+vim.keymap.set('n', '<leader>wa',  '<cmd>ClaudeCodeAdd %<cr>',       { desc = 'Add current buffer' })
+vim.keymap.set('v', '<leader>ws',  '<cmd>ClaudeCodeSend<cr>',        { desc = 'Send to Claude' })
+vim.keymap.set('n', '<leader>wda', '<cmd>ClaudeCodeDiffAccept<cr>',  { desc = 'Accept diff' })
+vim.keymap.set('n', '<leader>wdd', '<cmd>ClaudeCodeDiffDeny<cr>',    { desc = 'Deny diff' })

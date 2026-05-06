@@ -5,6 +5,15 @@ vim.opt.termguicolors = true
 vim.opt.mouse="a"
 vim.opt.filetype="on"
 vim.opt.clipboard="unnamedplus"
+vim.o.list = true
+vim.api.nvim_set_hl(0, 'TrailingWhitespace', { bg='LightRed' })
+vim.api.nvim_create_autocmd('BufEnter', {
+	pattern = '*',
+	command = [[
+		syntax clear TrailingWhitespace |
+		syntax match TrailingWhitespace "\_s\+$"
+	]]}
+)
 
 -- Security
 vim.opt.modelines=0
@@ -40,3 +49,4 @@ vim.keymap.set('n', '<leader>c', ':source $HOME/.config/nvim/init.lua<CR>', { si
 vim.keymap.set('n', '<leader>e', ':lua vim.diagnostic.open_float(0, {scope="line"})<CR>', { silent=true })
 vim.keymap.set('n', 'gd', '<c-]>', { remap = true })
 vim.opt.spell=true
+

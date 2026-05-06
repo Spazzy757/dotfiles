@@ -81,9 +81,6 @@ export PATH=$HOME/.cargo/bin:$PATH
 [ -f $HOME/.minikube.completion.sh ] && source $HOME/.minikube.completion.sh
 export PATH=$PATH:$HOME/.linkerd2/bin
 export PATH="$HOME/.krew/bin:$PATH"
-if command -v stern 1>/dev/null 2>&1; then
-  source <(stern --completion=bash)
-fi
 export PATH=~/.kubectx:$PATH
 
 # terraform
@@ -94,10 +91,17 @@ export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
-# JavaScript
+# JavaScript - NVM lazy loaded on first use
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+_load_nvm() {
+  unset -f nvm node npm npx yarn pnpm
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+}
+nvm()  { _load_nvm; nvm  "$@"; }
+node() { _load_nvm; node "$@"; }
+npm()  { _load_nvm; npm  "$@"; }
+npx()  { _load_nvm; npx  "$@"; }
 
 # Java
 export PATH="$HOME/.jenv/bin:$PATH"
@@ -105,17 +109,26 @@ if command -v jenv 1>/dev/null 2>&1; then
   eval "$(jenv init -)"
 fi
 
-# Scaleway
-if command -v scw 1>/dev/null 2>&1; then
-  eval "$(scw autocomplete script shell=bash)"
-fi
+# Shell completions — cached by binary mtime to avoid spawning subprocesses every session
+_cache_completion() {
+  local name="$1" cache="$HOME/.cache/${1}-completion.bash"
+  local bin; bin=$(command -v "$name" 2>/dev/null) || return
+  if [ ! -f "$cache" ] || [ "$bin" -nt "$cache" ]; then
+    mkdir -p "$HOME/.cache"
+    shift; "$@" > "$cache" 2>/dev/null || rm -f "$cache"
+  fi
+  [ -f "$cache" ] && source "$cache"
+}
+_cache_completion scw   scw autocomplete script shell=bash
+_cache_completion stern stern --completion=bash
+unset -f _cache_completion
 
+# Copilot
+export PATH="$HOME/.local/bin:$PATH"
 
 # Docker
 export DOCKER_BUILDKIT=1
 
-# Ruby
-export PATH=$HOME/.gem/ruby/X.X.0/bin:$PATH
 
 # Google Cloud SDK settings
 [ -f $HOME/google-cloud-sdk/path.bash.inc ] && 
@@ -127,7 +140,13 @@ export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 # Load Aliases
 [ -f $HOME/.aliases ] && source $HOME/.aliases
 
-source <(kubectl completion bash)
+_kubectl_cache="$HOME/.cache/kubectl-completion.bash"
+if [ ! -f "$_kubectl_cache" ] || [ "$(command -v kubectl)" -nt "$_kubectl_cache" ]; then
+  mkdir -p "$HOME/.cache"
+  kubectl completion bash > "$_kubectl_cache" 2>/dev/null || rm -f "$_kubectl_cache"
+fi
+[ -f "$_kubectl_cache" ] && source "$_kubectl_cache"
+unset _kubectl_cache
 
 # Load Git Completion
 [ -f $HOME/.git-completion.bash ] && source $HOME/.git-completion.bash
@@ -151,3 +170,4 @@ export FZF_COMPLETION_OPTS='--border --info=inline'
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
+complete -o default -F __start_kubectl k

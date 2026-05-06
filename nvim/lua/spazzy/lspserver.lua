@@ -4,7 +4,12 @@ require'nvim-treesitter.configs'.setup({
   modules = {},
   ignore_install = {},
   auto_install = true,
-  ensure_installed = "all",
+  ensure_installed = {
+    "bash", "c", "dockerfile", "go", "gomod", "helm",
+    "json", "kotlin", "lua", "markdown", "python",
+    "rust", "sql", "terraform", "toml", "typescript",
+    "yaml",
+  },
   highlight = {
     enable = true
   },
@@ -20,8 +25,7 @@ capabilities.textDocument.foldingRange = {
 }
 
 -- NOTE: Use MASON to download language servers
---
--- Python
+
 vim.lsp.config('pylsp', {
   capabilities = capabilities
 })
