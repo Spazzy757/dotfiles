@@ -2,8 +2,10 @@
 local hash_comments = {'perl','ruby','sh','make','python','yaml','terraform'}
 -- languages that use "--" to start comments 
 local dash_comments = {'lua'}
--- languages that use "//" to start comments 
+-- languages that use "//" to start comments
 local slash_comments = {'javascript', 'c', 'cpp', 'java', 'objc', 'scala', 'go', 'rust'}
+-- languages that use "<#--" to start comments (FreeMarker)
+local ftl_comments = {'ftl'}
 
 -- Used to check a table for a value
 local function has_value (tab, val)
@@ -28,6 +30,9 @@ local function comment()
 	if has_value(slash_comments, ft) then
 		return ":s/^/\\/\\//<CR> | :noh<CR>"
 	end
+	if has_value(ftl_comments, ft) then
+		return ":s/^/<#--/<CR> | :noh<CR>"
+	end
 end
 
 -- Uses Sed to remove comment charcaters to
@@ -42,6 +47,9 @@ local function uncomment()
 	end
 	if has_value(slash_comments, ft) then
 		return ":s/^\\/\\///<CR> | :noh<CR>"
+	end
+	if has_value(ftl_comments, ft) then
+		return ":s/^<#--//<CR> | :noh<CR>"
 	end
 end
 

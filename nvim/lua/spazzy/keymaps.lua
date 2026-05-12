@@ -50,3 +50,6 @@ vim.keymap.set('n', '<leader>e', ':lua vim.diagnostic.open_float(0, {scope="line
 vim.keymap.set('n', 'gd', '<c-]>', { remap = true })
 vim.opt.spell=true
 
+-- FreeMarker template support
+vim.filetype.add({ extension = { ftl = 'ftl' } })
+vim.treesitter.language.register('html', 'ftl')
