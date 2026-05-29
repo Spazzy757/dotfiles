@@ -7,6 +7,7 @@ export TERM="screen-256color-bce"
 # Setup history to be longer
 export HISTSIZE=10000
 export HISTFILESIZE=20000
+HISTCONTROL=ignoredups:erasedups
 shopt -s histappend
 export PROMPT_COMMAND='history -a'
 
@@ -171,3 +172,5 @@ export VISUAL=nvim
 export EDITOR="$VISUAL"
 
 complete -o default -F __start_kubectl k
+
+alias gam="/home/spazzy/bin/gam7/gam"
