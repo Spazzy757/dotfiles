@@ -49,6 +49,12 @@ stow -v -R -t ~/ bash
 stow -v -R -t ~/.config/nvim/ nvim/
 ```
 
+### Tmux
+
+```bash
+stow -v -R -t ~/ tmux
+```
+
 ### Claude Code
 
 ```bash
