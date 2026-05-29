@@ -174,3 +174,7 @@ export EDITOR="$VISUAL"
 complete -o default -F __start_kubectl k
 
 alias gam="/home/spazzy/bin/gam7/gam"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
