@@ -14,4 +14,9 @@
 - PR should always have the same info as the commit body
 - never commit directly to main or master branch, always create a PR
 
+# Kubernetes
+
+- be explicit about which cluster you are connected to use `--kubeconfg` and `--context`
+- always verify when making changes to clusters that have prod in the name
+- never delete volumes or PVC's with explicit permissions
 
