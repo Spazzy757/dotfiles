@@ -1,111 +1,131 @@
 #!/usr/bin/env bash
 
-# Misc
-########################################################################
-alias ls='ls -alFG'
-# Enable aliases to be sudo’ed
-alias sudo='sudo '
-# Copy public key to clipboard:
-alias pubkey="cat ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
-# Reload the shell (i.e. invoke as a login shell)
-alias reload="exec ${SHELL} -l"
-# Print each PATH entry on a separate line
-alias path='echo -e ${PATH//:/\\n}'
-# Recursively remove .DS_Store files
-alias cleands="find . -type f -name '*.DS_Store' -ls -delete"
-# recursively delete duplicated files that get created randomly `xxx 2`
-alias cleandir="find ./ -type f -name '* [0-9]*'  -ls  -delete"
-# Always highlight grep search term
-alias grep='grep --color=auto'
+# =============================================================================
+# System
+# =============================================================================
 
+alias ls='ls -alFG'
+alias sudo='sudo '                   # enable alias expansion after sudo
+alias reload="exec ${SHELL} -l"
+alias path='echo -e ${PATH//:/\\n}'
+alias grep='grep --color=auto'
+alias cleands="find . -type f -name '*.DS_Store' -ls -delete"
+alias cleandir="find ./ -type f -name '* [0-9]*' -ls -delete"
+
+# Clipboard — use Wayland on Linux
 if [ "$(uname -s)" = "Linux" ]; then
-  alias pbcopy='xsel --clipboard --input'
-  alias pbpaste='xsel --clipboard --output'
+  alias pbcopy='wl-copy'
+  alias pbpaste='wl-paste'
 fi
 
-# use nvim instead of vim
+# =============================================================================
+# Editor
+# =============================================================================
+
 alias vim='nvim'
 
-# Python
-########################################################################
-# Shortcut for virtual env's
-alias venv='. env/bin/activate'
-# Clean pyc
-alias cleanpyc='find . -name "*.pyc" -type f  -ls -delete'
+# =============================================================================
+# Navigation
+# =============================================================================
 
-# Javascript
-########################################################################
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ~="cd ~"
+alias -- -="cd -"
+
+function repos {
+    cd "$HOME/repos/$1/"
+}
+export -f repos
+
+# =============================================================================
+# Python
+# =============================================================================
+
+alias venv='. env/bin/activate'
+alias cleanpyc='find . -name "*.pyc" -type f -ls -delete'
+
+# =============================================================================
+# JavaScript
+# =============================================================================
+
 alias cleannode="find . -name 'node_modules' -type d -ls -prune -exec rm -rf '{}' +"
 
+# =============================================================================
 # Kubernetes
-########################################################################
+# =============================================================================
+
 k() {
-  kubectl "$@"
+    kubectl "$@"
 }
 export -f k
 
+# =============================================================================
+# Docker
+# =============================================================================
+
+dc() {
+    docker compose "$@"
+}
+export -f dc
+
+# =============================================================================
+# Terraform
+# =============================================================================
+
+alias tf="terraform"
+
+# =============================================================================
+# GPG & SSH
+# =============================================================================
+
+alias gsign="gpg --encrypt --armor"
+alias pubkey="cat ~/.ssh/id_rsa.pub | pbcopy && echo '=> Public key copied to clipboard.'"
+alias gpub="gpg --export -a brendankamp757@gmail.com | pbcopy && echo '=> GPG public key copied to clipboard.'"
+
+# =============================================================================
+# Git
+# =============================================================================
+
+# Update all Vandebron GitHub Actions refs to a pinned SHA or tag
 github-actions-update() {
     escaped="${1//\//\\/}"
     fd . .github/workflows --type f --exec sed -r -i "s/(uses: Vandebron\/github-actions\/.+)@(.+)/\1@$escaped/g" {}
 }
 export -f github-actions-update
-# docker
-########################################################################
-dc() {
-  docker compose "$@"
-}
-export -f dc
 
-# Terraform
-########################################################################
-alias tf="terraform"
+# =============================================================================
+# System Info
+# =============================================================================
 
-# Navigation
-########################################################################
-# Easier navigation: .., ..., ...., ....., ~ and -
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
-alias ~="cd ~" # `cd` is probably faster to type though
-alias -- -="cd -"
-function repos {
-      cd "$HOME/repos/$1/"
-}
-export -f repos
-
-
-
-# GPG
-########################################################################
-alias gsign="gpg --encrypt --armor"
-alias gpub="gpg --export -a brendankamp757@gmail.com |  pbcopy | echo '=> GPG Public key copied to pasteboard.'"
-
-# System
-########################################################################
-# Find process matching input
 function psgrep {
-	  if [ ! -z $1 ] ; then
-	      echo "Grepping for processes matching $1..."
-	      ps aux | grep $1 --color=auto | grep -v grep --color=auto
+    if [ -n "$1" ]; then
+        echo "Grepping for processes matching $1..."
+        ps aux | grep "$1" --color=auto | grep -v grep --color=auto
     else
-	      echo "!! Need name to grep for"
-	  fi
+        echo "!! Need name to grep for"
+    fi
 }
 export -f psgrep
 
-
 function file_hash {
-  cat "$1" | git hash-object --stdin
+    cat "$1" | git hash-object --stdin
 }
 
 function is_secret {
-  local hash
-  hash=$(file_hash $1)
-
-  if [ "$(git hash-object $1)" == "$hash" ]; then
-    echo "The file is not encrypted"
-  else
-    echo "The file is encrypted"
-  fi
+    local hash
+    hash=$(file_hash "$1")
+    if [ "$(git hash-object "$1")" = "$hash" ]; then
+        echo "The file is not encrypted"
+    else
+        echo "The file is encrypted"
+    fi
 }
+
+# =============================================================================
+# Work Tools
+# =============================================================================
+
+alias gam="/home/spazzy/bin/gam7/gam"

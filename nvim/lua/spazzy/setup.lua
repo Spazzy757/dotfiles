@@ -1,3 +1,4 @@
+-- nvim-tree
 require("nvim-tree").setup({
   sort_by = "case_sensitive",
   view = {
@@ -14,18 +15,20 @@ require("nvim-tree").setup({
   },
 })
 
+-- Telescope
 require('telescope').setup({
- pickers = {
+  pickers = {
     find_files = {
-      hidden = true
+      hidden = true,
     },
     live_grep = {
-      additional_args = function(opts)
-        return {"--hidden"}
-      end
-    }
-  }
+      additional_args = function()
+        return { "--hidden" }
+      end,
+    },
+  },
 })
 
+-- Mason — LSP installer
 require('mason').setup()
 require('mason-lspconfig').setup()

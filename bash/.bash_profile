@@ -1,98 +1,72 @@
-# Silence Warning about ZSH
-export BASH_SILENCE_DEPRECATION_WARNING=1
+# =============================================================================
+# Shell
+# =============================================================================
 
-# Set term
+export BASH_SILENCE_DEPRECATION_WARNING=1
 export TERM="screen-256color-bce"
 
-# Setup history to be longer
+# History — longer scrollback, no duplicates, append across sessions
 export HISTSIZE=10000
 export HISTFILESIZE=20000
 HISTCONTROL=ignoredups:erasedups
 shopt -s histappend
 export PROMPT_COMMAND='history -a'
 
-# Bash IT Setup
-if [[ -d $HOME/.bash_it ]];
-then
-    # Path to the bash it configuration
+# =============================================================================
+# Bash-it
+# =============================================================================
+
+if [[ -d $HOME/.bash_it ]]; then
     export BASH_IT=$HOME/.bash_it
-
-    # Lock and Load a custom theme file.
     export BASH_IT_THEME=$HOME/.spazzy757.theme.bash
-
-    # Don't check mail when opening terminal.
     unset MAILCHECK
-
-    # Change this to your console based IRC client of choice.
     export IRC_CLIENT='irssi'
-
-    # Set this to the command you use for todo.txt-cli
     export TODO="t"
-
-    # Set this to false to turn off version control status checking within the prompt for all themes
     export SCM_CHECK=true
-
-    # Set Xterm/screen/Tmux title with only a short hostname.
-    # Uncomment this (or set SHORT_HOSTNAME to something else),
-    # Will otherwise fall back on $HOSTNAME.
     export SHORT_HOSTNAME=$(hostname -s)
-
-    # Set Xterm/screen/Tmux title with only a short username.
-    # Uncomment this (or set SHORT_USER to something else),
-    # Will otherwise fall back on $USER.
-    #export SHORT_USER=${USER:0:8}
-
-    # Set Xterm/screen/Tmux title with shortened command and directory.
-    # Uncomment this to set.
-    #export SHORT_TERM_LINE=true
-
-    # Load Bash It
     source $BASH_IT/bash_it.sh
 fi
 
-# Python
-export PATH=$HOME/.poetry/bin:$PATH
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-# Make sure to use pyenv when in terminal
-if command -v pyenv 1>/dev/null 2>&1; then
-    eval "$(pyenv init -)"
-fi
+# =============================================================================
+# PATH
+# =============================================================================
 
-# Bash git setup
-# Silence the gettext.sh warning
-# from using .pyenv
-export GIT_INTERNAL_GETTEXT_TEST_FALLBACKS=1
-if command -v brew 1>/dev/null 2>&1; then
-  [ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash ] && 
-    . `brew --prefix`/etc/bash_completion.d/git-completion.bash
-fi
-
-# Added Super Bin to Path
 export PATH=/usr/local/sbin:$PATH
-
-# Curl
 export PATH=/usr/local/opt/curl/bin:$PATH
-
-# Rust
+export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.cargo/bin:$PATH
-. "$HOME/.cargo/env"
-
-# Kubernetes
-[ -f $HOME/.minikube.completion.sh ] && source $HOME/.minikube.completion.sh
-export PATH=$PATH:$HOME/.linkerd2/bin
-export PATH="$HOME/.krew/bin:$PATH"
+export PATH=$HOME/.poetry/bin:$PATH
+export PATH=$HOME/.krew/bin:$PATH
 export PATH=~/.kubectx:$PATH
-
-# terraform
-complete -C /usr/bin/terraform terraform
-
-# Golang
+export PATH=$PATH:$HOME/.linkerd2/bin
+export PATH=$HOME/.jenv/bin:$PATH
 export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
+export BUN_INSTALL="$HOME/.bun"
+export PATH=$BUN_INSTALL/bin:$PATH
 
-# JavaScript - NVM lazy loaded on first use
+# =============================================================================
+# Languages
+# =============================================================================
+
+# Python
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+if command -v pyenv 1>/dev/null 2>&1; then
+    eval "$(pyenv init -)"
+fi
+export GIT_INTERNAL_GETTEXT_TEST_FALLBACKS=1  # suppress gettext.sh warning from pyenv
+
+# Rust
+. "$HOME/.cargo/env"
+
+# Java
+if command -v jenv 1>/dev/null 2>&1; then
+    eval "$(jenv init -)"
+fi
+
+# JavaScript — NVM lazy loaded on first use to avoid slow shell startup
 export NVM_DIR="$HOME/.nvm"
 _load_nvm() {
   unset -f nvm node npm npx yarn pnpm
@@ -103,14 +77,14 @@ nvm()  { _load_nvm; nvm  "$@"; }
 node() { _load_nvm; node "$@"; }
 npm()  { _load_nvm; npm  "$@"; }
 npx()  { _load_nvm; npx  "$@"; }
+yarn() { _load_nvm; yarn "$@"; }
+pnpm() { _load_nvm; pnpm "$@"; }
 
-# Java
-export PATH="$HOME/.jenv/bin:$PATH"
-if command -v jenv 1>/dev/null 2>&1; then
-  eval "$(jenv init -)"
-fi
+# =============================================================================
+# Completions
+# =============================================================================
 
-# Shell completions — cached by binary mtime to avoid spawning subprocesses every session
+# Cache completions by binary mtime — avoids a subprocess on every shell open
 _cache_completion() {
   local name="$1" cache="$HOME/.cache/${1}-completion.bash"
   local bin; bin=$(command -v "$name" 2>/dev/null) || return
@@ -120,61 +94,46 @@ _cache_completion() {
   fi
   [ -f "$cache" ] && source "$cache"
 }
-_cache_completion scw   scw autocomplete script shell=bash
-_cache_completion stern stern --completion=bash
+_cache_completion kubectl kubectl completion bash
+_cache_completion scw     scw autocomplete script shell=bash
+_cache_completion stern   stern --completion=bash
 unset -f _cache_completion
 
-# Copilot
-export PATH="$HOME/.local/bin:$PATH"
+complete -o default -F __start_kubectl k
+complete -C /usr/bin/terraform terraform
 
-# Docker
-export DOCKER_BUILDKIT=1
+# macOS — Homebrew git completion
+if command -v brew 1>/dev/null 2>&1; then
+  [ -f "$(brew --prefix)/etc/bash_completion.d/git-completion.bash" ] && \
+    . "$(brew --prefix)/etc/bash_completion.d/git-completion.bash"
+fi
 
+[ -f /usr/local/etc/bash_completion ]                 && . /usr/local/etc/bash_completion
+[ -f $HOME/.git-completion.bash ]                     && source $HOME/.git-completion.bash
+[ -f $HOME/.minikube.completion.sh ]                  && source $HOME/.minikube.completion.sh
+[ -f $HOME/.fzf.bash ]                                && source $HOME/.fzf.bash
+[ -f /usr/share/doc/fzf/examples/key-bindings.bash ]  && source /usr/share/doc/fzf/examples/key-bindings.bash
 
-# Google Cloud SDK settings
-[ -f $HOME/google-cloud-sdk/path.bash.inc ] && 
-  . $HOME/google-cloud-sdk/path.bash.inc
-[ -f $HOME/google-cloud-sdk/completion.bash.inc ] && 
-  . $HOME/google-cloud-sdk/completion.bash.inc
+export FZF_COMPLETION_OPTS='--border --info=inline'
+
+# Google Cloud SDK
+[ -f $HOME/google-cloud-sdk/path.bash.inc ]       && . $HOME/google-cloud-sdk/path.bash.inc
+[ -f $HOME/google-cloud-sdk/completion.bash.inc ] && . $HOME/google-cloud-sdk/completion.bash.inc
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
-# Load Aliases
-[ -f $HOME/.aliases ] && source $HOME/.aliases
-
-_kubectl_cache="$HOME/.cache/kubectl-completion.bash"
-if [ ! -f "$_kubectl_cache" ] || [ "$(command -v kubectl)" -nt "$_kubectl_cache" ]; then
-  mkdir -p "$HOME/.cache"
-  kubectl completion bash > "$_kubectl_cache" 2>/dev/null || rm -f "$_kubectl_cache"
-fi
-[ -f "$_kubectl_cache" ] && source "$_kubectl_cache"
-unset _kubectl_cache
-
-# Load Git Completion
-[ -f $HOME/.git-completion.bash ] && source $HOME/.git-completion.bash
-
-# Load settings with secrets
-[ -f $HOME/.protected ] && source $HOME/.protected
-
-# Load vimrc from a directroy
-export VIMINIT="source $HOME/.config/nvim/init.lua"
-
-# Options to fzf command
-export FZF_COMPLETION_OPTS='--border --info=inline'
-[ -f $HOME/.fzf.bash ] && source $HOME/.fzf.bash
-[ -f /usr/share/doc/fzf/examples/key-bindings.bash ] && 
-  source /usr/share/doc/fzf/examples/key-bindings.bash
-
-# bash completion
-[ -f /usr/local/etc/bash_completion ] && 
-  . /usr/local/etc/bash_completion
+# =============================================================================
+# Editor
+# =============================================================================
 
 export VISUAL=nvim
 export EDITOR="$VISUAL"
+export VIMINIT="source $HOME/.config/nvim/init.lua"
 
-complete -o default -F __start_kubectl k
+# =============================================================================
+# Misc
+# =============================================================================
 
-alias gam="/home/spazzy/bin/gam7/gam"
+export DOCKER_BUILDKIT=1
 
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+[ -f $HOME/.aliases ]   && source $HOME/.aliases
+[ -f $HOME/.protected ] && source $HOME/.protected
