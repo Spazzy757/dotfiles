@@ -87,6 +87,12 @@ lives there): nvim-tree & telescope on `keys`/`cmd`, mason on `:Mason`, nvim-dap
 its `Dap*` commands. LSP servers are enabled explicitly via `vim.lsp.enable()` in
 `lspserver.lua` (not mason-lspconfig's `automatic_enable`).
 
+**Startup dashboard:** snacks.nvim `dashboard` (configured in its `plugins.lua` spec),
+shown when `nvim` opens with no file args. Shortcuts: `f`/`g`/`r` (find/grep/recent
+via Telescope), `c` (config), `l` (Lazy), `q` (quit). The trailing-whitespace
+highlight in `options.lua` is scoped to real file buffers so it doesn't paint the
+dashboard/tree/help buffers.
+
 | Module | Purpose |
 |--------|---------|
 | `init.lua` | Loads all modules in order |

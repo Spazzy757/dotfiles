@@ -108,8 +108,41 @@ return {
     ft = { "markdown" },
   },
   {
+    -- Startup dashboard (snacks is also pulled in by claudecode.nvim below;
+    -- lazy.nvim merges both specs for this plugin).
+    "folke/snacks.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      dashboard = {
+        enabled = true,
+        preset = {
+          header = [[
+   ███████ ██████   █████  ███████ ███████ ██    ██
+   ██      ██   ██ ██   ██    ███     ███   ██  ██
+   ███████ ██████  ███████   ███     ███     ████
+        ██ ██      ██   ██  ███     ███       ██
+   ███████ ██      ██   ██ ███████ ███████    ██]],
+          keys = {
+            { icon = " ", key = "f", desc = "Find File", action = ":Telescope find_files" },
+            { icon = " ", key = "g", desc = "Live Grep", action = ":Telescope live_grep" },
+            { icon = " ", key = "r", desc = "Recent Files", action = ":Telescope oldfiles" },
+            { icon = " ", key = "c", desc = "Config", action = ":e $HOME/.config/nvim/init.lua" },
+            { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
+            { icon = " ", key = "q", desc = "Quit", action = ":qa" },
+          },
+        },
+        sections = {
+          { section = "header" },
+          { section = "keys", gap = 1, padding = 1 },
+          { section = "startup" },
+        },
+      },
+    },
+  },
+  {
   "coder/claudecode.nvim",
-    dependencies = { 
+    dependencies = {
       "folke/snacks.nvim"
     },
     opts = {
