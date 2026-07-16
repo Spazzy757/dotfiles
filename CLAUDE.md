@@ -8,6 +8,7 @@ Secrets (work git config, email credentials) are encrypted with [git-crypt](http
 ```
 bash/        Shell config — sourced via stow into ~/
 claude/      CLAUDE.md global preferences — stowed into ~/.claude/
+ghostty/     Ghostty terminal config — stowed into ~/.config/ghostty/
 git/         Git config — stowed into ~/  (some files git-crypt encrypted)
 nvim/        Neovim config — stowed into ~/.config/nvim/
 tmux/        Tmux config — stowed into ~/
@@ -21,7 +22,8 @@ Each directory is stowed independently:
 stow -v -R -t ~/             git
 stow -v -R -t ~/             bash
 stow -v -R -t ~/             tmux
-stow -v -R -t ~/.config/nvim nvim/
+stow -v -R -t ~/.config/nvim    nvim/
+stow -v -R -t ~/.config/ghostty ghostty/
 stow -v -R -t ~/.claude/     claude/
 ```
 
@@ -65,6 +67,13 @@ stow -v -R -t ~/.claude/     claude/
 | `.gitignore_global` | Global ignores: `.DS_Store`, `.localconfig`, swap files |
 
 **Notable aliases:** `s` (status), `c` (signed commit), `l` (log graph), `hist` (detailed log), `nuke` (delete all non-main branches), `cob` (fzf branch checkout).
+
+## ghostty/
+
+Single file `ghostty/config` — stowed to `~/.config/ghostty/config` (Ghostty only
+auto-loads a file named `config`, no extension). Sets a green-on-black colour
+scheme mirroring the Terminator profile: foreground `#29ee15` on black with the
+standard VGA 16-colour palette. Reload a running Ghostty with `ctrl+shift+,`.
 
 ## nvim/
 

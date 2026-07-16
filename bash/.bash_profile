@@ -50,11 +50,15 @@ export PATH=$BUN_INSTALL/bin:$PATH
 # Languages
 # =============================================================================
 
-# Python
+# Python — shims on PATH up front; pyenv init deferred to first use to avoid slow startup
 export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
+export PATH="$PYENV_ROOT/bin:$PYENV_ROOT/shims:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then
-    eval "$(pyenv init -)"
+    pyenv() {
+        unset -f pyenv
+        eval "$(command pyenv init - --no-rehash)"  # --no-rehash skips a ~200ms shim rebuild
+        pyenv "$@"
+    }
 fi
 export GIT_INTERNAL_GETTEXT_TEST_FALLBACKS=1  # suppress gettext.sh warning from pyenv
 
