@@ -2,8 +2,7 @@
 vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
 vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
 
--- File tree
-vim.keymap.set('n', '<leader>n', ':NvimTreeFocus<CR>', { silent = true })
+-- File tree (<leader>n) is registered as a lazy-load key in plugins.lua
 
 -- Reload config
 vim.keymap.set('n', '<leader>c', ':source $HOME/.config/nvim/init.lua<CR>', { silent = true })

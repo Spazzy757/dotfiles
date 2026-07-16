@@ -82,14 +82,17 @@ Entry point: `nvim/init.lua` — bootstraps lazy.nvim, loads `plugins`, then `re
 **Plugin config:** `nvim/lua/plugins.lua`  
 **Module config:** `nvim/lua/spazzy/`
 
+On-demand plugins are lazy-loaded from their `plugins.lua` specs (their `.setup()`
+lives there): nvim-tree & telescope on `keys`/`cmd`, mason on `:Mason`, nvim-dap on
+its `Dap*` commands. LSP servers are enabled explicitly via `vim.lsp.enable()` in
+`lspserver.lua` (not mason-lspconfig's `automatic_enable`).
+
 | Module | Purpose |
 |--------|---------|
 | `init.lua` | Loads all modules in order |
 | `options.lua` | Vim settings, autocmds, FreeMarker filetype |
-| `keymaps.lua` | Key bindings (folding, file tree, diagnostics) |
-| `setup.lua` | nvim-tree, Telescope, Mason setup |
-| `lspserver.lua` | Treesitter, LSP capabilities, all language servers, nvim-ufo |
-| `telescope.lua` | Telescope key bindings (`<leader>ff/fg/fl/fb/fh/fo`) |
+| `keymaps.lua` | Key bindings (folding, diagnostics) |
+| `lspserver.lua` | Mason bin on PATH, Treesitter, LSP capabilities, all language servers (`vim.lsp.enable`), nvim-ufo |
 | `completion.lua` | nvim-cmp setup with vsnip |
 | `claude.lua` | claudecode.nvim key bindings (`<leader>w*`) |
 | `comments.lua` | Manual comment/uncomment for multiple syntaxes (`<leader>b` / `<leader>?`) |
