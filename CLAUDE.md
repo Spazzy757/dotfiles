@@ -114,7 +114,12 @@ dashboard/tree/help buffers.
 - `<leader>wc/wf/wr/wo` — Claude toggle/focus/resume/continue
 - `<leader>wa` — add current buffer to Claude; `<leader>ws` (visual) — send to Claude
 - `<leader>wda/wdd` — accept/deny Claude diff
+- `<leader>m` — toggle in-editor markdown render (render-markdown.nvim)
 - `zR/zM` — open/close all folds
+
+**Markdown:** `render-markdown.nvim` renders headings/lists/code/tables/checkboxes
+in-buffer (auto on `markdown` filetype); `markdown-preview.nvim` gives a browser
+preview via `:MarkdownPreview`.
 
 ## tmux/
 

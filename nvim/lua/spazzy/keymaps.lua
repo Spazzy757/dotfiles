@@ -10,5 +10,8 @@ vim.keymap.set('n', '<leader>c', ':source $HOME/.config/nvim/init.lua<CR>', { si
 -- Inline diagnostics
 vim.keymap.set('n', '<leader>e', ':lua vim.diagnostic.open_float(0, {scope="line"})<CR>', { silent = true })
 
+-- Markdown: toggle in-editor render
+vim.keymap.set('n', '<leader>m', ':RenderMarkdown toggle<CR>', { silent = true })
+
 -- Go to definition (falls back to ctags)
 vim.keymap.set('n', 'gd', '<c-]>', { remap = true })

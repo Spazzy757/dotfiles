@@ -108,6 +108,35 @@ return {
     ft = { "markdown" },
   },
   {
+    -- In-editor markdown rendering (headings, lists, code, tables, checkboxes)
+    "MeanderingProgrammer/render-markdown.nvim",
+    ft = { "markdown" },
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
+    },
+    opts = {
+      -- contained code blocks (not a full-width grey slab) with a subtle border
+      code = {
+        width = "block",
+        min_width = 45,
+        left_pad = 2,
+        right_pad = 2,
+        border = "thin",
+      },
+      -- terminals can't truly resize text, so imply a size hierarchy: top
+      -- headings are full-width banners, deeper ones hug their text, with a
+      -- divider line under each.
+      heading = {
+        width = { "full", "full", "block", "block", "block", "block" },
+        border = true,
+        right_pad = 2,
+      },
+      -- no sign-column clutter
+      sign = { enabled = false },
+    },
+  },
+  {
     -- Startup dashboard (snacks is also pulled in by claudecode.nvim below;
     -- lazy.nvim merges both specs for this plugin).
     "folke/snacks.nvim",
