@@ -102,7 +102,7 @@ dashboard/tree/help buffers.
 | `completion.lua` | nvim-cmp setup with vsnip |
 | `claude.lua` | claudecode.nvim key bindings (`<leader>w*`) |
 | `comments.lua` | Manual comment/uncomment for multiple syntaxes (`<leader>b` / `<leader>?`) |
-| `theme.lua` | Nightfox/carbonfox colour scheme with custom highlights |
+| `theme.lua` | Matrix-tinted carbonfox — green bg/UI, high-contrast syntax palette |
 
 **Language servers** (installed via `:Mason`): pylsp, gopls, rust_analyzer, lua_ls, yamlls, helm_ls, sqlls, jsonls, terraformls, dockerls, docker_compose_language_service, bashls, clangd, kotlin_language_server.
 
