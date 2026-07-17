@@ -48,6 +48,10 @@
   # Speed up commands involving untracked files such as `git status`.
   # https://git-scm.com/docs/git-update-index#_untracked_cache
   untrackedCache = true
+[fetch]
+  # Maintain a commit-graph on fetch — ~2x faster `git log`/graph in large repos.
+  # https://git-scm.com/docs/commit-graph
+  writeCommitGraph = true
 [color "branch"]
   current = yellow reverse
   local = yellow
@@ -66,7 +70,7 @@
 [merge]
   tool = opendiff
 [credential]
-  helper = store
+  helper = libsecret
 [color "decorate"]
   head = bold white
   branch = bold magenta

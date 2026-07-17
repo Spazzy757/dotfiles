@@ -5,7 +5,6 @@ vim.g.loaded_netrwPlugin = 1
 -- UI
 vim.opt.termguicolors = true
 vim.opt.mouse = "a"
-vim.opt.filetype = "on"
 vim.opt.clipboard = "unnamedplus"
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -34,15 +33,28 @@ vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldcolumn = "1"
 vim.opt.foldtext = ""
 
--- Trailing whitespace highlight
-vim.o.list = true
+-- Trailing whitespace highlight — real file buffers only. Skip special buffers
+-- (dashboard, tree, help, ...). The check is deferred with vim.schedule because
+-- snacks sets the dashboard's buftype/filetype with noautocmd *after* BufEnter,
+-- so an immediate check would see an empty filetype and wrongly paint it.
 vim.api.nvim_set_hl(0, 'TrailingWhitespace', { bg = 'LightRed' })
-vim.api.nvim_create_autocmd('BufEnter', {
+local tw_skip_ft = {
+    snacks_dashboard = true, snacks_terminal = true, NvimTree = true,
+    help = true, qf = true, lazy = true, mason = true, checkhealth = true,
+}
+vim.api.nvim_create_autocmd({ 'BufWinEnter', 'BufEnter' }, {
     pattern = '*',
-    command = [[
-        syntax clear TrailingWhitespace |
-        syntax match TrailingWhitespace "\_s\+$"
-    ]],
+    callback = function()
+        vim.schedule(function()
+            if vim.bo.buftype ~= '' or tw_skip_ft[vim.bo.filetype] then
+                vim.opt_local.list = false
+                vim.cmd('silent! syntax clear TrailingWhitespace')
+            else
+                vim.opt_local.list = true
+                vim.cmd([[syntax clear TrailingWhitespace | syntax match TrailingWhitespace "\_s\+$"]])
+            end
+        end)
+    end,
 })
 
 -- FreeMarker (.ftl) — parse as HTML via treesitter
