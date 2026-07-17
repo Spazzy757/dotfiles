@@ -1,3 +1,7 @@
+-- Mason installs LSP servers under this dir. mason.nvim is lazy-loaded (on :Mason),
+-- so add its bin to PATH here to keep server binaries resolvable at startup.
+vim.env.PATH = vim.fn.stdpath('data') .. '/mason/bin:' .. vim.env.PATH
+
 -- =============================================================================
 -- Treesitter
 -- =============================================================================
@@ -77,6 +81,14 @@ vim.lsp.config('helm_ls', {
       },
     },
   },
+})
+
+-- Enable the configured servers (previously done by mason-lspconfig's automatic_enable).
+-- Each starts on its filetype via nvim-lspconfig's shipped config.
+vim.lsp.enable({
+  'pylsp', 'kotlin_language_server', 'gopls', 'rust_analyzer', 'yamlls', 'sqlls',
+  'jsonls', 'terraformls', 'docker_compose_language_service', 'dockerls', 'bashls',
+  'clangd', 'lua_ls', 'helm_ls',
 })
 
 -- =============================================================================

@@ -3,7 +3,6 @@
 # =============================================================================
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
-export TERM="screen-256color-bce"
 
 # History — longer scrollback, no duplicates, append across sessions
 export HISTSIZE=10000
@@ -31,30 +30,43 @@ fi
 # PATH
 # =============================================================================
 
-export PATH=/usr/local/sbin:$PATH
-export PATH=/usr/local/opt/curl/bin:$PATH
-export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/.cargo/bin:$PATH
-export PATH=$HOME/.poetry/bin:$PATH
-export PATH=$HOME/.krew/bin:$PATH
-export PATH=~/.kubectx:$PATH
-export PATH=$PATH:$HOME/.linkerd2/bin
-export PATH=$HOME/.jenv/bin:$PATH
-export PATH=$PATH:/usr/local/go/bin
+# Add a dir to PATH only if it exists and isn't already present — avoids the
+# duplicate/dead entries you get when this file is sourced more than once.
+_prepend_path() { [ -d "$1" ] && case ":$PATH:" in *":$1:"*) ;; *) PATH="$1:$PATH" ;; esac; }
+_append_path()  { [ -d "$1" ] && case ":$PATH:" in *":$1:"*) ;; *) PATH="$PATH:$1" ;; esac; }
+
+_prepend_path /usr/local/sbin
+_prepend_path /usr/local/opt/curl/bin
+_prepend_path "$HOME/.local/bin"
+_prepend_path "$HOME/.cargo/bin"
+_prepend_path "$HOME/.poetry/bin"
+_prepend_path "$HOME/.krew/bin"
+_prepend_path "$HOME/.kubectx"
+_prepend_path "$HOME/.jenv/bin"
+
 export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
 export BUN_INSTALL="$HOME/.bun"
-export PATH=$BUN_INSTALL/bin:$PATH
+_append_path "$HOME/.linkerd2/bin"
+_append_path /usr/local/go/bin
+_append_path "$GOPATH/bin"
+_prepend_path "$BUN_INSTALL/bin"
+export PATH
 
 # =============================================================================
 # Languages
 # =============================================================================
 
-# Python
+# Python — shims on PATH up front; pyenv init deferred to first use to avoid slow startup
 export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
+_prepend_path "$PYENV_ROOT/shims"
+_prepend_path "$PYENV_ROOT/bin"
+unset -f _prepend_path _append_path
 if command -v pyenv 1>/dev/null 2>&1; then
-    eval "$(pyenv init -)"
+    pyenv() {
+        unset -f pyenv
+        eval "$(command pyenv init - --no-rehash)"  # --no-rehash skips a ~200ms shim rebuild
+        pyenv "$@"
+    }
 fi
 export GIT_INTERNAL_GETTEXT_TEST_FALLBACKS=1  # suppress gettext.sh warning from pyenv
 

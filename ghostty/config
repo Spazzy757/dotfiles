@@ -1,0 +1,86 @@
+# Color scheme mimicking Terminator (green-on-black)
+foreground = #29ee15
+background = #000000
+cursor-color = #29ee15
+
+# 16-color palette (matches Terminator's default VGA palette)
+palette = 0=#000000
+palette = 1=#aa0000
+palette = 2=#00aa00
+palette = 3=#aa5500
+palette = 4=#0000aa
+palette = 5=#aa00aa
+palette = 6=#00aaaa
+palette = 7=#aaaaaa
+palette = 8=#555555
+palette = 9=#ff5555
+palette = 10=#55ff55
+palette = 11=#ffff55
+palette = 12=#5555ff
+palette = 13=#ff55ff
+palette = 14=#55ffff
+palette = 15=#ffffff
+
+# =============================================================================
+# Font — contextual alternates + programming ligatures (->, =>, !=, >=)
+# =============================================================================
+font-feature = calt
+font-feature = liga
+font-thicken = true
+
+# =============================================================================
+# Appearance
+# =============================================================================
+background-opacity = 0.92
+# background-blur needs a compositor that supports it (KDE/Hyprland; GNOME may ignore)
+background-blur = true
+window-padding-x = 8
+window-padding-y = 6
+window-padding-balance = true
+# tint the window chrome with the terminal colours
+window-theme = ghostty
+cursor-style = block
+cursor-style-blink = true
+# keep the glyph under the block cursor readable
+cursor-text = #000000
+# no size popup while resizing
+resize-overlay = never
+# minimal chrome — hide the titlebar/window controls
+window-decoration = none
+# start every window fullscreen
+fullscreen = true
+
+# =============================================================================
+# Behaviour / quality of life
+# =============================================================================
+mouse-hide-while-typing = true
+copy-on-select = clipboard
+# let tmux/nvim/ssh set the system clipboard (OSC 52)
+clipboard-write = allow
+# restore windows on relaunch
+window-save-state = always
+confirm-close-surface = false
+# one process for all windows (faster new windows on Linux)
+gtk-single-instance = true
+
+# =============================================================================
+# Quick terminal (Quake-style dropdown): ctrl+` drops it from the top
+# =============================================================================
+keybind = global:ctrl+backquote=toggle_quick_terminal
+quick-terminal-position = top
+quick-terminal-animation-duration = 0.15
+
+# =============================================================================
+# Extra keybinds
+# =============================================================================
+# dump the scrollback to a file and open it
+keybind = ctrl+shift+j=write_scrollback_file:open
+# command palette — fuzzy-run any action
+keybind = ctrl+shift+p=toggle_command_palette
+# search the scrollback
+keybind = ctrl+shift+f=start_search
+# jump to previous / next shell prompt
+keybind = ctrl+shift+up=jump_to_prompt:-1
+keybind = ctrl+shift+down=jump_to_prompt:1
+# quick-toggle background transparency/blur
+keybind = ctrl+shift+o=toggle_background_opacity

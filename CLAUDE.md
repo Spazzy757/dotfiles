@@ -8,6 +8,7 @@ Secrets (work git config, email credentials) are encrypted with [git-crypt](http
 ```
 bash/        Shell config — sourced via stow into ~/
 claude/      CLAUDE.md global preferences — stowed into ~/.claude/
+ghostty/     Ghostty terminal config — stowed into ~/.config/ghostty/
 git/         Git config — stowed into ~/  (some files git-crypt encrypted)
 nvim/        Neovim config — stowed into ~/.config/nvim/
 tmux/        Tmux config — stowed into ~/
@@ -21,7 +22,8 @@ Each directory is stowed independently:
 stow -v -R -t ~/             git
 stow -v -R -t ~/             bash
 stow -v -R -t ~/             tmux
-stow -v -R -t ~/.config/nvim nvim/
+stow -v -R -t ~/.config/nvim    nvim/
+stow -v -R -t ~/.config/ghostty ghostty/
 stow -v -R -t ~/.claude/     claude/
 ```
 
@@ -66,6 +68,13 @@ stow -v -R -t ~/.claude/     claude/
 
 **Notable aliases:** `s` (status), `c` (signed commit), `l` (log graph), `hist` (detailed log), `nuke` (delete all non-main branches), `cob` (fzf branch checkout).
 
+## ghostty/
+
+Single file `ghostty/config` — stowed to `~/.config/ghostty/config` (Ghostty only
+auto-loads a file named `config`, no extension). Sets a green-on-black colour
+scheme mirroring the Terminator profile: foreground `#29ee15` on black with the
+standard VGA 16-colour palette. Reload a running Ghostty with `ctrl+shift+,`.
+
 ## nvim/
 
 Entry point: `nvim/init.lua` — bootstraps lazy.nvim, loads `plugins`, then `require('spazzy')`.
@@ -73,14 +82,23 @@ Entry point: `nvim/init.lua` — bootstraps lazy.nvim, loads `plugins`, then `re
 **Plugin config:** `nvim/lua/plugins.lua`  
 **Module config:** `nvim/lua/spazzy/`
 
+On-demand plugins are lazy-loaded from their `plugins.lua` specs (their `.setup()`
+lives there): nvim-tree & telescope on `keys`/`cmd`, mason on `:Mason`, nvim-dap on
+its `Dap*` commands. LSP servers are enabled explicitly via `vim.lsp.enable()` in
+`lspserver.lua` (not mason-lspconfig's `automatic_enable`).
+
+**Startup dashboard:** snacks.nvim `dashboard` (configured in its `plugins.lua` spec),
+shown when `nvim` opens with no file args. Shortcuts: `f`/`g`/`r` (find/grep/recent
+via Telescope), `c` (config), `l` (Lazy), `q` (quit). The trailing-whitespace
+highlight in `options.lua` is scoped to real file buffers so it doesn't paint the
+dashboard/tree/help buffers.
+
 | Module | Purpose |
 |--------|---------|
 | `init.lua` | Loads all modules in order |
 | `options.lua` | Vim settings, autocmds, FreeMarker filetype |
-| `keymaps.lua` | Key bindings (folding, file tree, diagnostics) |
-| `setup.lua` | nvim-tree, Telescope, Mason setup |
-| `lspserver.lua` | Treesitter, LSP capabilities, all language servers, nvim-ufo |
-| `telescope.lua` | Telescope key bindings (`<leader>ff/fg/fl/fb/fh/fo`) |
+| `keymaps.lua` | Key bindings (folding, diagnostics) |
+| `lspserver.lua` | Mason bin on PATH, Treesitter, LSP capabilities, all language servers (`vim.lsp.enable`), nvim-ufo |
 | `completion.lua` | nvim-cmp setup with vsnip |
 | `claude.lua` | claudecode.nvim key bindings (`<leader>w*`) |
 | `comments.lua` | Manual comment/uncomment for multiple syntaxes (`<leader>b` / `<leader>?`) |
@@ -96,7 +114,12 @@ Entry point: `nvim/init.lua` — bootstraps lazy.nvim, loads `plugins`, then `re
 - `<leader>wc/wf/wr/wo` — Claude toggle/focus/resume/continue
 - `<leader>wa` — add current buffer to Claude; `<leader>ws` (visual) — send to Claude
 - `<leader>wda/wdd` — accept/deny Claude diff
+- `<leader>m` — toggle in-editor markdown render (render-markdown.nvim)
 - `zR/zM` — open/close all folds
+
+**Markdown:** `render-markdown.nvim` renders headings/lists/code/tables/checkboxes
+in-buffer (auto on `markdown` filetype); `markdown-preview.nvim` gives a browser
+preview via `:MarkdownPreview`.
 
 ## tmux/
 
