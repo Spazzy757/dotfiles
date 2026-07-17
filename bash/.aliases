@@ -4,7 +4,12 @@
 # System
 # =============================================================================
 
-alias ls='ls -alFG'
+# colour output: GNU/uutils ls uses --color; macOS/BSD ls uses -G
+if [ "$(uname -s)" = "Linux" ]; then
+  alias ls='ls -alF --color=auto'
+else
+  alias ls='ls -alFG'
+fi
 alias sudo='sudo '                   # enable alias expansion after sudo
 alias reload="exec ${SHELL} -l"
 alias path='echo -e ${PATH//:/\\n}'

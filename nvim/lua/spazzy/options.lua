@@ -5,7 +5,6 @@ vim.g.loaded_netrwPlugin = 1
 -- UI
 vim.opt.termguicolors = true
 vim.opt.mouse = "a"
-vim.opt.filetype = "on"
 vim.opt.clipboard = "unnamedplus"
 vim.opt.number = true
 vim.opt.relativenumber = true
