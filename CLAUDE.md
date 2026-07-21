@@ -129,6 +129,12 @@ Config at `tmux/.tmux.conf`. Prefix is `Ctrl+a`.
 - Pane nav/resize: vim-style (`h/j/k/l`, `H/J/K/L`)
 - Copy mode: vi keys; `y` yanks to Wayland clipboard via `wl-copy`
 - `x` kills pane; `T` swaps current pane with top; `r` reloads config
+- Auto-start sessions: `CISSP`, `compliance`, `dotfiles`, `term` are recreated
+  (in their working directory) on server start if missing,
+  guarded by `has-session` so running ones are untouched. Re-runs on `r` reload
+  too, so a closed session comes back next reload. Add more by copying the
+  `if-shell '! tmux has-session -t NAME ...' 'new-session -d -s NAME -c DIR'`
+  pattern in the Auto-start Sessions block.
 
 ## claude/
 
