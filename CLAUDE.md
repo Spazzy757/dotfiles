@@ -33,8 +33,8 @@ stow -v -R -t ~/.claude/     claude/
 - One commit per PR; amend to keep it single
 - Conventional commits with a descriptive body
 - Rebase only, no merge commits
-- Encrypted files: `git/.gitemail`, `git/.gitconfig.work`, `git/.git-credentials`
-  — run `git-crypt unlock` (requires GPG key in keychain)
+- Encrypted files: `git/.gitemail`, `git/.gitconfig.work`, `git/.git-credentials`,
+  `bash/.protected` — run `git-crypt unlock` (requires GPG key in keychain)
 
 ## bash/
 
@@ -44,12 +44,15 @@ stow -v -R -t ~/.claude/     claude/
 | `.bash_profile` | All shell setup: PATH, languages, completions, editor |
 | `.aliases` | Aliases and helper functions |
 | `.spazzy757.theme.bash` | Custom Bash-it prompt theme |
+| `.protected` | Secrets/credentials exported into the shell (encrypted) |
 
 **Key patterns in `.bash_profile`:**
 - Sections: Shell → Bash-it → PATH → Languages → Completions → Editor → Misc
 - NVM is lazy-loaded via stubs (`nvm`, `node`, `npm`, `npx`, `yarn`, `pnpm`) to avoid slow startup
 - Completions are cached by binary mtime under `~/.cache/` via `_cache_completion`
 - `pyenv`, `jenv`, `cargo` initialised conditionally with `command -v` guards
+- Ends by sourcing `~/.aliases` and `~/.protected`, both guarded by `[ -f ]` so a
+  locked or missing `.protected` never breaks shell startup
 
 **Key patterns in `.aliases`:**
 - Linux clipboard uses `wl-copy`/`wl-paste` (Wayland)
