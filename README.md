@@ -24,6 +24,9 @@ be found in the [claude](./claude) folder
 
 ## To Setup
 
+On a fresh Ubuntu/Debian laptop run `./setup.sh` (see `tools.json` and
+`packages.txt` for what it installs). The manual steps below are for reference.
+
 ### Run Setup 
 
 For setup I simply use [stow][5] Ive tested various other tooling and just find

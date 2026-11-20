@@ -148,4 +148,3 @@ export VIMINIT="source $HOME/.config/nvim/init.lua"
 export DOCKER_BUILDKIT=1
 
 [ -f $HOME/.aliases ]   && source $HOME/.aliases
-[ -f $HOME/.protected ] && source $HOME/.protected

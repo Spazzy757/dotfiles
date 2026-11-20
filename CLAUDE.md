@@ -14,6 +14,14 @@ nvim/        Neovim config — stowed into ~/.config/nvim/
 tmux/        Tmux config — stowed into ~/
 ```
 
+## Bootstrap
+
+`./setup.sh` sets up a fresh Ubuntu/Debian laptop (idempotent): clones this repo,
+installs `packages.txt` (apt) and the pinned tools in `tools.json` via
+`scripts/install-tools.sh`, creates `~/repos/{spazzy,vandebron}`, then stows
+everything. While git-crypt is locked it skips the encrypted files; unlock and
+re-run. Bump a tool by editing its `version` in `tools.json`.
+
 ## Stow Commands
 
 Each directory is stowed independently:
@@ -33,8 +41,8 @@ stow -v -R -t ~/.claude/     claude/
 - One commit per PR; amend to keep it single
 - Conventional commits with a descriptive body
 - Rebase only, no merge commits
-- Encrypted files: `git/.gitemail`, `git/.gitconfig.work`, `git/.git-credentials`,
-  `bash/.protected` — run `git-crypt unlock` (requires GPG key in keychain)
+- Encrypted files: `git/.gitemail`, `git/.gitconfig.work`, `git/.git-credentials`
+  — run `git-crypt unlock` (requires GPG key in keychain)
 
 ## bash/
 
@@ -44,15 +52,13 @@ stow -v -R -t ~/.claude/     claude/
 | `.bash_profile` | All shell setup: PATH, languages, completions, editor |
 | `.aliases` | Aliases and helper functions |
 | `.spazzy757.theme.bash` | Custom Bash-it prompt theme |
-| `.protected` | Secrets/credentials exported into the shell (encrypted) |
 
 **Key patterns in `.bash_profile`:**
 - Sections: Shell → Bash-it → PATH → Languages → Completions → Editor → Misc
 - NVM is lazy-loaded via stubs (`nvm`, `node`, `npm`, `npx`, `yarn`, `pnpm`) to avoid slow startup
 - Completions are cached by binary mtime under `~/.cache/` via `_cache_completion`
 - `pyenv`, `jenv`, `cargo` initialised conditionally with `command -v` guards
-- Ends by sourcing `~/.aliases` and `~/.protected`, both guarded by `[ -f ]` so a
-  locked or missing `.protected` never breaks shell startup
+- Ends by sourcing `~/.aliases`, guarded by `[ -f ]`
 
 **Key patterns in `.aliases`:**
 - Linux clipboard uses `wl-copy`/`wl-paste` (Wayland)
